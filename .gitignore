@@ -2,7 +2,7 @@ nbproject/
 update/
 update_manuell/
 *.xlsx
-.*bak
+*.bak
 backup/
 api/Backups/
 api/images/
