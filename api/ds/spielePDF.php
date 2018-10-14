@@ -157,7 +157,7 @@ $querySQL = "SELECT Distinct "
 // fclose($fp);
 
 
-$dbSyb->setCharset('windows-1252');
+// $dbSyb->setCharset('windows-1252');
 $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
