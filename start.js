@@ -29831,7 +29831,7 @@
                   height: 148,
                   numCols: 2,
                   // location of our backend
-                  action: 'api/update.php',
+                  action: 'api/update/update.php',
                   fields: [{
                   type: "RowSpacer",
                           height: 10
