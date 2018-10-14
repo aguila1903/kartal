@@ -133,7 +133,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 //				Union
 //				Select 'Begleiter' as gesehen, count(*) as anzahl from begleiter 
 			        " Union 
-				SELECT '0:0 nach 90 Min.' as gesehen, count(*) as anzahl FROM kartaldb.sp_besuche where ergebnis = '0:0' and erg_zusatz is NULL
+				SELECT '0:0 nach 90 Min.' as gesehen, count(*) as anzahl FROM sp_besuche where ergebnis = '0:0' and erg_zusatz is NULL
 				Union 
 				Select 'Tore' as gesehen, count(*) as anzahl from sp_besuche 
                                 Union 

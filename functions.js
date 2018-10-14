@@ -74,7 +74,8 @@
       return function(event){ //callback
           event.stopPropagation();
           event.preventDefault();
-          files = event.dataTransfer.files; // FileList object.
+          var files = event.dataTransfer.files; // FileList object.
+
           // files is a FileList of File objects. List some properties.
           var output = [];
           
