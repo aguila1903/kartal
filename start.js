@@ -494,7 +494,7 @@ ID: "logoutGroup",
       tsbLoadDB.click();
       }}),
       getIconButton("Update starten", {icon: "famfam/page_refresh.png", click: function () {
-      doUpdate();
+      doUpdate("menu");
       }})
     ],
     autoDraw: false
@@ -32815,5 +32815,5 @@ fieldName: [
   VLayoutMapsFlights.hide();
   VLayoutMapsGroups.hide();
   wdGesamtUebersicht.show();
-  doUpdate();
+  doUpdate("auto");
 //countryMap();
