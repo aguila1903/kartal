@@ -53,6 +53,9 @@ Page.setTitle("KARA KARTAL");
   icon4 = "web/32/soccer_man_add.png";
   icon5 = "web/32/soccer_man_edit.png";
   icon6 = "web/32/group_add.png";
+  
+   //Calendar
+  _view = "month";
   /*
    * *********************** ANFANG LAYOUT ***************************************
    * =============================================================================
@@ -191,21 +194,20 @@ Page.setTitle("KARA KARTAL");
         Name: "Zeitreisen",
         isFolder: false,
         icon: "famfam/map2.png"
-      }/*,
-       {
-       Id: "13",
-       parentId: "1",
-       Name: "Website",
-       isFolder: true,
-       icon: "web/16/www_page.png"
-       }
-       , {
-       Id: "1310",
-       parentId: "13",
-       Name: "www.stadionfreund.de",
-       isFolder: false,
-       icon: "web/16/firefox.png"
-       }*/
+      },
+      {
+      Id: "15",
+        parentId: "1",
+        Name: "Kalender",
+        isFolder: true,
+        icon: "famfam/calendar.png"
+      }, {
+      Id: "1510",
+        parentId: "15",
+        Name: "Planer",
+        isFolder: false,
+        icon: "famfam/calendar.png"
+      }
       ]
     }),
     leafClick: function (_viewer, _node, _recordNum) {
@@ -264,6 +266,10 @@ Page.setTitle("KARA KARTAL");
     openNode(sidAdmin, VLayoutMapsGroups);
       CategoryTree.GroupMapCnt++;
       CategoryTree.Load_Function_GroupMap(dfGroupsMapsGrafik, CategoryTree.GroupMapCnt, Jahr);
+    } else if (_node.Id == "1510") { // Kalender
+        openNode(sidAdmin, VLayoutKalender);    
+        agenda(_Heute, _view);
+
     } else {
     openNode('nope', VLayoutUser);
     }},
@@ -868,6 +874,105 @@ ID: "logoutGroup",
   /*
    * ********************** ENDE Gesamt-Übersicht *******************
    * ----------------------------------------------------------------
+   */
+  
+  /*
+   ***************** :GoTo: KALENDER ************************** 
+   */
+  
+  isc.HTMLPane.create({
+      width: "100%",
+      height: "100%",
+      padding: 5,
+      ID: "kalender",
+      backgroundColor: "#FFFFFF",
+      contentsType: "page",
+      styleName: "exampleTextBlock",
+      contentsUrl: ""
+  });
+
+
+  var agenda = function(datum_, view_){
+      kalender.setContents("<div id='calendar'></div>");
+      var _height = kalender.getInnerHeight();
+      var _width = kalender.getInnerWidth();
+      $(document).ready(function(){
+//          var eventData = calendarViewDS.fetchData();
+          $('#calendar').fullCalendar({
+              header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,basicWeek,agendaWeek,agendaDay,listWeek'
+              },
+              height: _height,
+              width: _width,
+              handleWindowResize: true,
+              defaultView: view_,
+              defaultDate: datum_,
+              locale: 'de',
+              navLinks: true, // can click day/week names to navigate views
+              selectable: false,
+              selectHelper: true,
+              editable: false,
+              windowResizeDelay: 500,
+              eventLimit: true, // allow "more" link when too many events
+              eventSources: [{url: '',
+                      type: 'POST'}],
+              dayClick: function(date, jsEvent, view){
+                  _view = view.name;
+                  var cal_datum = date.format();
+                  var jahr = cal_datum.substring(0, 4);
+                  var tag = cal_datum.substring(8, 10);
+                  var mon = cal_datum.substring(5, 7);
+                  var selected_date = jahr + "" + mon + "" + tag;
+                  if(parseInt(selected_date) >= parseInt(_heute_)){ // Nur aktuelle Termine können bearbeitet werden
+//                      tsbAddAbrechnung.action();
+                      var cal_datum = tag + '-' + mon + '-' + jahr;
+              isc.say(tag+"-"+mon+"-"+jahr);
+//                      setCalDate(dfAddAbrechnung, cal_datum);
+                  } else{
+                      isc.say("Vergangene Tage können nicht bearbeitet werden");
+                  }
+              }, eventClick: function(calEvent, jsEvent, view){
+                  _view = view.name;
+                  var cal_datum = calEvent.start.format();
+                  var jahr = cal_datum.substring(0, 4);
+                  var tag = cal_datum.substring(8, 10);
+                  var mon = cal_datum.substring(5, 7);
+                  var selected_date = jahr + "" + mon + "" + tag;                  
+                  belegNr_ = calEvent.id;                  
+//                  if(parseInt(selected_date) >= parseInt(_heute_)){ // Nur aktuelle Termine können bearbeitet werden
+//                      btnSpeichernAbrechnungEdit.findAbrechnung();
+//                      wdEditAbrechnung.show();
+//                      var record = abrechnungsTree.data.find("beleg_nr", belegNr_);
+//                      dfEditAbrechnung.editRecord(record);
+//                      pgbEditAbrechnung.setHeight(16);
+//                      isc.Timer.setTimeout("btnResetAbrechnungEdit2.click()", 100);
+//                      abrechnungsTree.count2++;
+//                      if(abrechnungsTree.getTotalRows() > 0){
+//                          abrechnungsListeEdit.fetchData({count: abrechnungsTree.count2, beleg_nr: belegNr_});
+//                      }
+//                      onRefreshAbrechnung("abrechnungsListeEdit", dfEditAbrechnung.getField("beleg_nr").getValue(), abrechnungsTree.count2);
+//                  } else{
+//                      wdTakvimRandevular.show();
+//                      buchungsListe_Randevu.fetchData({count: abrechnungsTree.count2, lfd_nr: -99, beleg_nr: belegNr_});
+//                  }
+              }
+          });
+
+      });
+  };
+
+  var setCalDate = function(_form, _date){
+      _form.getField('datum').setValue(_date);
+      _form.getField('datum').changed(_form, //Form         changed (form, item, value)
+              _form.getField('datum'), //Item
+              _form.getField('datum').getValue());
+//              isc.say(_date);
+  };
+
+/*
+   ***************** ENDE KALENDER ************************** 
    */
 
 
@@ -32765,6 +32870,18 @@ fieldName: [
       VLayout_tsSpiele, VLayoutSpieleListe_SpieleSuche
     ]
   });
+   /*
+   * ******************** :GoTo: Kalender ************************
+   */
+  
+    isc.VLayout.create({
+    ID: "VLayoutKalender",
+    width: "100%",
+    height: "100%",
+    members: [
+      kalender
+    ]
+  });
   /*
    * ******************** ENDE VLayouts **************************
    * -------------------------------------------------------------
@@ -32785,7 +32902,7 @@ fieldName: [
     height: "100%",
     border: "1px solid black",
     members: [
-      VLayoutLogoutLabel, welcomeSite, /*mundialWebSitePane,*/mundialNoAdminPane, VLayoutStadien, VLayoutVereine, VLayoutSpieler, VLayoutTrainer,
+      VLayoutLogoutLabel, welcomeSite, /*mundialWebSitePane,*/mundialNoAdminPane, VLayoutStadien, VLayoutVereine, VLayoutSpieler, VLayoutTrainer,VLayoutKalender,
       VLayoutSchiri, VLayoutBegleiter, VLayoutSpiele, VLayoutUser, VLayoutReiseKosten, VLayoutReiseStrecke, VLayoutMapsMundial, VLayoutMapsFlights, VLayoutMapsGroups
     ]
   });
@@ -32815,5 +32932,7 @@ fieldName: [
   VLayoutMapsFlights.hide();
   VLayoutMapsGroups.hide();
   wdGesamtUebersicht.show();
+  VLayoutKalender.hide();
+  agenda(_Heute, _view);
   doUpdate("auto");
 //countryMap();
