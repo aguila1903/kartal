@@ -916,7 +916,7 @@ ID: "logoutGroup",
               editable: false,
               windowResizeDelay: 500,
               eventLimit: true, // allow "more" link when too many events
-              eventSources: [{url: '',
+              eventSources: [{url: 'api/ds/calendarDS.php',
                       type: 'POST'}],
               dayClick: function(date, jsEvent, view){
                   _view = view.name;
@@ -940,23 +940,10 @@ ID: "logoutGroup",
                   var tag = cal_datum.substring(8, 10);
                   var mon = cal_datum.substring(5, 7);
                   var selected_date = jahr + "" + mon + "" + tag;                  
-                  belegNr_ = calEvent.id;                  
-//                  if(parseInt(selected_date) >= parseInt(_heute_)){ // Nur aktuelle Termine können bearbeitet werden
-//                      btnSpeichernAbrechnungEdit.findAbrechnung();
-//                      wdEditAbrechnung.show();
-//                      var record = abrechnungsTree.data.find("beleg_nr", belegNr_);
-//                      dfEditAbrechnung.editRecord(record);
-//                      pgbEditAbrechnung.setHeight(16);
-//                      isc.Timer.setTimeout("btnResetAbrechnungEdit2.click()", 100);
-//                      abrechnungsTree.count2++;
-//                      if(abrechnungsTree.getTotalRows() > 0){
-//                          abrechnungsListeEdit.fetchData({count: abrechnungsTree.count2, beleg_nr: belegNr_});
-//                      }
-//                      onRefreshAbrechnung("abrechnungsListeEdit", dfEditAbrechnung.getField("beleg_nr").getValue(), abrechnungsTree.count2);
-//                  } else{
-//                      wdTakvimRandevular.show();
-//                      buchungsListe_Randevu.fetchData({count: abrechnungsTree.count2, lfd_nr: -99, beleg_nr: belegNr_});
-//                  }
+                  spielID_ = calEvent.id; 
+                  description = calEvent.description;
+//                  isc.say(description);
+                  tsbShowSpiele.getSpielDetails(spielID_, calEvent, "calendar");
               }
           });
 
@@ -9399,7 +9386,7 @@ ID: "logoutGroup",
       colSpan: 2,
       valueMap: {"ga": "Für die Galerie", "fr": "Als Front-Bild"},
       type: "radioGroup",
-      defaultValue: "ga",
+      defaultValue: "fr",
       required: true,
       vertical: false,
       changed: function (form, item, value) {
@@ -12654,7 +12641,7 @@ ID: "logoutGroup",
       colSpan: 2,
       valueMap: {"ga": "Für die Galerie", "fr": "Als Front-Bild"},
       type: "radioGroup",
-      defaultValue: "ga",
+      defaultValue: "fr",
       required: true,
       vertical: false,
       changed: function (form, item, value) {
@@ -24134,11 +24121,11 @@ ID: "logoutGroup",
   isc.TileGrid.create({
   autoDraw: false,
     ID: "WappenH",
-    tileWidth: 230,
-    tileHeight: 230,
+    tileWidth: 108,
+    tileHeight: 108,
     // contextMenu: menuVereinFrontCoverTile,
-    height: 240,
-    width: 240,
+    height: 120,
+    width: 120,
     showAllRecords: true,
     align: "center",
     dataSource: "vereinCoverDS",
@@ -24158,11 +24145,11 @@ ID: "logoutGroup",
   isc.TileGrid.create({
   autoDraw: false,
     ID: "WappenA",
-    tileWidth: 230,
-    tileHeight: 230,
+    tileWidth: 108,
+    tileHeight: 108,
     // contextMenu: menuVereinFrontCoverTile,
-    height: 240,
-    width: 240,
+    height: 120,
+    width: 120,
     showAllRecords: true,
     align: "center",
     dataSource: "vereinCoverDS",
@@ -29168,6 +29155,31 @@ fieldName: [
     isModal: false,
     items: [tabSpiele]
   });
+  
+  isc.Window.create({
+  ID: "wdSpiele_calendar",
+    count: 0,
+    title: "Spiele",
+    autoSize: false,
+    autoCenter: true,
+    showFooter: false,
+    showMinimizeButton: true,
+    showCloseButton: true,
+    width: "98%",
+    height: "98%",
+    headerIconDefaults: {
+    width: 16,
+      height: 16,
+      src: "web/32/score.png",
+    },
+    canDragReposition: true,
+    canDragResize: true,
+    showShadow: false,
+    showModalMask: false,
+    // modalMaskOpacity: 10,
+    isModal: false,
+    items: [HLayoutDaten_HSpielerListe]
+  });
   /*
    * ************************* ENDE SPIELE ***************************************
    * *****************************************************************************
@@ -31837,10 +31849,17 @@ fieldName: [
     hoverWidth: 100,
     hoverDelay: 700,
     action: function () {
-
+        var spiel_id =  spieleListe.getSelectedRecord().spiel_id;
+        record = spieleListe.getSelectedRecord();
     if (spieleListe.getSelection().length == 1) {
-    tabSpiele.selectTab(0);
-      record = spieleListe.getSelectedRecord();
+        this.getSpielDetails(spiel_id, record, "uebersicht");
+    } else {
+    isc.say("Sie müssen erst ein Spiel wählen");
+    }
+    },getSpielDetails: function(spiel_id, record, mod){
+        if(mod !== "calendar"){
+        tabSpiele.selectTab(0);
+    }
       var _verein_id_h = record.verein_id_h;
       var _verein_id_a = record.verein_id_a;
       var _verein_h = record.verein_h;
@@ -31856,13 +31875,13 @@ fieldName: [
       var _zusch_anzahl = record.zusch_anzahl;
       var _gaestefans = record.gaestefans;
       var _stadionName = record.stadionname;
-      if (record.anschrift !== null){
+      if (record.anschrift != null){
     var _stadionAnschrift = record.anschrift.asHTML();
     } else{
     var _stadionAnschrift = record.anschrift;
     }
     var _stadionNameAlt = record.stadionname_alt;
-      if (record.bes_vork !== null){
+      if (record.bes_vork != null){
     var _bes_vork = record.bes_vork.asHTML();
     } else{
     var _bes_vork = record.bes_vork;
@@ -31886,24 +31905,29 @@ fieldName: [
       var _taxi = record.taxi;
       var _handy = record.handy;
       // var _schrift = 
-
-      wdSpiele.show();
+      if(mod == "calendar"){
+          wdSpiele_calendar.show();
+      }else{
+        wdSpiele.show();  
+      }
+      
       // Anfang Daten Holen ************************************************************************************
       WappenH.fetchData({verein_id: _verein_id_h, countTileH: ++tsbShowSpiele.countH});
       WappenA.fetchData({verein_id: _verein_id_a, countTileA: ++tsbShowSpiele.countA});
-      // spieleSpielerHeimListe.fetchData({spiel_id: spieleListe.getSelectedRecord().spiel_id, status: "sa", status2: "h"});
-      onRefreshSpieleSpielerQuellListe2("spieleSpielerHeimListe", spieleListe.getSelectedRecord().spiel_id, "sa", "h");
-      spieleSpielerHeimListeBank.fetchData({spiel_id: spieleListe.getSelectedRecord().spiel_id, status: "ew", status2: "h"});
-      spieleSpielerGastListe.fetchData({spiel_id: spieleListe.getSelectedRecord().spiel_id, status: "sa", status2: "a"});
-      spieleSpielerGastListeBank.fetchData({spiel_id: spieleListe.getSelectedRecord().spiel_id, status: "ew", status2: "a"});
-      spieleToreListe.fetchData({spiel_id: spieleListe.getSelectedRecord().spiel_id});
-      onRefreshSpieleSpielerQuellListe("spieleBegleiterListe_Front", spieleListe.getSelectedRecord().spiel_id);
-      onRefreshSpieleSpielerQuellListe("spieleToreListe_Elfer", spieleListe.getSelectedRecord().spiel_id);
-      onRefreshSpieleSpielerQuellListe("anreiseDatenListe", spieleListe.getSelectedRecord().spiel_id);
+      // spieleSpielerHeimListe.fetchData({spiel_id: spiel_id, status: "sa", status2: "h"});
+      onRefreshSpieleSpielerQuellListe2("spieleSpielerHeimListe", spiel_id, "sa", "h");
+      spieleSpielerHeimListeBank.fetchData({spiel_id: spiel_id, status: "ew", status2: "h"});
+      spieleSpielerGastListe.fetchData({spiel_id: spiel_id, status: "sa", status2: "a"});
+      spieleSpielerGastListeBank.fetchData({spiel_id: spiel_id, status: "ew", status2: "a"});
+      spieleToreListe.fetchData({spiel_id: spiel_id});
+      onRefreshSpieleSpielerQuellListe("spieleBegleiterListe_Front", spiel_id);
+      onRefreshSpieleSpielerQuellListe("spieleToreListe_Elfer", spiel_id);
+      onRefreshSpieleSpielerQuellListe("anreiseDatenListe", spiel_id);
       isc.Timer.setTimeout("tsbShowSpiele.spieleRedrawFunc()", 2000);
       // Ende Daten Holen **************************************************************************************
 
       // Button verstecken *************************************************************************************
+      
       btnSpieleAddSpielerHeim.hide();
       btnSpieleAddEinwechselSpielerHeim.hide();
       btnSpieleAddSpielerGast.hide();
@@ -31914,6 +31938,7 @@ fieldName: [
       btnAnreiseDaten.hide();
       btnSpieleListEdit.setSrc("web/32/table_edit.png");
       btnSpieleListEdit.setPrompt("Ermöglicht das Bearbeiten der Spiel-Listen");
+      
       // Anfang Labels *****************************************************************************************
       // lblSieleErgebnis.setContents('<text style="color:#000000; font-size:40px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">'+_erg+'</br>'+_erg_zusatz+'</text>');
 
@@ -31921,15 +31946,20 @@ fieldName: [
       lblSieleTeamH.setContents('<text style="color:#000000; font-size:30px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _verein_h + '</text>');
       lblSieleTeamA.setContents('<text style="color:#000000; font-size:30px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _verein_a + '</text>');
       lblSpiele_Datum_Zeit_Tag.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _datum + '</br>' + _tag + '</br>' + _zeit + ' Uhr</text>');
-      if (_wettbewerb_zusatz != "") {
+      if (_wettbewerb_zusatz != "" && _wettbewerb_zusatz != null) {
     lblSpiele_Wettbewerb.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _wettbewerb + '</br>(' + _wettbewerb_zusatz + ')</text>');
     } else {
     lblSpiele_Wettbewerb.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _wettbewerb + '</text>');
     }
 
     lblSpiele_Zuschauer.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _zusch_anzahl + ' Zuschauer</br>(' + _gaestefans + ' Gäste)</text>');
-      lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></br>' + _stadionAnschrift + '</text>');
-      if (_schiri_verein != "") {
+    if(_stadionAnschrift != null){  
+    lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></br>' + _stadionAnschrift + '</text>');
+    }else{        
+        lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></text>');
+  
+    }  
+      if (_schiri_verein != "" && _schiri_verein != null) {
     lblSpiele_Schiri.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Schiedsrichter:</b></br>' + _schiri + '</br>(' + _schiri_verein + ')</text>');
     } else {
     lblSpiele_Schiri.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Schiedsrichter:</b></br>' + _schiri + '</text>');
@@ -31941,12 +31971,9 @@ fieldName: [
       lblKosten_Zahlen.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"></br>' + _sprit + '</br>' + _spritAnteilig + '</br>' + _bahn + '</br>' + _flieger + '</br>' + _schiff + '</br>' + _uebernachtung + '</br>' + _verpflegung + '</br>' + _eintrittskarte + '</br>' + _taxi + '</br>' + _handy + '</br>' + _souvenir + '</br><u>' + _sonstige + '</u></br> <u><b>' + _ges_kosten + '</u></b></text>');
       // Ende Labels *******************************************************************************************
 
-    } else {
-    isc.say("Sie müssen erst ein Spiel wählen");
-    }
-
-    }, spieleRedrawFunc: function () {
-  spieleSpielerHeimListe.redraw();
+    },
+    spieleRedrawFunc: function () {
+    spieleSpielerHeimListe.redraw();
     spieleSpielerHeimListeBank.redraw();
     spieleSpielerGastListe.redraw();
     spieleSpielerGastListeBank.redraw();

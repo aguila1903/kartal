@@ -459,7 +459,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
             $rs->MoveNext();
         }
-
+        
         $rs->Close();
 
 
