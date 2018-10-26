@@ -145,10 +145,10 @@ if (isset($_REQUEST["land"])) {
 
 
 $sqlQuery = "call addVerein("
-			 . $dbSyb->quote($vereinsname)) .
+        . $dbSyb->quote($vereinsname) .
 		", " . $dbSyb->quote($gaengiger_name) .
-        ", " . $dbSyb->Quote(($ort)).
-        ", " . $dbSyb->Quote(($land)).");";
+        ", " . $dbSyb->Quote(($ort)) .
+        ", " . $dbSyb->Quote(($land)) . ");";
 
 
 // file_put_contents("addStadion.txt", $sqlQuery);
