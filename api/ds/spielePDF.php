@@ -29,10 +29,6 @@ $dbSyb->memCacheCompress = false; /// Use 'true' arbeitet unter Windows nicht
 $dbSyb->Connect('localhost', user, psw, db); //=>>> Verbindungsaufbau mit der DB
 
 
-
-
-
-
 if (!$dbSyb->IsConnected()) {
 
 
