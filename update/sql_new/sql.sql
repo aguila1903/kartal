@@ -81,7 +81,7 @@ DROP PROCEDURE IF EXISTS `taksitlerDS_cart`;
 DROP PROCEDURE IF EXISTS `taksitler_down`;
 DROP PROCEDURE IF EXISTS `taksitler_up`;
 DROP PROCEDURE IF EXISTS `uebersichtDS`;
-DROP PROCEDURE IF EXISTS `uebersichtDS2;
+DROP PROCEDURE IF EXISTS `uebersichtDS2`;
 DROP TABLE IF EXISTS  `einausgaben`; 
 DROP TABLE IF EXISTS  `karten`;
 DROP TABLE IF EXISTS  `monats_ausgaben`;
