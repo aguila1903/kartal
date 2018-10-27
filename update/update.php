@@ -102,7 +102,7 @@ if (is_file($update_sql_new)) {//Es befindet sich eine Datei im sql-update Ordne
 }
 
 
-
+$text = "";
 if ($update == "nope" && $type == "auto") {
     $out{'response'}{'status'} = 1;
 } elseif ($update == "nope" && $type == "menu") {
@@ -113,7 +113,7 @@ if ($update == "nope" && $type == "auto") {
     $text = "<br /><br />Es wurden Updates durchgeführt!<br />Mit dem Klicken auf OK wird die Seite neugestartet, damit die Updates wirksam werden.";
 }
 $out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $update;
+$out{'response'}{'data'} = $update.$text;
 
 print json_encode($out);
 ?>
