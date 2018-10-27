@@ -109,7 +109,7 @@ if ($update == "nope" && $type == "auto") {
     $update = "Keine neuen Updates vorhanden!";
 } else {
     $out{'response'}{'status'} = 0;
-    $text = "<br /><br />Es wurden Updates durchgeführt!<br />Mit dem Klicken auf OK wird die Seite neugestartet, damit die Updates wirksam werden.";
+    $text = "<br /><br /><b>Es wurden Updates durchgeführt!</b><br />Mit dem Klicken auf OK wird die Seite neugestartet, damit die Updates wirksam werden.";
 }
 $out{'response'}{'errors'} = array();
 $out{'response'}{'data'} = $update.$text;
