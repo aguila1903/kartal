@@ -101,7 +101,6 @@ if (is_file($update_sql_new)) {//Es befindet sich eine Datei im sql-update Ordne
     }
 }
 
-
 $text = "";
 if ($update == "nope" && $type == "auto") {
     $out{'response'}{'status'} = 1;
