@@ -62,11 +62,12 @@ function handleResponse()
 
 function init()
 {
-    login_ = document.getElementById("btnLogin");
-    register = document.getElementById("btnRegister");
+    const login = document.getElementById("btnLogin");
+    const register = document.getElementById("btnRegister");
+    const passwd = document.getElementById("passwort");
+    const user = document.getElementById("benutzername");
 
-    login_.addEventListener("click", sendLogin);
-
+    login.onclick = sendLogin;
     register.onclick = function ()
     {
         window.open(path + 'register.php', '_self', false);
@@ -83,6 +84,22 @@ function init()
         document.getElementById("passwort").style = "background-color: " + normColor;
         document.getElementById("benutzername").style = "background-color: " + normColor;
     });
-}
+    passwd.addEventListener("keydown", function (event)
+    {
+        if (event.key === "Enter")
+        {
+            event.preventDefault();
+            sendLogin();
+        }
+    });
 
+    user.addEventListener("keydown", function (event)
+    {
+        if (event.key === "Enter")
+        {
+            event.preventDefault();
+            sendLogin();
+        }
+    });
+}
 window.onload = init;
