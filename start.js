@@ -903,6 +903,10 @@ ID: "logoutGroup",
                   left: 'prev,next today',
                   center: 'title',
                   right: 'month,basicWeek,agendaWeek,agendaDay,listWeek'
+              },    googleCalendarApiKey: 'AIzaSyAYRSGJu53uPI8IiyehLYaX27Lvl_GSkQY',
+                events: {
+                googleCalendarId: 'aguila1419@googlemail.com',
+                className: 'gcal-event'
               },
               height: _height,
               width: _width,
