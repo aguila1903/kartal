@@ -6,19 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kartal Login</title>
         <link href="styles.css" rel="stylesheet">
-	<script src="login.js"></script>
+        <script src="login.js"></script>
         <!--<script src="..\login\md5.js" type="text/javascript"></script>--> 
         <script src="..\login\sha512.js" type="text/javascript"></script> 
+        <script src="crd\crd.js" type="text/javascript"></script> 
     </head>
     <body>
         <img id="bg_img" alt="Login" class="center">
         <div class="box">
             <span id="title">KARA KARTAL</span>
             <form>
-                 <br />
-                 <!--<label for="name">User: </label>-->
-                 <span class="glyphi" id="glyph_usr"></span>                    
-                 <input class="feld" type="text" name="benutzername" id="benutzername"/>
+                <br />
+                <!--<label for="name">User: </label>-->
+                <span class="glyphi" id="glyph_usr"></span>                    
+                <input class="feld" type="text" name="benutzername" id="benutzername"/>
                 <br />
                 <br />
                 <!--<label for="passwort">Passwort: </label>-->
@@ -28,7 +29,7 @@
             </form> 
             <br/>
             <div><button class="button" id="btnLogin">Login</button>     <button class="button" id="btnRegister">Register</button></div>         
-<p id="antwort"></p>
+            <p id="antwort"></p>
         </div>
 
 
