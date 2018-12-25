@@ -31,7 +31,5 @@
             <div><button class="button" id="btnLogin">Login</button>     <button class="button" id="btnRegister">Register</button></div>         
             <p id="antwort"></p>
         </div>
-
-
     </body>
 </html>
