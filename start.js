@@ -194,6 +194,12 @@ Page.setTitle("KARA KARTAL");
         Name: "Zeitreisen",
         isFolder: false,
         icon: "famfam/map2.png"
+      }, {
+      Id: "1415",
+        parentId: "14",
+        Name: "Landkarte mit Grounds",
+        isFolder: false,
+        icon: "famfam/map3.png"
       },
       {
       Id: "15",
@@ -266,6 +272,8 @@ Page.setTitle("KARA KARTAL");
     openNode(sidAdmin, VLayoutMapsGroups);
       CategoryTree.GroupMapCnt++;
       CategoryTree.Load_Function_GroupMap(dfGroupsMapsGrafik, CategoryTree.GroupMapCnt, Jahr);
+    } else if (_node.Id == "1415") { // Statistiken - Groundkarte
+    openNode(sidAdmin, VLayoutGroundsKarte);
     } else if (_node.Id == "1510") { // Kalender
         openNode(sidAdmin, VLayoutKalender);    
         agenda(_Heute, _view);
@@ -930,10 +938,10 @@ ID: "logoutGroup",
                   var tag = cal_datum.substring(8, 10);
                   var mon = cal_datum.substring(5, 7);
                   var selected_date = jahr + "" + mon + "" + tag;
-                  if(parseInt(selected_date) >= parseInt(_heute_)){ // Nur aktuelle Termine können bearbeitet werden
+      if (parseInt(selected_date) >= parseInt(_heute_)){ // Nur aktuelle Termine können bearbeitet werden
 //                      tsbAddAbrechnung.action();
                       var cal_datum = tag + '-' + mon + '-' + jahr;
-              isc.say(tag+"-"+mon+"-"+jahr);
+      isc.say(tag + "-" + mon + "-" + jahr);
 //                      setCalDate(dfAddAbrechnung, cal_datum);
                   } else{
                       isc.say("Vergangene Tage können nicht bearbeitet werden");
@@ -31037,6 +31045,19 @@ fieldName: [
    *********************************** ENDE GROUP MAP ****************************************************
    */
 
+  /*
+   * *****************GoTo: ANFANG Groundskarte ******************
+   * -------------------------------------------------------------
+   */
+// Geheimer Bearbeitungslink: https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3AiA
+  isc.HTMLPane.create({
+  width: "100%",
+    height: "100%",
+    ID: "Pane_GroundsKarte",
+    styleName: "exampleTextBlock",
+    contents: '<iframe width="100%" height="100%" frameBorder="0" allowfullscreen src="https://umap.openstreetmap.de/de/map/mundial_30?scaleControl=true&miniMap=true&scrollWheelZoom=true&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false">\n\
+</iframe><p><a href="https://umap.openstreetmap.de/de/map/mundial_30">Vollbildanzeige</a></p>'});
+  
 
   /*
    * ********* ANFANG TOOLSTRIPS AND TOOLSTRIP BUTTONS ***********************
@@ -32652,6 +32673,46 @@ fieldName: [
     members: [dfGroupsMapsGrafik, isc.LayoutSpacer.create({width: 50}), lblMapsGroups,
     ]});
   /*
+   ***************** GoTo: Toolstrip Groundkarte  ************************** 
+   */
+  
+   /*
+   ***************** CSV-Export Button Stadien ************************** 
+   */
+  isc.ToolStripButton.create({
+  ID: "tsbCSV_GeoDaten",
+    title: "",
+    count: 0,
+    showDisabledIcon: false,
+    icon: "famfam/excel.png",
+    iconWidth: 32,
+    iconHeight: 32,
+    prompt: "Exportiert eine Liste mit den Geo-Daten für die Groundkarte.\n\
+https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3AiA",
+    hoverWidth: 300,
+    hoverDelay: 700,
+    action: function () {    
+        var domain = location.host;
+        window.open(prot + domain + '/' + appFolder + '/api/ds/csv_export_geodaten.php', '_self', false);
+    }
+
+  });
+  
+  isc.Label.create({
+  padding: 0,
+    ID: "lblGroundKarte",
+    width: 300,
+    height: "100%",
+    align: "center",
+    contents: '<text style="color:' + titleLableColor + '; font-size:' + titleLableFontSize + '; font-family:' + titleLableFontFamily + '; text-decoration:none;">Groundkarte</text>'
+  });
+  isc.ToolStrip.create({
+  ID: "tslblGroundKarte",
+    width: "100%",
+    backgroundImage: "../bilder/" + guiColor,
+    height: 40,
+    members: [isc.LayoutSpacer.create({width: 30}),tsbCSV_GeoDaten,isc.LayoutSpacer.create({width: "*"}), lblGroundKarte,isc.LayoutSpacer.create({width: "*"})]});
+  /*
    * ******************** Ende Toolstrip *************************
    * -------------------------------------------------------------
    */
@@ -32925,6 +32986,16 @@ fieldName: [
     ]
   });
   /*
+   * ******************** :GoTo: GroundsKarte ************************
+   */
+
+  isc.VLayout.create({
+  ID: "VLayoutGroundsKarte",
+    width: "100%",
+    height: "100%",
+    members: [tslblGroundKarte, Pane_GroundsKarte]
+  });
+  /*
    * ******************** ENDE VLayouts **************************
    * -------------------------------------------------------------
    */
@@ -32935,7 +33006,7 @@ fieldName: [
    * =============================================================================
    */
 
-
+ 
 
 
   isc.HLayout.create({
@@ -32944,7 +33015,7 @@ fieldName: [
     height: "100%",
     border: "1px solid black",
     members: [
-      VLayoutLogoutLabel, welcomeSite, /*mundialWebSitePane,*/mundialNoAdminPane, VLayoutStadien, VLayoutVereine, VLayoutSpieler, VLayoutTrainer,VLayoutKalender,
+      VLayoutLogoutLabel, welcomeSite, /*mundialWebSitePane,*/mundialNoAdminPane, VLayoutStadien, VLayoutVereine, VLayoutSpieler, VLayoutTrainer, VLayoutKalender, VLayoutGroundsKarte,
       VLayoutSchiri, VLayoutBegleiter, VLayoutSpiele, VLayoutUser, VLayoutReiseKosten, VLayoutReiseStrecke, VLayoutMapsMundial, VLayoutMapsFlights, VLayoutMapsGroups
     ]
   });
@@ -32973,6 +33044,7 @@ fieldName: [
   VLayoutMapsMundial.hide();
   VLayoutMapsFlights.hide();
   VLayoutMapsGroups.hide();
+  VLayoutGroundsKarte.hide();
   wdGesamtUebersicht.show();
   VLayoutKalender.hide();
   agenda(_Heute, _view);
