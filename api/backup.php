@@ -32,11 +32,15 @@ if (is_file($path . $dateiname . ".sql") == 1) {
     return;
 }
 
+$mysql_bin_path = explode("\\",__DIR__);
+
+$mysql_bin_path = $mysql_bin_path[0]."\\".$mysql_bin_path[1]."\\mysql\\bin";
+
 $batch = "@echo off\n
-cd c:\\xampp\\mysql\\bin\n
+cd $mysql_bin_path\n
 
 
-c:\\xampp\\mysql\\bin\\mysqldump.exe -uroot -p" . psw . " " . db . " > $path$dateiname.sql --routines\n
+$mysql_bin_path\\mysqldump.exe -uroot -p" . psw . " " . db . " > $path$dateiname.sql --routines\n
 
 echo %errorlevel% ";
 

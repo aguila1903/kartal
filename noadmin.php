@@ -8,8 +8,7 @@ $uri = rtrim(dirname(htmlspecialchars($_SERVER["PHP_SELF"])), "/\\");
 
 <html>
   <head>
-    <title>Kara Kartal</title>
-    <link rel="stylesheet" type="text/css" href="login.css"/>
+    <title>Kara Kartal</title>    
   </head>
   <body onload="preload()" vlink="#0000FF" class="noadmin_nm" id="noadmin">
     <script type="text/javascript" src="login.js"></script>

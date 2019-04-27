@@ -19,7 +19,7 @@ $dbSyb->memCache = false;
 $dbSyb->memCacheHost = array('localhost'); /// $db->memCacheHost = $ip1; will work too
 $dbSyb->memCacheCompress = false; /// Use 'true' arbeitet unter Windows nicht
 //$dsn = "'localhost','root',psw,'vitaldb'";
-$dbSyb->Connect('localhost', user, psw, db); //=>>> Verbindungsaufbau mit der DB
+$dbSyb->Connect(link, user, psw, db); //=>>> Verbindungsaufbau mit der DB
 
 
 if (!$dbSyb->IsConnected()) {
@@ -65,12 +65,15 @@ if (is_file($path . $dateiname) != 1) {
 //$dateiname = $datum["year"]."-".$datum["mon"]."-".$datum["mday"].".bak";
 
 
+$mysql_bin_path = explode("\\",__DIR__);
+
+$mysql_bin_path = $mysql_bin_path[0]."\\".$mysql_bin_path[1]."\\mysql\\bin";
 
 $batch = "@echo off\n
-cd c:\\xampp\\mysql\\bin\n
+cd $mysql_bin_path\n
 
 
-c:\\xampp\\mysql\\bin\\mysql -uroot -p" . psw . " " . db . " < $path$dateiname \n
+$mysql_bin_path\\mysql -uroot -p" . psw . " " . db . " < $path$dateiname \n
 
 echo %errorlevel% ";
 
