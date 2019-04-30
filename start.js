@@ -53,8 +53,7 @@ Page.setTitle("KARA KARTAL");
   icon4 = "web/32/soccer_man_add.png";
   icon5 = "web/32/soccer_man_edit.png";
   icon6 = "web/32/group_add.png";
-  
-   //Calendar
+  //Calendar
   _view = "month";
   /*
    * *********************** ANFANG LAYOUT ***************************************
@@ -275,9 +274,8 @@ Page.setTitle("KARA KARTAL");
     } else if (_node.Id == "1415") { // Statistiken - Groundkarte
     openNode(sidAdmin, VLayoutGroundsKarte);
     } else if (_node.Id == "1510") { // Kalender
-        openNode(sidAdmin, VLayoutKalender);    
-        agenda(_Heute, _view);
-
+    openNode(sidAdmin, VLayoutKalender);
+      agenda(_Heute, _view);
     } else {
     openNode('nope', VLayoutUser);
     }},
@@ -452,9 +450,9 @@ title: title,
   icon: "pieces/16/piece_blue.png",
   largeIcon: "pieces/48/piece_blue.png",
   click: "isc.say(this.title + ' button clicked');"
-}, props)
+  }, props)
   );
-}
+  }
 
 isc.RibbonGroup.create({
 ID: "logoutGroup",
@@ -468,7 +466,7 @@ ID: "logoutGroup",
 
   ],
   autoDraw: false
-});
+  });
   isc.RibbonGroup.create({
   ID: "userGroup",
     title: "User",
@@ -883,96 +881,91 @@ ID: "logoutGroup",
    * ********************** ENDE Gesamt-Übersicht *******************
    * ----------------------------------------------------------------
    */
-  
+
   /*
    ***************** :GoTo: KALENDER ************************** 
    */
-  
+
   isc.HTMLPane.create({
-      width: "100%",
-      height: "100%",
-      padding: 5,
-      ID: "kalender",
-      backgroundColor: "#FFFFFF",
-      contentsType: "page",
-      styleName: "exampleTextBlock",
-      contentsUrl: ""
+  width: "100%",
+    height: "100%",
+    padding: 5,
+    ID: "kalender",
+    backgroundColor: "#FFFFFF",
+    contentsType: "page",
+    styleName: "exampleTextBlock",
+    contentsUrl: ""
   });
-
-
   var agenda = function(datum_, view_){
-      kalender.setContents("<div id='calendar'></div>");
-      var _height = kalender.getInnerHeight();
-      var _width = kalender.getInnerWidth();
-      $(document).ready(function(){
+  kalender.setContents("<div id='calendar'></div>");
+    var _height = kalender.getInnerHeight();
+    var _width = kalender.getInnerWidth();
+    $(document).ready(function(){
 //          var eventData = calendarViewDS.fetchData();
-          $('#calendar').fullCalendar({
-              header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'month,basicWeek,agendaWeek,agendaDay,listWeek'
-              },    
+  $('#calendar').fullCalendar({
+  header: {
+  left: 'prev,next today',
+    center: 'title',
+    right: 'month,basicWeek,agendaWeek,agendaDay,listWeek'
+  },
 //               googleCalendarApiKey: 'AIzaSyAYRSGJu53uPI8IiyehLYaX27Lvl_GSkQY', //Google Calendar muss auf Public gestellt werden damit dieser angezeigt werden kann
 //                events: {
 //                googleCalendarId: 'aguila1419@googlemail.com',
 //                className: 'gcal-event'
 //              },
-              height: _height,
-              width: _width,
-              handleWindowResize: true,
-              defaultView: view_,
-              defaultDate: datum_,
-              locale: 'de',
-              navLinks: true, // can click day/week names to navigate views
-              selectable: true,
-              selectHelper: true,
-              editable: false,
-              windowResizeDelay: 500,
-              eventLimit: true, // allow "more" link when too many events
-              eventSources: [{url: 'api/ds/calendarDS.php',
-                      type: 'POST'}],
-              dayClick: function(date, jsEvent, view){
-                  _view = view.name;
-                  var cal_datum = date.format();
-                  var jahr = cal_datum.substring(0, 4);
-                  var tag = cal_datum.substring(8, 10);
-                  var mon = cal_datum.substring(5, 7);
-                  var selected_date = jahr + "" + mon + "" + tag;
+    height: _height,
+    width: _width,
+    handleWindowResize: true,
+    defaultView: view_,
+    defaultDate: datum_,
+    locale: 'de',
+    navLinks: true, // can click day/week names to navigate views
+    selectable: true,
+    selectHelper: true,
+    editable: false,
+    windowResizeDelay: 500,
+    eventLimit: true, // allow "more" link when too many events
+    eventSources: [{url: 'api/ds/calendarDS.php',
+      type: 'POST'}],
+    dayClick: function(date, jsEvent, view){
+    _view = view.name;
+      var cal_datum = date.format();
+      var jahr = cal_datum.substring(0, 4);
+      var tag = cal_datum.substring(8, 10);
+      var mon = cal_datum.substring(5, 7);
+      var selected_date = jahr + "" + mon + "" + tag;
       if (parseInt(selected_date) >= parseInt(_heute_)){ // Nur aktuelle Termine können bearbeitet werden
 //                      tsbAddAbrechnung.action();
-                      var cal_datum = tag + '-' + mon + '-' + jahr;
+    var cal_datum = tag + '-' + mon + '-' + jahr;
       isc.say(tag + "-" + mon + "-" + jahr);
 //                      setCalDate(dfAddAbrechnung, cal_datum);
-                  } else{
-                      isc.say("Vergangene Tage können nicht bearbeitet werden");
-                  }
-              }, eventClick: function(calEvent, jsEvent, view){
-                  _view = view.name;
-                  var cal_datum = calEvent.start.format();
-                  var jahr = cal_datum.substring(0, 4);
-                  var tag = cal_datum.substring(8, 10);
-                  var mon = cal_datum.substring(5, 7);
-                  var selected_date = jahr + "" + mon + "" + tag;                  
-                  spielID_ = calEvent.id; 
-                  description = calEvent.description;
+    } else{
+    isc.say("Vergangene Tage können nicht bearbeitet werden");
+    }
+    }, eventClick: function(calEvent, jsEvent, view){
+  _view = view.name;
+    var cal_datum = calEvent.start.format();
+    var jahr = cal_datum.substring(0, 4);
+    var tag = cal_datum.substring(8, 10);
+    var mon = cal_datum.substring(5, 7);
+    var selected_date = jahr + "" + mon + "" + tag;
+    spielID_ = calEvent.id;
+    description = calEvent.description;
 //                  isc.say(description);
-                    tsbPDF_ExportSpiele.openPDF(spielID_);
+    tsbPDF_ExportSpiele.openPDF(spielID_);
 //                  tsbShowSpiele.getSpielDetails(spielID_, calEvent, "calendar");
-              }
-          });
-
-      });
+  }
+  });
+  });
   };
-
   var setCalDate = function(_form, _date){
-      _form.getField('datum').setValue(_date);
-      _form.getField('datum').changed(_form, //Form         changed (form, item, value)
-              _form.getField('datum'), //Item
-              _form.getField('datum').getValue());
+  _form.getField('datum').setValue(_date);
+    _form.getField('datum').changed(_form, //Form         changed (form, item, value)
+    _form.getField('datum'), //Item
+    _form.getField('datum').getValue());
 //              isc.say(_date);
   };
-
-/*
+  /*
    ***************** ENDE KALENDER ************************** 
    */
 
@@ -24185,30 +24178,29 @@ ID: "logoutGroup",
   iHTML_Ausw = isc.Canvas.imgHTML("famfam/ic_wechsel_rot.png") + " ";
   iHTML_Einw = isc.Canvas.imgHTML("famfam/ic_wechsel_gruen.png") + " ";
   var hiliteArrayAusw =
-[
-{fieldName: "name",
-  criteria: {
-  fieldName: "aw",
-    operator: "equals",
-    value: "1"
-  },
-  cssText: "color:#000000;",
-  // htmlBefore: iHTML,
-  htmlAfter: iHTML_Ausw,
-  id: 0
-},{fieldName: "name",
-  criteria: {
-  fieldName: "aw",
-    operator: "equals",
-    value: "2"
-  },
-  cssText: "color:#000000;",
-  // htmlBefore: iHTML,
-  htmlAfter: iHTML_Einw,
-  id: 1
-}
-];
-
+  [
+    {fieldName: "name",
+      criteria: {
+      fieldName: "aw",
+        operator: "equals",
+        value: "1"
+      },
+      cssText: "color:#000000;",
+      // htmlBefore: iHTML,
+      htmlAfter: iHTML_Ausw,
+      id: 0
+      }, {fieldName: "name",
+    criteria: {
+    fieldName: "aw",
+      operator: "equals",
+      value: "2"
+    },
+    cssText: "color:#000000;",
+    // htmlBefore: iHTML,
+    htmlAfter: iHTML_Einw,
+    id: 1
+    }
+  ];
 //  iHTML_Einw = isc.Canvas.imgHTML("famfam/ic_wechsel_gruen.png") + " ";
 //  var hiliteArrayAusw =
 //[
@@ -24226,29 +24218,29 @@ ID: "logoutGroup",
 //];
   iHTML_Tore = isc.Canvas.imgHTML("famfam/sport_soccer.png") + "  ";
   var hiliteArrayTore =
-[
-{fieldName: "spielstand_a",
-  criteria: {
-  fieldName: "team",
-    operator: "equals",
-    value: "a"
-  },
-  cssText: "color:#000000;",
-  htmlBefore: iHTML_Tore,
-  // htmlAfter: iHTML_Ausw,
-  id: 0
-}, {fieldName: "spielstand",
-  criteria: {
-  fieldName: "team",
-    operator: "equals",
-    value: "h"
-  },
-  cssText: "color:#000000;",
-  htmlBefore: iHTML_Tore,
-  // htmlAfter: iHTML_Ausw,
-  id: 1
-}
-]
+  [
+    {fieldName: "spielstand_a",
+      criteria: {
+      fieldName: "team",
+        operator: "equals",
+        value: "a"
+      },
+      cssText: "color:#000000;",
+      htmlBefore: iHTML_Tore,
+      // htmlAfter: iHTML_Ausw,
+      id: 0
+      }, {fieldName: "spielstand",
+    criteria: {
+    fieldName: "team",
+      operator: "equals",
+      value: "h"
+    },
+    cssText: "color:#000000;",
+    htmlBefore: iHTML_Tore,
+    // htmlAfter: iHTML_Ausw,
+    id: 1
+    }
+  ]
   ;
   iHTML_Elfer_Scored = isc.Canvas.imgHTML("famfam/scored.png") + "  ";
   iHTML_Elfer_Missed = isc.Canvas.imgHTML("famfam/missed.png") + "  ";
@@ -24256,7 +24248,7 @@ ID: "logoutGroup",
 [{// Gast-Team trifft
 fieldName: [
   "spielstand_a"
-],
+  ],
   criteria: {
   _constructor: "AdvancedCriteria",
     operator: "and",
@@ -24278,10 +24270,10 @@ fieldName: [
   cssText: "color:#000000;",
   htmlBefore: iHTML_Elfer_Scored,
   id: 0
-}, {// Gast-Team verschießst
+  }, {// Gast-Team verschießst
 fieldName: [
   "spielstand_a"
-],
+  ],
   criteria: {
   _constructor: "AdvancedCriteria",
     operator: "and",
@@ -24303,34 +24295,34 @@ fieldName: [
   cssText: "color:#000000;",
   htmlBefore: iHTML_Elfer_Missed,
   id: 1
-},
-{// Heim-Team trifft
-fieldName: [
-  "spielstand"
-],
-  criteria: {
-  _constructor: "AdvancedCriteria",
-    operator: "and",
-    criteria: [
-    {
-    fieldName: "team",
-      operator: "equals",
-      value: "h"
-    },
-    {
-    fieldName: "elfer",
-      operator: "equals",
-      value: "1"
-
-    }]
   },
-  cssText: "color:#000000;",
-  htmlBefore: iHTML_Elfer_Scored,
-  id: 2
-}, {// Heim-Team verschießst
+  {// Heim-Team trifft
+  fieldName: [
+    "spielstand"
+    ],
+    criteria: {
+    _constructor: "AdvancedCriteria",
+      operator: "and",
+      criteria: [
+      {
+      fieldName: "team",
+        operator: "equals",
+        value: "h"
+      },
+      {
+      fieldName: "elfer",
+        operator: "equals",
+        value: "1"
+
+      }]
+    },
+    cssText: "color:#000000;",
+    htmlBefore: iHTML_Elfer_Scored,
+    id: 2
+    }, {// Heim-Team verschießst
 fieldName: [
   "spielstand"
-],
+  ],
   criteria: {
   _constructor: "AdvancedCriteria",
     operator: "and",
@@ -24352,28 +24344,28 @@ fieldName: [
   id: 3
 }];
   var hiliteArrayTeam =
-[
-{fieldName: "name",
-  criteria: {
-  fieldName: "team",
-    operator: "equals",
-    value: "a"
-  },
-  textColor: "#000000",
-  cssText: "color:#000000;background-color:#FFDC73;",
-  id: 0
-},
-{fieldName: "name",
-  criteria: {
-  fieldName: "team",
-    operator: "equals",
-    value: "h"
-  },
-  textColor: "#000000",
-  cssText: "color:#000000;background-color:#96FF73;",
-  id: 1
-}
-]
+  [
+    {fieldName: "name",
+      criteria: {
+      fieldName: "team",
+        operator: "equals",
+        value: "a"
+      },
+      textColor: "#000000",
+      cssText: "color:#000000;background-color:#FFDC73;",
+      id: 0
+      },
+    {fieldName: "name",
+      criteria: {
+      fieldName: "team",
+        operator: "equals",
+        value: "h"
+      },
+      textColor: "#000000",
+      cssText: "color:#000000;background-color:#96FF73;",
+      id: 1
+      }
+  ]
   ;
   /*
    ************************** ListGrid spieleSpielerHeimListe **********************************
@@ -29176,7 +29168,6 @@ fieldName: [
     isModal: false,
     items: [tabSpiele]
   });
-  
   isc.Window.create({
   ID: "wdSpiele_calendar",
     count: 0,
@@ -31057,8 +31048,6 @@ fieldName: [
     styleName: "exampleTextBlock",
     contents: '<iframe width="100%" height="100%" frameBorder="0" allowfullscreen src="https://umap.openstreetmap.de/de/map/mundial_30?scaleControl=true&miniMap=true&scrollWheelZoom=true&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false">\n\
 </iframe><p><a href="https://umap.openstreetmap.de/de/map/mundial_30">Vollbildanzeige</a></p>'});
-  
-
   /*
    * ********* ANFANG TOOLSTRIPS AND TOOLSTRIP BUTTONS ***********************
    * -------------------------------------------------------------
@@ -31883,138 +31872,136 @@ fieldName: [
     hoverWidth: 100,
     hoverDelay: 700,
     action: function () {
-        var spiel_id =  spieleListe.getSelectedRecord().spiel_id;
-        record = spieleListe.getSelectedRecord();
-    if (spieleListe.getSelection().length == 1) {
-        this.getSpielDetails(spiel_id, record, "uebersicht");
+    var spiel_id = spieleListe.getSelectedRecord().spiel_id;
+      record = spieleListe.getSelectedRecord();
+      if (spieleListe.getSelection().length == 1) {
+    this.getSpielDetails(spiel_id, record, "uebersicht");
     } else {
     isc.say("Sie müssen erst ein Spiel wählen");
     }
-    },getSpielDetails: function(spiel_id, record, mod){
-        if(mod !== "calendar"){
-        tabSpiele.selectTab(0);
-    }
-      var _verein_id_h = record.verein_id_h;
-      var _verein_id_a = record.verein_id_a;
-      var _verein_h = record.verein_h;
-      var _verein_a = record.verein_a;
-      var _ergebnis = record.ergebnis;
-      var _erg = record.erg + ' (' + record.erg_halb + ')';
-      var _erg_halb = record.erg_halb;
-      var _erg_zusatz = record.erg_zusatz
-      var _tag = record.wochentag;
-      var _zeit = record.zeit;
-      var _datum = record.sp_datum;
-      var _wettbewerb = record.wettbewerb;
-      var _zusch_anzahl = record.zusch_anzahl;
-      var _gaestefans = record.gaestefans;
-      var _stadionName = record.stadionname;
-      if (record.anschrift != null){
-    var _stadionAnschrift = record.anschrift.asHTML();
-    } else{
-    var _stadionAnschrift = record.anschrift;
-    }
-    var _stadionNameAlt = record.stadionname_alt;
-      if (record.bes_vork != null){
-    var _bes_vork = record.bes_vork.asHTML();
-    } else{
-    var _bes_vork = record.bes_vork;
-    }
-    var _schiri = record.schiri;
-      var _schiri_verein = record.schiri_verein;
-      var _trainerA = record.trainer_a;
-      var _trainerH = record.trainer_h;
-      var _sprit = record.sprit;
-      var _spritAnteilig = record.sprit_anteilig;
-      var _schiff = record.schiff;
-      var _souvenir = record.souvenir;
-      var _eintrittskarte = record.eintrittskarte;
-      var _bahn = record.bahn;
-      var _flieger = record.flieger;
-      var _uebernachtung = record.uebernachtung;
-      var _verpflegung = record.verpflegung;
-      var _sonstige = record.sonstige;
-      var _ges_kosten = record.ges_kosten;
-      var _wettbewerb_zusatz = record.wettbewerb_zusatz;
-      var _taxi = record.taxi;
-      var _handy = record.handy;
-      // var _schrift = 
-      if(mod == "calendar"){
-          wdSpiele_calendar.show();
-      }else{
-        wdSpiele.show();  
-      }
-      
-      // Anfang Daten Holen ************************************************************************************
-      WappenH.fetchData({verein_id: _verein_id_h, countTileH: ++tsbShowSpiele.countH});
-      WappenA.fetchData({verein_id: _verein_id_a, countTileA: ++tsbShowSpiele.countA});
-      // spieleSpielerHeimListe.fetchData({spiel_id: spiel_id, status: "sa", status2: "h"});
-      onRefreshSpieleSpielerQuellListe2("spieleSpielerHeimListe", spiel_id, "sa", "h");
-      spieleSpielerHeimListeBank.fetchData({spiel_id: spiel_id, status: "ew", status2: "h"});
-      spieleSpielerGastListe.fetchData({spiel_id: spiel_id, status: "sa", status2: "a"});
-      spieleSpielerGastListeBank.fetchData({spiel_id: spiel_id, status: "ew", status2: "a"});
-      spieleToreListe.fetchData({spiel_id: spiel_id});
-      onRefreshSpieleSpielerQuellListe("spieleBegleiterListe_Front", spiel_id);
-      onRefreshSpieleSpielerQuellListe("spieleToreListe_Elfer", spiel_id);
-      onRefreshSpieleSpielerQuellListe("anreiseDatenListe", spiel_id);
-      isc.Timer.setTimeout("tsbShowSpiele.spieleRedrawFunc()", 2000);
-      // Ende Daten Holen **************************************************************************************
+    }, getSpielDetails: function(spiel_id, record, mod){
+  if (mod !== "calendar"){
+  tabSpiele.selectTab(0);
+  }
+  var _verein_id_h = record.verein_id_h;
+    var _verein_id_a = record.verein_id_a;
+    var _verein_h = record.verein_h;
+    var _verein_a = record.verein_a;
+    var _ergebnis = record.ergebnis;
+    var _erg = record.erg + ' (' + record.erg_halb + ')';
+    var _erg_halb = record.erg_halb;
+    var _erg_zusatz = record.erg_zusatz
+    var _tag = record.wochentag;
+    var _zeit = record.zeit;
+    var _datum = record.sp_datum;
+    var _wettbewerb = record.wettbewerb;
+    var _zusch_anzahl = record.zusch_anzahl;
+    var _gaestefans = record.gaestefans;
+    var _stadionName = record.stadionname;
+    if (record.anschrift != null){
+  var _stadionAnschrift = record.anschrift.asHTML();
+  } else{
+  var _stadionAnschrift = record.anschrift;
+  }
+  var _stadionNameAlt = record.stadionname_alt;
+    if (record.bes_vork != null){
+  var _bes_vork = record.bes_vork.asHTML();
+  } else{
+  var _bes_vork = record.bes_vork;
+  }
+  var _schiri = record.schiri;
+    var _schiri_verein = record.schiri_verein;
+    var _trainerA = record.trainer_a;
+    var _trainerH = record.trainer_h;
+    var _sprit = record.sprit;
+    var _spritAnteilig = record.sprit_anteilig;
+    var _schiff = record.schiff;
+    var _souvenir = record.souvenir;
+    var _eintrittskarte = record.eintrittskarte;
+    var _bahn = record.bahn;
+    var _flieger = record.flieger;
+    var _uebernachtung = record.uebernachtung;
+    var _verpflegung = record.verpflegung;
+    var _sonstige = record.sonstige;
+    var _ges_kosten = record.ges_kosten;
+    var _wettbewerb_zusatz = record.wettbewerb_zusatz;
+    var _taxi = record.taxi;
+    var _handy = record.handy;
+    // var _schrift = 
+    if (mod == "calendar"){
+  wdSpiele_calendar.show();
+  } else{
+  wdSpiele.show();
+  }
 
-      // Button verstecken *************************************************************************************
-      
-      btnSpieleAddSpielerHeim.hide();
-      btnSpieleAddEinwechselSpielerHeim.hide();
-      btnSpieleAddSpielerGast.hide();
-      btnSpieleAddEinwechselSpielerGast.hide();
-      btnSpieleAddTore.hide();
-      btnSpieleAddBegleiter.hide();
-      btnSpieleAddTore_Elfer.hide();
-      btnAnreiseDaten.hide();
-      btnSpieleListEdit.setSrc("web/32/table_edit.png");
-      btnSpieleListEdit.setPrompt("Ermöglicht das Bearbeiten der Spiel-Listen");
-      
-      // Anfang Labels *****************************************************************************************
-      // lblSieleErgebnis.setContents('<text style="color:#000000; font-size:40px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">'+_erg+'</br>'+_erg_zusatz+'</text>');
+  // Anfang Daten Holen ************************************************************************************
+  WappenH.fetchData({verein_id: _verein_id_h, countTileH: ++tsbShowSpiele.countH});
+    WappenA.fetchData({verein_id: _verein_id_a, countTileA: ++tsbShowSpiele.countA});
+    // spieleSpielerHeimListe.fetchData({spiel_id: spiel_id, status: "sa", status2: "h"});
+    onRefreshSpieleSpielerQuellListe2("spieleSpielerHeimListe", spiel_id, "sa", "h");
+    spieleSpielerHeimListeBank.fetchData({spiel_id: spiel_id, status: "ew", status2: "h"});
+    spieleSpielerGastListe.fetchData({spiel_id: spiel_id, status: "sa", status2: "a"});
+    spieleSpielerGastListeBank.fetchData({spiel_id: spiel_id, status: "ew", status2: "a"});
+    spieleToreListe.fetchData({spiel_id: spiel_id});
+    onRefreshSpieleSpielerQuellListe("spieleBegleiterListe_Front", spiel_id);
+    onRefreshSpieleSpielerQuellListe("spieleToreListe_Elfer", spiel_id);
+    onRefreshSpieleSpielerQuellListe("anreiseDatenListe", spiel_id);
+    isc.Timer.setTimeout("tsbShowSpiele.spieleRedrawFunc()", 2000);
+    // Ende Daten Holen **************************************************************************************
 
-      lblSieleErgebnis.setContents('<text style="color:#000000; font-size:40px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _ergebnis + '</text>');
-      lblSieleTeamH.setContents('<text style="color:#000000; font-size:30px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _verein_h + '</text>');
-      lblSieleTeamA.setContents('<text style="color:#000000; font-size:30px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _verein_a + '</text>');
-      lblSpiele_Datum_Zeit_Tag.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _datum + '</br>' + _tag + '</br>' + _zeit + ' Uhr</text>');
-      if (_wettbewerb_zusatz != "" && _wettbewerb_zusatz != null) {
-    lblSpiele_Wettbewerb.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _wettbewerb + '</br>(' + _wettbewerb_zusatz + ')</text>');
-    } else {
-    lblSpiele_Wettbewerb.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _wettbewerb + '</text>');
-    }
+    // Button verstecken *************************************************************************************
 
-    lblSpiele_Zuschauer.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _zusch_anzahl + ' Zuschauer</br>(' + _gaestefans + ' Gäste)</text>');
-    if(_stadionAnschrift != null){  
-    lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></br>' + _stadionAnschrift + '</text>');
-    }else{        
-        lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></text>');
-  
-    }  
-      if (_schiri_verein != "" && _schiri_verein != null) {
-    lblSpiele_Schiri.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Schiedsrichter:</b></br>' + _schiri + '</br>(' + _schiri_verein + ')</text>');
-    } else {
-    lblSpiele_Schiri.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Schiedsrichter:</b></br>' + _schiri + '</text>');
-    }
+    btnSpieleAddSpielerHeim.hide();
+    btnSpieleAddEinwechselSpielerHeim.hide();
+    btnSpieleAddSpielerGast.hide();
+    btnSpieleAddEinwechselSpielerGast.hide();
+    btnSpieleAddTore.hide();
+    btnSpieleAddBegleiter.hide();
+    btnSpieleAddTore_Elfer.hide();
+    btnAnreiseDaten.hide();
+    btnSpieleListEdit.setSrc("web/32/table_edit.png");
+    btnSpieleListEdit.setPrompt("Ermöglicht das Bearbeiten der Spiel-Listen");
+    // Anfang Labels *****************************************************************************************
+    // lblSieleErgebnis.setContents('<text style="color:#000000; font-size:40px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">'+_erg+'</br>'+_erg_zusatz+'</text>');
 
-    lblSpiele_TrainerA.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b> Trainer: ' + _trainerA + '</b></text>');
-      lblSpiele_TrainerH.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Trainer: ' + _trainerH + '</b></text>');
-      lblKosten.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Reise-Kosten</b></br>Sprit (Eigenanteil): </br>Sprit (anteilig):</br> Bahnticket: </br> Flugticket: </br>Schiffsfahrkarte:</br> Übernachtung:</br> Speis und Trank:</br>Eintrittskarte:</br>Taxi:</br>Handy:</br>Souvenir/Devotionalien:</br> Sonstige:</br><b> Gesamtkosten:</b></text>');
-      lblKosten_Zahlen.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"></br>' + _sprit + '</br>' + _spritAnteilig + '</br>' + _bahn + '</br>' + _flieger + '</br>' + _schiff + '</br>' + _uebernachtung + '</br>' + _verpflegung + '</br>' + _eintrittskarte + '</br>' + _taxi + '</br>' + _handy + '</br>' + _souvenir + '</br><u>' + _sonstige + '</u></br> <u><b>' + _ges_kosten + '</u></b></text>');
-      // Ende Labels *******************************************************************************************
+    lblSieleErgebnis.setContents('<text style="color:#000000; font-size:40px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _ergebnis + '</text>');
+    lblSieleTeamH.setContents('<text style="color:#000000; font-size:30px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _verein_h + '</text>');
+    lblSieleTeamA.setContents('<text style="color:#000000; font-size:30px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _verein_a + '</text>');
+    lblSpiele_Datum_Zeit_Tag.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _datum + '</br>' + _tag + '</br>' + _zeit + ' Uhr</text>');
+    if (_wettbewerb_zusatz != "" && _wettbewerb_zusatz != null) {
+  lblSpiele_Wettbewerb.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _wettbewerb + '</br>(' + _wettbewerb_zusatz + ')</text>');
+  } else {
+  lblSpiele_Wettbewerb.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _wettbewerb + '</text>');
+  }
 
-    },
+  lblSpiele_Zuschauer.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;">' + _zusch_anzahl + ' Zuschauer</br>(' + _gaestefans + ' Gäste)</text>');
+    if (_stadionAnschrift != null){
+  lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></br>' + _stadionAnschrift + '</text>');
+  } else{
+  lblSpiele_Stadion.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Spielstätte:</b></br><b>' + _stadionName + '</b></text>');
+  }
+  if (_schiri_verein != "" && _schiri_verein != null) {
+  lblSpiele_Schiri.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Schiedsrichter:</b></br>' + _schiri + '</br>(' + _schiri_verein + ')</text>');
+  } else {
+  lblSpiele_Schiri.setContents('<text style="color:#000000; font-size:20px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Schiedsrichter:</b></br>' + _schiri + '</text>');
+  }
+
+  lblSpiele_TrainerA.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b> Trainer: ' + _trainerA + '</b></text>');
+    lblSpiele_TrainerH.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Trainer: ' + _trainerH + '</b></text>');
+    lblKosten.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"><b>Reise-Kosten</b></br>Sprit (Eigenanteil): </br>Sprit (anteilig):</br> Bahnticket: </br> Flugticket: </br>Schiffsfahrkarte:</br> Übernachtung:</br> Speis und Trank:</br>Eintrittskarte:</br>Taxi:</br>Handy:</br>Souvenir/Devotionalien:</br> Sonstige:</br><b> Gesamtkosten:</b></text>');
+    lblKosten_Zahlen.setContents('<text style="color:#000000; font-size:17px; font-family:arial,brandisch,Script MT Bold,Monotype Corsiva; text-decoration:none;"></br>' + _sprit + '</br>' + _spritAnteilig + '</br>' + _bahn + '</br>' + _flieger + '</br>' + _schiff + '</br>' + _uebernachtung + '</br>' + _verpflegung + '</br>' + _eintrittskarte + '</br>' + _taxi + '</br>' + _handy + '</br>' + _souvenir + '</br><u>' + _sonstige + '</u></br> <u><b>' + _ges_kosten + '</u></b></text>');
+    // Ende Labels *******************************************************************************************
+
+  },
     spieleRedrawFunc: function () {
     spieleSpielerHeimListe.redraw();
-    spieleSpielerHeimListeBank.redraw();
-    spieleSpielerGastListe.redraw();
-    spieleSpielerGastListeBank.redraw();
-    spieleToreListe.redraw();
-    spieleBegleiterListe_Front.redraw();
-    spieleToreListe_Elfer.redraw();
-  }
+      spieleSpielerHeimListeBank.redraw();
+      spieleSpielerGastListe.redraw();
+      spieleSpielerGastListeBank.redraw();
+      spieleToreListe.redraw();
+      spieleBegleiterListe_Front.redraw();
+      spieleToreListe_Elfer.redraw();
+    }
   });
   /*
    ***************** Add Button Spiele *************************** 
@@ -32217,10 +32204,10 @@ fieldName: [
     hoverWidth: 100,
     hoverDelay: 700,
     action: function () {
-        this.openPDF(spieleListe.getSelectedRecord().spiel_id);
+    this.openPDF(spieleListe.getSelectedRecord().spiel_id);
     },
-    openPDF: function(_spiel_id){           
-      var domain = location.host;
+    openPDF: function(_spiel_id){
+    var domain = location.host;
       window.open(prot + domain + '/' + appFolder + '/api/ds/spielePDF.php?spiel_id=' + _spiel_id, + '_self', false);
     }
 
@@ -32675,8 +32662,8 @@ fieldName: [
   /*
    ***************** GoTo: Toolstrip Groundkarte  ************************** 
    */
-  
-   /*
+
+  /*
    ***************** CSV-Export Button Stadien ************************** 
    */
   isc.ToolStripButton.create({
@@ -32691,13 +32678,12 @@ fieldName: [
 https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3AiA",
     hoverWidth: 300,
     hoverDelay: 700,
-    action: function () {    
-        var domain = location.host;
-        window.open(prot + domain + '/' + appFolder + '/api/ds/csv_export_geodaten.php', '_self', false);
+    action: function () {
+    var domain = location.host;
+      window.open(prot + domain + '/' + appFolder + '/api/ds/csv_export_geodaten.php', '_self', false);
     }
 
   });
-  
   isc.Label.create({
   padding: 0,
     ID: "lblGroundKarte",
@@ -32711,7 +32697,7 @@ https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3A
     width: "100%",
     backgroundImage: "../bilder/" + guiColor,
     height: 40,
-    members: [isc.LayoutSpacer.create({width: 30}),tsbCSV_GeoDaten,isc.LayoutSpacer.create({width: "*"}), lblGroundKarte,isc.LayoutSpacer.create({width: "*"})]});
+    members: [isc.LayoutSpacer.create({width: 30}), tsbCSV_GeoDaten, isc.LayoutSpacer.create({width: "*"}), lblGroundKarte, isc.LayoutSpacer.create({width: "*"})]});
   /*
    * ******************** Ende Toolstrip *************************
    * -------------------------------------------------------------
@@ -32973,12 +32959,12 @@ https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3A
       VLayout_tsSpiele, VLayoutSpieleListe_SpieleSuche
     ]
   });
-   /*
+  /*
    * ******************** :GoTo: Kalender ************************
    */
-  
-    isc.VLayout.create({
-    ID: "VLayoutKalender",
+
+  isc.VLayout.create({
+  ID: "VLayoutKalender",
     width: "100%",
     height: "100%",
     members: [
@@ -33006,7 +32992,7 @@ https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3A
    * =============================================================================
    */
 
- 
+
 
 
   isc.HLayout.create({
