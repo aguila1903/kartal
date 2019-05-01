@@ -65,9 +65,15 @@ if (is_file($path . $dateiname) != 1) {
 //$dateiname = $datum["year"]."-".$datum["mon"]."-".$datum["mday"].".bak";
 
 
-$mysql_bin_path = explode("\\",__DIR__);
+$find_path = explode("\\", __DIR__);
+$sevenZip_path = "{$find_path[0]}\\{$find_path[1]}\\{$find_path[2]}\\include\\7-Zip\\App\\7-Zip";
+$backup_path = __DIR__ . "\\Backups";
+$images_path = __DIR__ . "\\images";
+$mysql_bin_path = $find_path[0] . "\\" . $find_path[1] . "\\mysql\\bin";
 
-$mysql_bin_path = $mysql_bin_path[0]."\\".$mysql_bin_path[1]."\\mysql\\bin";
+/*
+ * ************** BACKUP DATABASE *************************
+ */
 
 $batch = "@echo off\n
 cd $mysql_bin_path\n
@@ -81,14 +87,28 @@ file_put_contents("$path$dateiname.bat", $batch);
 
 $bathFileRun = "$path$dateiname.bat";
 
-
 $output = exec("C:\\windows\\system32\\cmd.exe /c $bathFileRun");
+
+
 
 
 $data = array();
 
 if ($output == 0) {
     $data{"rueckmeldung"} = ($path) . $dateiname;
+    /*
+     * ************** BACKUP IMAGES *************************
+     */
+    $batch2 = "@echo off\n
+
+$sevenZip_path\\7z.exe x -aoa -y $backup_path\\images.zip -o$images_path";
+
+
+    file_put_contents(__DIR__ . "\\backupLoad.cmd", $batch2);
+
+    $backupImages = __DIR__ . "\\backupLoad.cmd";
+
+    exec("C:\\windows\\system32\\cmd.exe /c $backupImages");
 } else {
 
     unlink("$path$dateiname.sql");
