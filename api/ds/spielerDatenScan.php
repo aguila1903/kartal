@@ -28,8 +28,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
     $data = array();
 
     function sonderzeichen($string) {
-        $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´", " ");
-        $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "", "-");
+        $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´");
+        $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "");
         return str_replace($search, $replace, $string);
     }
 
@@ -77,35 +77,37 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 // print $_url;
 // return;
 
+    $cleanBufferPatt = array("\n", "\r");
+
     $_buffer = implode('', file($_url));
 
+    $_buffer = str_replace($cleanBufferPatt, "", $_buffer);
 
 //    $suchmuster = "|Geboren(.*)+[0-9.]{10}|Us";
 //    $suchmuster = '|kalender anzeigen">(.*)+[0-9.]{10}|Us';
-    $suchmuster = '/Geburtsdatum:<\/dt><dd>(.*)[0-9.]{10}|Us/';
+    $suchmuster = '/Geburtsdatum:<\/dt><dd>(.*)[0-9.]{10}/Us';
     $suchmuster2 = "/(Position:<\/dt><dd>Angriff|Position:<\/dt><dd>Mittelfeld|Position:<\/dt><dd>Abwehr|Position:<\/dt><dd>Torwart)/";
 //    $suchmuster3 = "|Nationalit(.*)+[A-Z]{1,3}+|Us";
 //    $suchmuster3 = '/class="flag-icon flag-icon-(.*)[a-z-]{1,3}+|Us/';
     $suchmuster3 = '/Land:<\/dt><dd><span class="flag-icon flag-icon-[a-z]{1,3}|Us/';
 
-
-    preg_match_all($suchmuster, ($_buffer), $treffer, PREG_OFFSET_CAPTURE);
-    preg_match_all($suchmuster2, ($_buffer), $treffer2, PREG_OFFSET_CAPTURE);
-    preg_match_all($suchmuster3, ($_buffer), $treffer3, PREG_OFFSET_CAPTURE);
+   
+    preg_match_all($suchmuster, $_buffer, $treffer, PREG_PATTERN_ORDER);
+    preg_match_all($suchmuster2, $_buffer, $treffer2, PREG_OFFSET_CAPTURE);
+    preg_match_all($suchmuster3, $_buffer, $treffer3, PREG_OFFSET_CAPTURE);
 
 
 //    print_r($treffer);
 //    print_r($treffer2);
 //    print_r($treffer3);
-
-
+//    exit;
 //    $datum = trim(str_replace("Geboren:", "", $treffer[0][0][0]));
-    $datum = trim(str_replace('Geburtsdatum:</dt><dd>', '', $treffer[0][0][0]));
+    $datum = trim(str_replace('Geburtsdatum:</dt><dd>', '', $treffer[0][0]));
 //    $datum = str_replace("\n", "", $datum);
 //    $datum = str_replace("</td>", "", $datum);
-    
+
     $position = str_replace("Position:</dt><dd>", "", trim($treffer2[0][0][0]));
-    
+
 
 //    var_dump($position);
 //    return;
