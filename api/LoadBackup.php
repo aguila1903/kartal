@@ -44,7 +44,7 @@ if (isset($_REQUEST["dateiname"])) {
 
     return;
 }
-$path = getcwd() . "\Backups\\";
+$path = __DIR__ . "\\Backups";
 
 //file_put_contents("LoadBackup.txt", $path);
 
@@ -99,6 +99,9 @@ if ($output == 0) {
     /*
      * ************** BACKUP IMAGES *************************
      */
+    if (!is_dir($images_path)) {
+        mkdir($images_path);
+    }
     $batch2 = "@echo off\n
 
 $sevenZip_path\\7z.exe x -aoa -y $backup_path\\images.zip -o$images_path";
