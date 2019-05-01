@@ -44,7 +44,7 @@ if (isset($_REQUEST["dateiname"])) {
 
     return;
 }
-$path = __DIR__ . "\\Backups";
+$path = __DIR__ . "\\Backups\\";
 
 //file_put_contents("LoadBackup.txt", $path);
 
