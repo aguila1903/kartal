@@ -3302,7 +3302,7 @@ ID: "logoutGroup",
     }]
   });
   isc.DataSource.create({
-  ID: "spieleSpielerQuellListe",
+  ID: "spieleSpielerQuellListeDS",
     allowAdvancedCriteria: true,
     //serverType:"sql",
     dataFormat: "json",
@@ -24915,7 +24915,7 @@ fieldName: [
     prompt: "Öffnet die Maske zum Hinzufügen von Spielern der Heim-Mannschaft",
     layoutAlign: "center",
     click: function () {
-    wdSpielerAddSpiel.show();
+      wdSpielerAddSpiel.show();
       onRefreshSpieleSpielerQuellListe("spieleSpielerQuellListe", spieleListe.getSelectedRecord().spiel_id);
       onRefreshSpieleSpielerQuellListe2("spieleSpielerAddListe", spieleListe.getSelectedRecord().spiel_id, "sa", "h");
       dfGibMirElfHeim.reset();
@@ -25346,7 +25346,7 @@ fieldName: [
             //   header: "Daten bearbeiten",
             width: 250, height: 450,
             alternateRecordStyles: true,
-            dataSource: "spieleSpielerQuellListe",
+            dataSource: "spieleSpielerQuellListeDS",
             autoFetchData: false,
             showFilterEditor: true,
             filterOnKeypress: true,
@@ -25668,7 +25668,7 @@ fieldName: [
             //   header: "Daten bearbeiten",
             width: 250, height: 450,
             alternateRecordStyles: true,
-            dataSource: "spieleSpielerQuellListe",
+            dataSource: "spieleSpielerQuellListeDS",
             autoFetchData: false,
             showFilterEditor: true,
             filterOnKeypress: true,
@@ -26030,7 +26030,7 @@ fieldName: [
             //   header: "Daten bearbeiten",
             width: 250, height: 450,
             alternateRecordStyles: true,
-            dataSource: "spieleSpielerQuellListe",
+            dataSource: "spieleSpielerQuellListeDS",
             autoFetchData: false,
             showFilterEditor: true,
             filterOnKeypress: true,
@@ -26350,7 +26350,7 @@ fieldName: [
             //   header: "Daten bearbeiten",
             width: 250, height: 450,
             alternateRecordStyles: true,
-            dataSource: "spieleSpielerQuellListe",
+            dataSource: "spieleSpielerQuellListeDS",
             autoFetchData: false,
             showFilterEditor: true,
             filterOnKeypress: true,
@@ -32657,7 +32657,7 @@ fieldName: [
     width: "100%",
     backgroundImage: "../bilder/" + guiColor,
     height: 40,
-    members: [dfGroupsMapsGrafik, isc.LayoutSpacer.create({width: 50}), lblMapsGroups,
+    members: [dfGroupsMapsGrafik, isc.LayoutSpacer.create({width: 50}), lblMapsGroups
     ]});
   /*
    ***************** GoTo: Toolstrip Groundkarte  ************************** 
