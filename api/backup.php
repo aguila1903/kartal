@@ -67,6 +67,7 @@ if ($output == 0) {
     /*
      * ************** BACKUP IMAGES *************************
      */
+    
 
     if (is_dir($images_path)) {
         $batch2 = "@echo off\n
