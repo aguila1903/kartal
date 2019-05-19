@@ -29223,6 +29223,12 @@ fieldName: [
     fields: [{
     name: "dateiname",
       type: "text"
+    },{
+    name: "dateigroesse",
+      type: "text"
+    },{
+    name: "dateizeit",
+      type: "text"
     }]
   });
   isc.ToolStripButton.create({
@@ -29386,7 +29392,7 @@ fieldName: [
     //   header: "Daten bearbeiten",
     width: "100%", height: "100%",
     alternateRecordStyles: false,
-    showHeader: false,
+    showHeader: true,
     dataSource: backupDataDS,
     autoFetchData: false,
     showFilterEditor: false,
@@ -29399,7 +29405,11 @@ fieldName: [
     margin: 3,
     fields: [
     {name: "dateiname",
-      width: "*"}
+      width: "*", title: "Dateiname"},
+  {name: "dateigroesse",
+      width: "*", title: "Bytes"},
+  {name: "dateizeit",
+      width: "*", title: "Datum"}
     ], showSelectionCanvas: true,
     animateSelectionUnder: true,
     selectionUnderCanvasProperties: {
@@ -29565,8 +29575,8 @@ fieldName: [
   ID: "wdLoadBackup",
     title: "Datenbank Wiederherstellen",
     // autoSize: true,
-    width: 300,
-    height: 300,
+    width: 500,
+    height: 400,
     autoCenter: true,
     showFooter: false,
     headerIconDefaults: {width: 16, height: 16, src: currentIcon},

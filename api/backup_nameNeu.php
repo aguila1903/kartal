@@ -69,17 +69,19 @@ if ($output == 0) {
     /*
      * ************** BACKUP IMAGES *************************
      */
-    $batch2 = "@echo off\n
+    if (is_dir($images_path)) {
+        $batch2 = "@echo off\n
 cd $images_path\n
 
 $sevenZip_path\\7z.exe a -tzip $backup_path\\images.zip * -mx9 -aoa ";
 
 
-    file_put_contents(__DIR__ . "\\backup.cmd", $batch2);
+        file_put_contents(__DIR__ . "\\backup.cmd", $batch2);
 
-    $backupImages = __DIR__ . "\\backup.cmd";
+        $backupImages = __DIR__ . "\\backup.cmd";
 
-    exec("C:\\windows\\system32\\cmd.exe /c $backupImages");
+        exec("C:\\windows\\system32\\cmd.exe /c $backupImages");
+    }
 } else {
 
     unlink("$path$dateiname.sql");

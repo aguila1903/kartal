@@ -95,7 +95,7 @@ $output = exec("C:\\windows\\system32\\cmd.exe /c $bathFileRun");
 $data = array();
 
 if ($output == 0) {
-    $data{"rueckmeldung"} = ($path) . $dateiname;
+    $data{"rueckmeldung"} = $path . $dateiname;
     /*
      * ************** BACKUP IMAGES *************************
      */
@@ -106,12 +106,13 @@ if ($output == 0) {
 
 $sevenZip_path\\7z.exe x -aoa -y $backup_path\\images.zip -o$images_path";
 
+    if (is_file("$backup_path\\images.zip")) {
+        file_put_contents(__DIR__ . "\\backupLoad.cmd", $batch2);
 
-    file_put_contents(__DIR__ . "\\backupLoad.cmd", $batch2);
+        $backupImages = __DIR__ . "\\backupLoad.cmd";
 
-    $backupImages = __DIR__ . "\\backupLoad.cmd";
-
-    exec("C:\\windows\\system32\\cmd.exe /c $backupImages");
+        exec("C:\\windows\\system32\\cmd.exe /c $backupImages");
+    }
 } else {
 
     unlink("$path$dateiname.sql");
