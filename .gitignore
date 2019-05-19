@@ -5,12 +5,8 @@ update/log/*.*
 *.bak
 *.txt
 backup/
-api/Backups/*.*
-api/images/*.*
-api/images/media/*.*
-api/images/media/cover/*.*
-api/images/media/pdf/*.*
-api/images/media/thumbnails/*.*
+api/Backups/
+api/images/
 api/logs/
 api/out_of_order/
 api/*.txt
