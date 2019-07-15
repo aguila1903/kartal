@@ -99,7 +99,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
 //    print_r($treffer);
 //    print_r($treffer2);
-//    print_r($treffer3);
+//    file_put_contents("nat.txt", print_r($treffer3,true));
 //    exit;
 //    $datum = trim(str_replace("Geboren:", "", $treffer[0][0][0]));
     $datum = trim(str_replace('Geburtsdatum:</dt><dd>', '', $treffer[0][0]));
@@ -126,7 +126,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
 
 
-    $nat = $treffer3[0][0][0];
+    $nat = $treffer3[0][1][0];
     $nat = trim(str_replace('Land:</dt><dd><span class="flag-icon flag-icon-', "", $nat));
 //    $nat = str_replace("\n", "", $nat);
 //    $nat = str_replace("</td>", "", $nat);
