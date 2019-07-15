@@ -78,7 +78,6 @@ if (domainAvailable('https://github.com/')) {
     $out{'response'}{'status'} = 4;
     $out{'response'}{'errors'} = array('Update konnte nicht durchgeführt werden da keine Internetverbindung besteht.');
     print json_encode($out);
-
     return;
 }
 
