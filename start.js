@@ -31050,14 +31050,14 @@ fieldName: [
    * *****************GoTo: ANFANG Groundskarte ******************
    * -------------------------------------------------------------
    */
-// Geheimer Bearbeitungslink: https://umap.openstreetmap.de/de/map/anonymous-edit/30:_7Wa5hQ0vlxVQN7lLzV793j3AiA
+// Geheimer Bearbeitungslink: https://umap.openstreetmap.de/de/map/anonymous-edit/309:6pTxh75OmECJe5fVA09ue3sL8cM
   isc.HTMLPane.create({
   width: "100%",
     height: "100%",
     ID: "Pane_GroundsKarte",
     styleName: "exampleTextBlock",
-    contents: '<iframe width="100%" height="100%" frameBorder="0" allowfullscreen src="https://umap.openstreetmap.de/de/map/mundial_30?scaleControl=true&miniMap=true&scrollWheelZoom=true&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false">\n\
-</iframe><p><a href="https://umap.openstreetmap.de/de/map/mundial_30">Vollbildanzeige</a></p>'});
+    contents: '<iframe width="100%" height="100%" frameBorder="0" allowfullscreen src="https://umap.openstreetmap.de/de/map/kartal_309?scaleControl=true&miniMap=true&scrollWheelZoom=true&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false">\n\
+</iframe><p><a href="https://umap.openstreetmap.de/de/map/kartal_309">Vollbildanzeige</a></p>'});
   /*
    * ********* ANFANG TOOLSTRIPS AND TOOLSTRIP BUTTONS ***********************
    * -------------------------------------------------------------
