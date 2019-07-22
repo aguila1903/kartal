@@ -11,25 +11,14 @@ $uri = rtrim(dirname(htmlspecialchars($_SERVER["PHP_SELF"])), "/\\");
 
 if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin"] == admin) {
 
-    /*     * *****************************************************************************
-      System: infotool - SVK-Versaende
-      Funktion: Versandfehler anzeigen
-      Autor: jra
-      Datum: 04.12.2012
-
-      Zusatzhinweise:
-
-      Änderungen:
-
-     * ***************************************************************************** */
 
 
     $out = array();
     $data = array();
 
     function sonderzeichen($string) {
-        $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´");
-        $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "");
+        $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´", " ");
+        $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "", "-");
         return str_replace($search, $replace, $string);
     }
 

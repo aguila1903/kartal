@@ -6,7 +6,7 @@ require_once('db_psw.php');
 $date = date("Y-m-d");
 $out = array();
 $update = "";
-
+file_put_contents('update.txt', 'Ich war hier');
 // Functions
 function logUpdate($log_file, $log) {
     file_put_contents($log_file, $log, FILE_APPEND);
