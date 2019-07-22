@@ -114,8 +114,14 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
     }
 
 
-
-    $nat = $treffer3[0][1][0];
+    foreach ($treffer3[0] as $key=>$value){
+        if(strtolower($value[0]) != "us"){
+            $nat = $value[0];
+        }else{
+            $nat = "nb";
+        }
+    }
+    
     $nat = trim(str_replace('Land:</dt><dd><span class="flag-icon flag-icon-', "", $nat));
 //    $nat = str_replace("\n", "", $nat);
 //    $nat = str_replace("</td>", "", $nat);
