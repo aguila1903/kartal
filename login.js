@@ -43,7 +43,7 @@ function handleResponse()
         if (rueckmeldung["ergebnis"] == erg && rueckmeldung["status"] == stat)
         {
             document.getElementById("antwort").innerHTML = rueckmeldung["text"];
-            window.open(path + 'start.php', '_self', false);
+            window.open(path + 'start', '_self', false);
         } else
         {
             document.getElementById("antwort").innerHTML = rueckmeldung["text"];
