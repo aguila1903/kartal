@@ -55,7 +55,7 @@ function regSuc() {
         getElementsByName("email")[0].value = "";
     }
 
-    window.open('http://' + document.location.host + '/kartal/login.php', '_self', false);
+    window.open('http://' + document.location.host + '/kartal/home', '_self', false);
 
 }
 ;

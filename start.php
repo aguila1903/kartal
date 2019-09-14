@@ -77,7 +77,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login /* && $_SESSION["ad
     </HTML>
     <?php
 } else {
-    // header("Location: http://$host$uri/login.php");
+    // header("Location: http://$host$uri/home");
     header("Location: http://$host$uri/noadmin.php");
 }
 ?>

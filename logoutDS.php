@@ -83,7 +83,7 @@ if (isset($_SESSION['benutzer'])) {
                 setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
                 );
 
-                header("Location: http://$host$uri/login.php");
+                header("Location: http://$host$uri/home");
             }
 
 // Zum Schlu�, l�schen der Session.
