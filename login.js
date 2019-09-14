@@ -70,7 +70,7 @@ function init()
     login.onclick = sendLogin;
     register.onclick = function ()
     {
-        window.open(path + 'register.php', '_self', false);
+        window.open(path + 'register', '_self', false);
     };
     document.images[0].src = "bilder/Panel1_nm.gif";
 
