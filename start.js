@@ -20708,7 +20708,27 @@ ID: "logoutGroup",
    * -------------------------------------------------------------
    */
 
-
+    function setCriteriaSpiele(){
+        var criteriaAll = {
+          stadion_id: SpieleSuchForm.getField("stadion_id").getValue(),
+          ort: SpieleSuchForm.getField("ort").getValue(),
+          land: SpieleSuchForm.getField("land").getValue(),
+          spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
+          sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
+          trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
+          liga_id: SpieleSuchForm.getField("liga_id").getValue(),
+          schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
+          ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
+          ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
+          begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
+          erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
+          verein_id: SpieleSuchForm.getField("verein_id").getValue(),
+          dayname: SpieleSuchForm.getField("dayname").getValue(),
+          jahr: SpieleSuchForm.getField("jahr").getValue(),
+          count: ++SpieleSuchForm.counter
+        };
+        return criteriaAll;
+    }
 
   var SpieleSuchFormWidths = 220;
   isc.DynamicForm.create({
@@ -20751,26 +20771,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_obj_neu = {
-      stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "jahr",
-        count: SpieleSuchForm.count++
-      };
-        return filter_obj_neu;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -20813,26 +20822,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_obj_neu = {
-      stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "land",
-        count: SpieleSuchForm.count++
-      };
-        return filter_obj_neu;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -20871,26 +20869,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_vkz_neu = {
-      stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "ort",
-        count: SpieleSuchForm.count++
-      };
-        return filter_vkz_neu;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -20933,26 +20920,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_obj_neu = {
-      stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "spieler_id",
-        count: SpieleSuchForm.count++
-      };
-        return filter_obj_neu;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -20991,25 +20967,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "stadionname",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21048,25 +21014,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "ergebnis",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21105,25 +21061,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "erg_zusatz",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21162,25 +21108,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "verein_id",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21219,25 +21155,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "trainer_id",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21276,25 +21202,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "schiri_id",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21333,25 +21249,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "begleiter_id",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21390,25 +21296,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        lookFor: "liga_id",
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+               var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21447,25 +21343,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        jahr: SpieleSuchForm.getField("jahr").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        liga_id: SpieleSuchForm.getField("liga_id").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        ausverkauft: SpieleSuchForm.getField("ausverkauft").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "sp_datum",
-        count: SpieleSuchForm.count++
-      };
-        return filter;
+                 var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -21568,26 +21454,15 @@ ID: "logoutGroup",
         width: 40}
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_obj_neu = {
-      jahr: SpieleSuchForm.getField("jahr").getValue(),
-        stadionname: SpieleSuchForm.getField("stadion_id").getValue(),
-        ort: SpieleSuchForm.getField("ort").getValue(),
-        land: SpieleSuchForm.getField("land").getValue(),
-        spieler_id: SpieleSuchForm.getField("spieler_id").getValue(),
-        sp_datum: SpieleSuchForm.getField("sp_datum").getValue(),
-        trainer_id: SpieleSuchForm.getField("trainer_id").getValue(),
-        wettbewerb: SpieleSuchForm.getField("liga_id").getValue(),
-        schiri_id: SpieleSuchForm.getField("schiri_id").getValue(),
-        ergebnis: SpieleSuchForm.getField("ergebnis").getValue(),
-        begleiter_id: SpieleSuchForm.getField("begleiter_id").getValue(),
-        erg_zusatz: SpieleSuchForm.getField("erg_zusatz").getValue(),
-        verein_id: SpieleSuchForm.getField("verein_id").getValue(),
-        dayname: SpieleSuchForm.getField("dayname").getValue(),
-        lookFor: "ausverkauft",
-        count: SpieleSuchForm.count++
-      };
-        return filter_obj_neu;
+                var criteriaAll = setCriteriaSpiele();
+                var criteria = {};
+                for (var crit in criteriaAll) {
+                    if (crit != this.name) {
+                        criteria[crit] = criteriaAll[crit];
+                    }
+                }
+                criteria['lookFor'] = this.name;
+                return criteria;
       },
       changed: function (form, item, value) {
       form.detailSpieleSuche(form, "nein");
@@ -29223,10 +29098,10 @@ fieldName: [
     fields: [{
     name: "dateiname",
       type: "text"
-    },{
+      }, {
     name: "dateigroesse",
       type: "text"
-    },{
+      }, {
     name: "dateizeit",
       type: "text"
     }]
