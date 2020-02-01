@@ -7487,7 +7487,17 @@ ID: "logoutGroup",
    * ***************** ANFANG STADIEN SUCHE **********************
    * -------------------------------------------------------------
    */
-
+    function setCriteriaSation() {
+      criteriaAll = {
+        stadion_id: StadienSuchForm.getField("stadion_id").getValue(),
+        ort: StadienSuchForm.getField("ort").getValue(),
+        bundesland: StadienSuchForm.getField("bundesland").getValue(),
+        stadtteil: StadienSuchForm.getField("stadtteil").getValue(),
+        land: StadienSuchForm.getField("land").getValue(),
+        count: StadienSuchForm.count++
+      };
+        return criteriaAll;
+    }
 
 
   var StadionSuchFormWitdths = 200;
@@ -7500,7 +7510,7 @@ ID: "logoutGroup",
     numCols: 1,
     titleOrientation: "top",
     validateOnExit: true,
-    counter: 0,
+        count: 0,
     validateOnChange: false,
     margin: 0,
     fields: [{
@@ -7531,16 +7541,15 @@ ID: "logoutGroup",
       }
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_obj_neu = {
-      stadion_id: StadienSuchForm.getField("stadion_id").getValue(),
-        ort: StadienSuchForm.getField("ort").getValue(),
-        bundesland: StadienSuchForm.getField("bundesland").getValue(),
-        stadtteil: StadienSuchForm.getField("stadtteil").getValue(),
-        lookFor: "land",
-        count: StadienSuchForm.count++
-      };
-        return filter_obj_neu;
+            var criteriaAll = setCriteriaSation();
+            var criteria = {};
+            for (var crit in criteriaAll) {
+              if (crit != this.name) {
+                  criteria[crit] = criteriaAll[crit];
+              }
+            }
+            criteria['lookFor'] = this.name;
+            return criteria;
       },
       changed: function (form, item, value) {
       form.detailStadienSuche(form, "nein");
@@ -7581,16 +7590,15 @@ ID: "logoutGroup",
       }
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_obj_neu = {
-      land: StadienSuchForm.getField("land").getValue(),
-        stadion_id: StadienSuchForm.getField("stadion_id").getValue(),
-        ort: StadienSuchForm.getField("ort").getValue(),
-        stadtteil: StadienSuchForm.getField("stadtteil").getValue(),
-        lookFor: "bundesland",
-        count: StadienSuchForm.count++
-      };
-        return filter_obj_neu;
+            var criteriaAll = setCriteriaSation();
+            var criteria = {};
+            for (var crit in criteriaAll) {
+              if (crit != this.name) {
+                  criteria[crit] = criteriaAll[crit];
+              }
+            }
+            criteria['lookFor'] = this.name;
+            return criteria;
       },
       changed: function (form, item, value) {
       form.detailStadienSuche(form, "nein");
@@ -7627,16 +7635,15 @@ ID: "logoutGroup",
       }
       ],
       getPickListFilterCriteria: function () {
-
-      var filter_vkz_neu = {
-      stadion_id: StadienSuchForm.getField("stadion_id").getValue(),
-        land: StadienSuchForm.getField("land").getValue(),
-        bundesland: StadienSuchForm.getField("bundesland").getValue(),
-        stadtteil: StadienSuchForm.getField("stadtteil").getValue(),
-        lookFor: "ort",
-        count: StadienSuchForm.count++
-      };
-        return filter_vkz_neu;
+            var criteriaAll = setCriteriaSation();
+            var criteria = {};
+            for (var crit in criteriaAll) {
+              if (crit != this.name) {
+                  criteria[crit] = criteriaAll[crit];
+              }
+            }
+            criteria['lookFor'] = this.name;
+            return criteria;
       },
       changed: function (form, item, value) {
       form.detailStadienSuche(form, "nein");
@@ -7720,15 +7727,15 @@ ID: "logoutGroup",
       }
       ],
       getPickListFilterCriteria: function () {
-      var filter = {
-      ort: StadienSuchForm.getField("ort").getValue(),
-        bundesland: StadienSuchForm.getField("bundesland").getValue(),
-        land: StadienSuchForm.getField("land").getValue(),
-        stadtteil: StadienSuchForm.getField("stadtteil").getValue(),
-        lookFor: "stadion_id",
-        count: StadienSuchForm.count++
-      };
-        return filter;
+            var criteriaAll = setCriteriaSation();
+            var criteria = {};
+            for (var crit in criteriaAll) {
+              if (crit != this.name) {
+                  criteria[crit] = criteriaAll[crit];
+              }
+            }
+            criteria['lookFor'] = this.name;
+            return criteria;
       },
       changed: function (form, item, value) {
       form.detailStadienSuche(form, "nein");
