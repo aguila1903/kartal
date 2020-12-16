@@ -75,8 +75,8 @@ if (!is_dir($update_logs_dir)) {
 if (domainAvailable('https://github.com/')) {
     $update = updateCheck($update_logs);
 } else {
-    $out{'response'}{'status'} = 4;
-    $out{'response'}{'errors'} = array('Update konnte nicht durchgeführt werden da keine Internetverbindung besteht.');
+    $out['response']['status'] = 4;
+    $out['response']['errors'] = array('Update konnte nicht durchgeführt werden da keine Internetverbindung besteht.');
     print json_encode($out);
     return;
 }
@@ -103,16 +103,16 @@ if (is_file($update_sql_new)) {//Es befindet sich eine Datei im sql-update Ordne
 $text = "";
 
 if ($update == "nope" && $type == "auto") {
-    $out{'response'}{'status'} = 1;
+    $out['response']['status'] = 1;
 } elseif ($update == "nope" && $type == "menu") {
-    $out{'response'}{'status'} = 0;
+    $out['response']['status'] = 0;
     $update = "Keine neuen Updates vorhanden!";
 } else {
-    $out{'response'}{'status'} = 0;
+    $out['response']['status'] = 0;
     $text = "<br /><br /><b>Es wurden Updates durchgeführt!</b><br />Mit dem Klicken auf OK wird die Seite neugestartet, damit die Updates wirksam werden.";
 }
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $update.$text;
+$out['response']['errors'] = array();
+$out['response']['data'] = $update.$text;
 
 print json_encode($out);
 ?>
