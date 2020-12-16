@@ -143,8 +143,8 @@ ORDER BY tore DESC"
 
     if (!$rs) {
 
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten." . $dbSyb->ErrorMsg());
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten." . $dbSyb->ErrorMsg());
 
         print json_encode($out);
         return;
@@ -153,20 +153,20 @@ ORDER BY tore DESC"
         $i = 0;
 
         while (!$rs->EOF) {
-            $data{$i}{"geb_datum"} = trim($rs->fields{'geb_datum'});
-            $data{$i}{"heim"} = trim($rs->fields{'heim'});
-            $data{$i}{"spieler_id"} = trim($rs->fields{'spieler_id'});
-            // $data{$i}{"verein_id"} = trim($rs->fields{'verein_id'});
-            $data{$i}{"gast"} = trim($rs->fields{'gast'});
-            $data{$i}{"elfer"} = trim($rs->fields{'elfer_a'})+trim($rs->fields{'elfer_h'});
-            $data{$i}{"spielername"} = trim(($rs->fields{'spielername'}));
-            // $data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});
-//            $data{$i}{"position"} = (trim($rs->fields{'position'}));
-            $data{$i}{"land"} = (trim($rs->fields{'land'}));
-            $data{$i}{"code"} = (trim($rs->fields{'code'}));
-            $data{$i}{"tore"} = $rs->fields{'tore'};
-            $data{$i}{"spiele"} = $rs->fields{'spiele'};
-            $data{$i}{"quote"} = number_format($rs->fields{'quote'},2,",","");
+            $data{$i}['geb_datum'] = trim($rs->fields['geb_datum']);
+            $data{$i}['heim'] = trim($rs->fields['heim']);
+            $data{$i}['spieler_id'] = trim($rs->fields['spieler_id']);
+            // $data{$i}['verein_id'] = trim($rs->fields['verein_id']);
+            $data{$i}['gast'] = trim($rs->fields['gast']);
+            $data{$i}['elfer'] = trim($rs->fields['elfer_a'])+trim($rs->fields['elfer_h']);
+            $data{$i}['spielername'] = trim(($rs->fields['spielername']));
+            // $data{$i}['vereinsname'] = ($rs->fields['vereinsname']);
+//            $data{$i}['position'] = (trim($rs->fields['position']));
+            $data{$i}['land'] = (trim($rs->fields['land']));
+            $data{$i}['code'] = (trim($rs->fields['code']));
+            $data{$i}['tore'] = $rs->fields['tore'];
+            $data{$i}['spiele'] = $rs->fields['spiele'];
+            $data{$i}['quote'] = number_format($rs->fields['quote'],2,",","");
 
             $i++;
 
@@ -176,9 +176,9 @@ ORDER BY tore DESC"
         $rs->Close();
 
 
-        $out{'response'}{'status'} = 0;
-        $out{'response'}{'errors'} = array();
-        $out{'response'}{'data'} = $data;
+        $out['response']['status'] = 0;
+        $out['response']['errors'] = array();
+        $out['response']['data'] = $data;
 
         print json_encode($out);
     }

@@ -64,8 +64,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     if (!$rs) {
 
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
         print json_encode($out);
         return;
@@ -77,7 +77,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     while (!$rs->EOF) {
 
-        $treffer = explode(':', trim($rs->fields{'anzahl'}));
+        $treffer = explode(':', trim($rs->fields['anzahl']));
 
         $tore += $treffer[0] + $treffer[1];
 
@@ -96,8 +96,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 //
 //    if (!$rs) {
 //
-//        $out{'response'}{'status'} = -4;
-//        $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+//        $out['response']['status'] = -4;
+//        $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 //
 //        print json_encode($out);
 //        return;
@@ -108,7 +108,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 //
 //    while (!$rs->EOF) {
 //
-//        $elfer = explode(':', trim($rs->fields{'anzahl'}));
+//        $elfer = explode(':', trim($rs->fields['anzahl']));
 //
 //        $elfer_gesamt += $elfer[0] + $elfer[1];
 //
@@ -156,8 +156,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     if (!$rs) {
 
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => $dbSyb->ErrorMsg());
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => $dbSyb->ErrorMsg());
 
         print json_encode($out);
         return;
@@ -169,12 +169,12 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         while (!$rs->EOF) {
 
 
-            if ($rs->fields{'gesehen'} == "Tore") {
-                $data{$i}{"gesehen"} = 'Tore';
-                $data{$i}{"anzahl"} = $tore /*+ $elfer_gesamt*/;
+            if ($rs->fields['gesehen'] == "Tore") {
+                $data{$i}['gesehen'] = 'Tore';
+                $data{$i}['anzahl'] = $tore /*+ $elfer_gesamt*/;
             } else {
-                $data{$i}{"anzahl"} = (trim($rs->fields{'anzahl'}))*1;
-                $data{$i}{"gesehen"} = $rs->fields{'gesehen'};
+                $data{$i}['anzahl'] = (trim($rs->fields['anzahl']))*1;
+                $data{$i}['gesehen'] = $rs->fields['gesehen'];
             }
             $i++;
 
@@ -184,9 +184,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         $rs->Close();
 
 
-        $out{'response'}{'status'} = 0;
-        $out{'response'}{'errors'} = array();
-        $out{'response'}{'data'} = $data;
+        $out['response']['status'] = 0;
+        $out['response']['errors'] = array();
+        $out['response']['data'] = $data;
 
         print json_encode($out);
     }

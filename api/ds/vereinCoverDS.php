@@ -48,23 +48,23 @@ if (isset($_REQUEST["verein_id"])) {
     if ($verein_id != "null" && $verein_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($verein_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('verein_id' => "Bitte die Verein-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('verein_id' => "Bitte die Verein-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('verein_id' => "Verein-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('verein_id' => "Verein-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('verein_id' => "Verein-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('verein_id' => "Verein-ID fehlt!");
 
     print json_encode($out);
 
@@ -84,8 +84,8 @@ $rs = $dbSyb->Execute($querySQL);
 $data = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('verein_id' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('verein_id' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -94,9 +94,9 @@ else {
     $i = 0;
 
     while (!$rs->EOF) {
-        $data{$i}{"verein_id"} = $rs->fields{'id'};
-        $data{$i}{"media_id"} = $rs->fields{'media_id'};
-        $data{$i}{"dateiname"} = ($rs->fields{'dateiname'});
+        $data{$i}['verein_id'] = $rs->fields['id'];
+        $data{$i}['media_id'] = $rs->fields['media_id'];
+        $data{$i}['dateiname'] = ($rs->fields['dateiname']);
 
         $i++;
 
@@ -106,9 +106,9 @@ else {
 
     $rs->Close();
      
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);  
 

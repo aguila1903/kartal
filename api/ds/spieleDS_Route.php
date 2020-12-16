@@ -82,8 +82,8 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"spiel"} = ($rs->fields{'spiel'});
-   $value{$i}{"spiel_id"} = ($rs->fields{'spiel_id'});
+    $value{$i}['spiel'] = ($rs->fields['spiel']);
+   $value{$i}['spiel_id'] = ($rs->fields['spiel_id']);
    
     $i++;
 

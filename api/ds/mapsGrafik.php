@@ -75,12 +75,12 @@ group by code, de order by anzahl desc ";
     while (!$rs->EOF) {
 
 
-        $value{$i}{"name"} = ($rs->fields{'land'});
-        $value{$i}{"value"} = $rs->fields{'anzahl'};
-        $value{$i}{"latitude"} = $rs->fields{'latitude'};
-        $value{$i}{"longitude"} = $rs->fields{'longitude'};
-        $value{$i}{"code"} = ($rs->fields{'code'});
-        $value{$i}{"color"} = "#eea638";
+        $value{$i}['name'] = ($rs->fields['land']);
+        $value{$i}['value'] = $rs->fields['anzahl'];
+        $value{$i}['latitude'] = $rs->fields['latitude'];
+        $value{$i}['longitude'] = $rs->fields['longitude'];
+        $value{$i}['code'] = ($rs->fields['code']);
+        $value{$i}['color'] = "#eea638";
 
         $i++;
 
@@ -90,9 +90,9 @@ group by code, de order by anzahl desc ";
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     $output = json_encode($out);
 

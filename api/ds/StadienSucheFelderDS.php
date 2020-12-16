@@ -183,9 +183,9 @@ Where s.stadion_id > -1 and l.code != 'nb' "
     //>> [1] Fehlermeldung: INSERT-Fehler
         $out = array();
 
-        $out{'response'}{'data'} = $data;
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('land' => ($dbSyb->ErrorMsg()));
+        $out['response']['data'] = $data;
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('land' => ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
@@ -195,52 +195,52 @@ Where s.stadion_id > -1 and l.code != 'nb' "
 
     while (!$rs->EOF) {
 
-        if (isset($rs->fields{'land'})) {
-            If ($rs->fields{'erstbesuch'} != '01.01.1900') {
-                $data{$i}{"land"} = ($rs->fields{'land'}) /*. " - " . $rs->fields{'erstbesuch'} . " Nr: " . $rs->fields{'laenderpunkt_nr'}*/;
+        if (isset($rs->fields['land'])) {
+            If ($rs->fields['erstbesuch'] != '01.01.1900') {
+                $data{$i}['land'] = ($rs->fields['land']) /*. " - " . $rs->fields['erstbesuch'] . " Nr: " . $rs->fields['laenderpunkt_nr']*/;
             } else {
-                $data{$i}{"land"} = ($rs->fields{'land'});
+                $data{$i}['land'] = ($rs->fields['land']);
             }
         }
 
-        if (isset($rs->fields{'code'})) {
-            $data{$i}{"code"} = ($rs->fields{'code'});
+        if (isset($rs->fields['code'])) {
+            $data{$i}['code'] = ($rs->fields['code']);
         }
 
-        if (isset($rs->fields{'stadionname'})) {
-            $data{$i}{"stadionname"} = ($rs->fields{'stadionname'});
+        if (isset($rs->fields['stadionname'])) {
+            $data{$i}['stadionname'] = ($rs->fields['stadionname']);
         }
 
-        if (isset($rs->fields{'stadion_id'})) {
-            $data{$i}{"stadion_id"} = $rs->fields{'stadion_id'};
+        if (isset($rs->fields['stadion_id'])) {
+            $data{$i}['stadion_id'] = $rs->fields['stadion_id'];
         }
 
-        if (isset($rs->fields{'ort'})) {
-            $data{$i}{"ort"} = ($rs->fields{'ort'});
+        if (isset($rs->fields['ort'])) {
+            $data{$i}['ort'] = ($rs->fields['ort']);
         }
 
-        if (isset($rs->fields{'ort_id'})) {
-            $data{$i}{"ort_id"} = ($rs->fields{'ort_id'});
+        if (isset($rs->fields['ort_id'])) {
+            $data{$i}['ort_id'] = ($rs->fields['ort_id']);
         }
 
-        if (isset($rs->fields{'stadtteil'})) {
-            $data{$i}{"stadtteil"} = ($rs->fields{'stadtteil'});
+        if (isset($rs->fields['stadtteil'])) {
+            $data{$i}['stadtteil'] = ($rs->fields['stadtteil']);
         }
 
-        if (isset($rs->fields{'bundesland'})) {
-            $data{$i}{"bundesland"} = ($rs->fields{'bundesland'});
+        if (isset($rs->fields['bundesland'])) {
+            $data{$i}['bundesland'] = ($rs->fields['bundesland']);
         }
 
-        if (isset($rs->fields{'bundesland_id'})) {
-            $data{$i}{"bundesland_id"} = ($rs->fields{'bundesland_id'});
+        if (isset($rs->fields['bundesland_id'])) {
+            $data{$i}['bundesland_id'] = ($rs->fields['bundesland_id']);
         }
 
-        if (isset($rs->fields{'name'})) {
-            $data{$i}{"name"} = ($rs->fields{'name'});
+        if (isset($rs->fields['name'])) {
+            $data{$i}['name'] = ($rs->fields['name']);
         }
 
-        if (isset($rs->fields{'anzahl'})) {
-            $data{$i}{"anzahl"} = $rs->fields{'anzahl'};
+        if (isset($rs->fields['anzahl'])) {
+            $data{$i}['anzahl'] = $rs->fields['anzahl'];
         }
 
         $i++;
@@ -249,9 +249,9 @@ Where s.stadion_id > -1 and l.code != 'nb' "
 
     $rs->Close();
 
-    $out{'response'}{'data'} = $data;
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
+    $out['response']['data'] = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
 
     print json_encode($out);
 } else {

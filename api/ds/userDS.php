@@ -59,21 +59,21 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"UserID"} = $rs->fields{'UserID'};
-    $value{$i}{"benutzer"} = ($rs->fields{'benutzer'});
-    $value{$i}{"passwort"} = ($rs->fields{'passwort'});
-    $value{$i}{"admin"} = $rs->fields{'admin'};
-    $value{$i}{"status"} = $rs->fields{'status'};
-    $value{$i}{"loginCount"} = $rs->fields{'loginCount'};
-    $value{$i}{"loginTime"} = $rs->fields{'loginTime'};
-    $value{$i}{"timeOut"} = $rs->fields{'timeOut'};
-    $value{$i}{"email"} = ($rs->fields{'email'});
-    $value{$i}{"onlineTime"} = ($rs->fields{'onlineTime'});
-    $value{$i}{"logoutTime"} = ($rs->fields{'logoutTime'});
+    $value{$i}['UserID'] = $rs->fields['UserID'];
+    $value{$i}['benutzer'] = ($rs->fields['benutzer']);
+    $value{$i}['passwort'] = ($rs->fields['passwort']);
+    $value{$i}['admin'] = $rs->fields['admin'];
+    $value{$i}['status'] = $rs->fields['status'];
+    $value{$i}['loginCount'] = $rs->fields['loginCount'];
+    $value{$i}['loginTime'] = $rs->fields['loginTime'];
+    $value{$i}['timeOut'] = $rs->fields['timeOut'];
+    $value{$i}['email'] = ($rs->fields['email']);
+    $value{$i}['onlineTime'] = ($rs->fields['onlineTime']);
+    $value{$i}['logoutTime'] = ($rs->fields['logoutTime']);
      
-        if ($value{$i}{"status"} == "O") {
+        if ($value{$i}['status'] == "O") {
         $id = 0; 
-        $value{$i}{"_hilite"} = $id;
+        $value{$i}['_hilite'] = $id;
     }
     
     $i++;

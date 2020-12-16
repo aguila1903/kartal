@@ -65,9 +65,9 @@ header("Cache-Control: no-cache, must-revalidate");
     while (!$rs->EOF) {
 
 
-        $value{$i}{"id"} = $rs->fields{'id'};
-        $value{$i}{"version"} = $rs->fields{'version'};
-        $value{$i}{"bugfix"} = (trim($rs->fields{'bugfix'}));
+        $value{$i}['id'] = $rs->fields['id'];
+        $value{$i}['version'] = $rs->fields['version'];
+        $value{$i}['bugfix'] = (trim($rs->fields['bugfix']));
 
         $i++;
 
@@ -79,9 +79,9 @@ header("Cache-Control: no-cache, must-revalidate");
 
     $out = array();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 

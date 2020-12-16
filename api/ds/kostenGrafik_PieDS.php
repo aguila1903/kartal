@@ -140,22 +140,22 @@ $value = array();
 
 while (!$rs->EOF) {
    
-    $value{$i}{"Wert"} = $rs->fields{'Wert'};
-    $value{$i}{"Titel"} = $rs->fields{'Titel'};
+    $value{$i}['Wert'] = $rs->fields['Wert'];
+    $value{$i}['Titel'] = $rs->fields['Titel'];
 	
-	if($rs->fields{'Titel'} == 'Sprit (Eigenanteil)'){
-	$value{$i}{"color"} = '#DFFFDF';}
-	else if ($rs->fields{'Titel'} == 'Bahn'){$value{$i}{"color"} = '#FFDFFF';}
-	else if ($rs->fields{'Titel'} == 'Flieger'){$value{$i}{"color"} = '#00ACAC';}
-	else if ($rs->fields{'Titel'} == 'Übernachtung'){$value{$i}{"color"} = '#AE5EFF';}
-	else if ($rs->fields{'Titel'} == 'Speis und Trank'){$value{$i}{"color"} = '#DCCC5F';}
-	else if ($rs->fields{'Titel'} == 'Sonstige'){$value{$i}{"color"} = '#DE7D61';}
-	else if ($rs->fields{'Titel'} == 'Handy'){$value{$i}{"color"} = '#DF2D61';}
-	else if ($rs->fields{'Titel'} == 'Taxi'){$value{$i}{"color"} = '#DE3D53';}
-	else if ($rs->fields{'Titel'} == 'Eintrittskarte'){$value{$i}{"color"} = '#8080FF';}
-	else if ($rs->fields{'Titel'} == 'Sprit (anteilig)'){$value{$i}{"color"} = '#FF5C26';}
-	else if ($rs->fields{'Titel'} == 'Schiffsfahrkarte'){$value{$i}{"color"} = '#00B386';}
-	else if ($rs->fields{'Titel'} == 'Souvenir/Devotionalien'){$value{$i}{"color"} = '#BFFF00';}
+	if($rs->fields['Titel'] == 'Sprit (Eigenanteil)'){
+	$value{$i}['color'] = '#DFFFDF';}
+	else if ($rs->fields['Titel'] == 'Bahn'){$value{$i}['color'] = '#FFDFFF';}
+	else if ($rs->fields['Titel'] == 'Flieger'){$value{$i}['color'] = '#00ACAC';}
+	else if ($rs->fields['Titel'] == 'Übernachtung'){$value{$i}['color'] = '#AE5EFF';}
+	else if ($rs->fields['Titel'] == 'Speis und Trank'){$value{$i}['color'] = '#DCCC5F';}
+	else if ($rs->fields['Titel'] == 'Sonstige'){$value{$i}['color'] = '#DE7D61';}
+	else if ($rs->fields['Titel'] == 'Handy'){$value{$i}['color'] = '#DF2D61';}
+	else if ($rs->fields['Titel'] == 'Taxi'){$value{$i}['color'] = '#DE3D53';}
+	else if ($rs->fields['Titel'] == 'Eintrittskarte'){$value{$i}['color'] = '#8080FF';}
+	else if ($rs->fields['Titel'] == 'Sprit (anteilig)'){$value{$i}['color'] = '#FF5C26';}
+	else if ($rs->fields['Titel'] == 'Schiffsfahrkarte'){$value{$i}['color'] = '#00B386';}
+	else if ($rs->fields['Titel'] == 'Souvenir/Devotionalien'){$value{$i}['color'] = '#BFFF00';}
    
     $i++;
 
@@ -169,9 +169,9 @@ $out = array();
 
     // zentrale Anwortfunktion f�r REST-Datenquellen
     // im Kern nicht anderes als print json_encode($value)
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 } else {

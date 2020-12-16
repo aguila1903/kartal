@@ -146,9 +146,9 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"gesamtkosten"} = $rs->fields{'gesamtkosten'};
-	$value{$i}{"monat"} = $rs->fields{'monat'}." ".$rs->fields{'jahr_'};
-	$value{$i}{"jahr"} = $rs->fields{'jahr'};
+    $value{$i}['gesamtkosten'] = $rs->fields['gesamtkosten'];
+	$value{$i}['monat'] = $rs->fields['monat']." ".$rs->fields['jahr_'];
+	$value{$i}['jahr'] = $rs->fields['jahr'];
    
     $i++;
 
@@ -162,9 +162,9 @@ $out = array();
 
     // zentrale Anwortfunktion f�r REST-Datenquellen
     // im Kern nicht anderes als print json_encode($value)
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 } else {

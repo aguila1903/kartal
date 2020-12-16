@@ -82,11 +82,11 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"liga_bez"} = ($rs->fields{'liga_bez'});
-	$value{$i}{"zusatz"} = ($rs->fields{'zusatz'});
-	$value{$i}{"code"} = ($rs->fields{'code'});
-	$value{$i}{"land"} = ($rs->fields{'land'});
-	$value{$i}{"liga_id"} = $rs->fields{'liga_id'};
+    $value{$i}['liga_bez'] = ($rs->fields['liga_bez']);
+	$value{$i}['zusatz'] = ($rs->fields['zusatz']);
+	$value{$i}['code'] = ($rs->fields['code']);
+	$value{$i}['land'] = ($rs->fields['land']);
+	$value{$i}['liga_id'] = $rs->fields['liga_id'];
    
     $i++;
 

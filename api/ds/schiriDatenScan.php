@@ -36,9 +36,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         $schiri = sonderzeichen($schiri);
         $schiri = str_replace(" ", "-", strtolower($schiri));
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spieler fehlt!");
-        $out{'response'}{'data'} = "1900.01.01";
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spieler fehlt!");
+        $out['response']['data'] = "1900.01.01";
         print json_encode($out);
 
         return;
@@ -78,14 +78,14 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
     $nat = ($nat);
 
 
-    $data{"datum"} = $datum;
-    $data{"nat"} = htmlentities($nat);
+    $data['datum'] = $datum;
+    $data['nat'] = htmlentities($nat);
 
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 } else {

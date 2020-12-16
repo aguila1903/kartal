@@ -188,37 +188,37 @@ left join stadionnamen sn on sn.stadion_id = s.stadion_id "
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"ort_id"} = $rs->fields{'ort_id'};
-        $value{$i}{"stadionname"} = ($rs->fields{'stadionname'});
-        $value{$i}{"stadtteil_bez"} = ($rs->fields{'stadtteil_bez'});
-        // $value{$i}{"nr"} = $rs->fields{'nr'};
-        $value{$i}{"gr_nr"} = $rs->fields{'gr_nr'};
-        $value{$i}{"ort"} = ($rs->fields{'ort'});
-        $value{$i}{"bundesland_id"} = ($rs->fields{'bundesland_id'});
-        $value{$i}{"bundesland"} = ($rs->fields{'bundesland'});
-        $value{$i}{"stadtteil"} = ($rs->fields{'stadtteil'});
-        If ($rs->fields{'erstbesuch'} != '01.01.1900') {
-            $value{$i}{"land"} = ($rs->fields{'land'}) /*. " - " . $rs->fields{'erstbesuch'} . " Nr: " . $rs->fields{'laenderpunkt_nr'}*/;
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['ort_id'] = $rs->fields['ort_id'];
+        $value{$i}['stadionname'] = ($rs->fields['stadionname']);
+        $value{$i}['stadtteil_bez'] = ($rs->fields['stadtteil_bez']);
+        // $value{$i}['nr'] = $rs->fields['nr'];
+        $value{$i}['gr_nr'] = $rs->fields['gr_nr'];
+        $value{$i}['ort'] = ($rs->fields['ort']);
+        $value{$i}['bundesland_id'] = ($rs->fields['bundesland_id']);
+        $value{$i}['bundesland'] = ($rs->fields['bundesland']);
+        $value{$i}['stadtteil'] = ($rs->fields['stadtteil']);
+        If ($rs->fields['erstbesuch'] != '01.01.1900') {
+            $value{$i}['land'] = ($rs->fields['land']) /*. " - " . $rs->fields['erstbesuch'] . " Nr: " . $rs->fields['laenderpunkt_nr']*/;
         } else {
-            $value{$i}{"land"} = ($rs->fields{'land'});
+            $value{$i}['land'] = ($rs->fields['land']);
         }
-        $value{$i}{"code"} = $rs->fields{'code'};
-        $value{$i}{"anzahl"} = $rs->fields{'anzahl'};
-        $value{$i}{"kapazitaet"} = $rs->fields{'kapazitaet'};
-        $value{$i}{"erstbesuch"} = $rs->fields{'erstbesuch'};
-        $value{$i}{"zusch_rek"} = $rs->fields{'zusch_rek'};
-        $value{$i}{"er_jahr"} = $rs->fields{'er_jahr'};
-        $value{$i}{"abriss"} = $rs->fields{'abriss'};
-        $value{$i}{"laenderpunkt_nr"} = $rs->fields{'laenderpunkt_nr'};
-        $value{$i}{"anschrift"} = ($rs->fields{'anschrift'});
-        $value{$i}{"historie"} = htmlspecialchars_decode(($rs->fields{'historie'}));
+        $value{$i}['code'] = $rs->fields['code'];
+        $value{$i}['anzahl'] = $rs->fields['anzahl'];
+        $value{$i}['kapazitaet'] = $rs->fields['kapazitaet'];
+        $value{$i}['erstbesuch'] = $rs->fields['erstbesuch'];
+        $value{$i}['zusch_rek'] = $rs->fields['zusch_rek'];
+        $value{$i}['er_jahr'] = $rs->fields['er_jahr'];
+        $value{$i}['abriss'] = $rs->fields['abriss'];
+        $value{$i}['laenderpunkt_nr'] = $rs->fields['laenderpunkt_nr'];
+        $value{$i}['anschrift'] = ($rs->fields['anschrift']);
+        $value{$i}['historie'] = htmlspecialchars_decode(($rs->fields['historie']));
 
 
 
-        if ($value{$i}{"abriss"} == 1) {
+        if ($value{$i}['abriss'] == 1) {
             $id = 0;
-            $value{$i}{"_hilite"} = $id;
+            $value{$i}['_hilite'] = $id;
         }
 
         $i++;

@@ -143,12 +143,12 @@ while ($ii < count($calendarArr)) {
         }
     }
     if (trim($title) != "" && trim($start) != "" && trim($end) != "") {
-        $data{$i}{"title"} = $title;
-        $data{$i}{"start"} = convertTime($start, $sucheArr);
-        $data{$i}{"end"} = convertTime($end, $sucheArr);
-        $data{$i}{"color"} = '#d50000';
-        $data{$i}{"textColor"} = 'white';
-        $data{$i}{"allDay"} = true;
+        $data{$i}['title'] = $title;
+        $data{$i}['start'] = convertTime($start, $sucheArr);
+        $data{$i}['end'] = convertTime($end, $sucheArr);
+        $data{$i}['color'] = '#d50000';
+        $data{$i}['textColor'] = 'white';
+        $data{$i}['allDay'] = true;
         $i++;
     }
     $ii++;
@@ -237,105 +237,105 @@ if (!$rs) {
 }
 
 while (!$rs->EOF) {
-    $data{$i}{"spiel_id"} = trim($rs->fields{'spiel_id'});
-    $data{$i}{"stadion_id_alt"} = trim($rs->fields{'stadion_id_alt'});
-    $data{$i}{"stadionname_alt"} = ($rs->fields{'stadionname_alt'});
-    $data{$i}{"stadion_id"} = trim($rs->fields{'stadion_id'});
-    $data{$i}{"zeit"} = trim($rs->fields{'zeit'});
-    $data{$i}{"trainer_id_a"} = trim($rs->fields{'trainer_id_a'});
-    $data{$i}{"trainer_id_h"} = trim($rs->fields{'trainer_id_h'});
-    $data{$i}{"schiri_verein"} = ($rs->fields{'schiri_verein'});
-    $data{$i}{"wochentag"} = ($rs->fields{'wochentag'});
-    $data{$i}{"wettbewerb_zusatz"} = ($rs->fields{'wettbewerb_zusatz'});
-    $data{$i}{"anschrift"} = ($rs->fields{'anschrift'});
-    $data{$i}{"trainer_a"} = ($rs->fields{'trainer_a'});
-    $data{$i}{"trainer_h"} = ($rs->fields{'trainer_h'});
-    $data{$i}{"zusch_anzahl"} = number_format(trim($rs->fields{'zusch_anzahl'}), 0, ',', '.');
-    $data{$i}{"kapazitaet"} = number_format(trim($rs->fields{'kapazitaet'}), 0, ',', '.');
-    $data{$i}{"gaestefans"} = number_format(trim($rs->fields{'gaestefans'}), 0, ',', '.');
-    // $data{$i}{"erg_a"} = trim($rs->fields{'erg_a'});
-    // $data{$i}{"erg_h"} = trim($rs->fields{'erg_h'});
-    $data{$i}{"verein_id_a"} = trim($rs->fields{'verein_id_a'});
-    $data{$i}{"verein_id_h"} = trim($rs->fields{'verein_id_h'});
-    $data{$i}{"paarung"} = ($rs->fields{'verein_h'}) . ' - ' . ($rs->fields{'verein_a'});
-    $data{$i}{"sp_datum"} = trim($rs->fields{'sp_datum'});
-    $data{$i}{"schiri_id"} = trim($rs->fields{'schiri_id'});
-    $data{$i}{"schiri"} = ($rs->fields{'schiri'});
-    $data{$i}{"name"} = ($rs->fields{'name'});
-    $data{$i}{"liga_id"} = trim($rs->fields{'liga_id'});
-    $data{$i}{"ort_id"} = trim($rs->fields{'ort_id'});
-    $data{$i}{"ort"} = ($rs->fields{'ort'});
-    $data{$i}{"sp_bericht"} = ($rs->fields{'sp_bericht'});
-    $data{$i}{"bes_vork"} = ($rs->fields{'bes_vork'});
-    $data{$i}{"land"} = ($rs->fields{'land'});
-    $data{$i}{"code"} = ($rs->fields{'code'});
-    $data{$i}{"verein_a"} = ($rs->fields{'verein_a'});
-    $data{$i}{"verein_h"} = ($rs->fields{'verein_h'});
-    $data{$i}{"erg"} = trim($rs->fields{'ergebnis'});
-    $data{$i}{"erg_elfer"} = trim($rs->fields{'erg_elfer'});
-    $data{$i}{"erg_halb"} = trim($rs->fields{'erg_halb'});
-    $data{$i}{"erg_zusatz"} = trim($rs->fields{'erg_zusatz'});
-    $data{$i}{"sprit"} = number_format($rs->fields{'sprit'}, 2, ',', '.');
-    $data{$i}{"bahn"} = number_format($rs->fields{'bahn'}, 2, ',', '.');
-    $data{$i}{"flieger"} = number_format($rs->fields{'flieger'}, 2, ',', '.');
-    $data{$i}{"verpflegung"} = number_format($rs->fields{'verpflegung'}, 2, ',', '.');
-    $data{$i}{"uebernachtung"} = number_format($rs->fields{'uebernachtung'}, 2, ',', '.');
-    $data{$i}{"sonstige"} = number_format($rs->fields{'sonstige'}, 2, ',', '.');
-    $data{$i}{"ges_kosten"} = number_format($rs->fields{'ges_kosten'}, 2, ',', '.');
-    $data{$i}{"eintrittskarte"} = number_format($rs->fields{'eintrittskarte'}, 2, ',', '.');
-    $data{$i}{"sprit_anteilig"} = number_format($rs->fields{'sprit_anteilig'}, 2, ',', '.');
-    $data{$i}{"schiff"} = number_format($rs->fields{'schiff'}, 2, ',', '.');
-    $data{$i}{"souvenir"} = number_format($rs->fields{'souvenir'}, 2, ',', '.');
-    $data{$i}{"taxi"} = number_format($rs->fields{'taxi'}, 2, ',', '.');
-    $data{$i}{"handy"} = number_format($rs->fields{'handy'}, 2, ',', '.');
-    $data{$i}{"ausverkauft"} = trim($rs->fields{'ausverkauft'});
-    if (strlen(trim($rs->fields{'zusatz'})) > 0) {
-        $data{$i}{"wettbewerb"} = ($rs->fields{'wettbewerb'}) . " (" . ($rs->fields{'zusatz'}) . ")";
+    $data{$i}['spiel_id'] = trim($rs->fields['spiel_id']);
+    $data{$i}['stadion_id_alt'] = trim($rs->fields['stadion_id_alt']);
+    $data{$i}['stadionname_alt'] = ($rs->fields['stadionname_alt']);
+    $data{$i}['stadion_id'] = trim($rs->fields['stadion_id']);
+    $data{$i}['zeit'] = trim($rs->fields['zeit']);
+    $data{$i}['trainer_id_a'] = trim($rs->fields['trainer_id_a']);
+    $data{$i}['trainer_id_h'] = trim($rs->fields['trainer_id_h']);
+    $data{$i}['schiri_verein'] = ($rs->fields['schiri_verein']);
+    $data{$i}['wochentag'] = ($rs->fields['wochentag']);
+    $data{$i}['wettbewerb_zusatz'] = ($rs->fields['wettbewerb_zusatz']);
+    $data{$i}['anschrift'] = ($rs->fields['anschrift']);
+    $data{$i}['trainer_a'] = ($rs->fields['trainer_a']);
+    $data{$i}['trainer_h'] = ($rs->fields['trainer_h']);
+    $data{$i}['zusch_anzahl'] = number_format(trim($rs->fields['zusch_anzahl']), 0, ',', '.');
+    $data{$i}['kapazitaet'] = number_format(trim($rs->fields['kapazitaet']), 0, ',', '.');
+    $data{$i}['gaestefans'] = number_format(trim($rs->fields['gaestefans']), 0, ',', '.');
+    // $data{$i}['erg_a'] = trim($rs->fields['erg_a']);
+    // $data{$i}['erg_h'] = trim($rs->fields['erg_h']);
+    $data{$i}['verein_id_a'] = trim($rs->fields['verein_id_a']);
+    $data{$i}['verein_id_h'] = trim($rs->fields['verein_id_h']);
+    $data{$i}['paarung'] = ($rs->fields['verein_h']) . ' - ' . ($rs->fields['verein_a']);
+    $data{$i}['sp_datum'] = trim($rs->fields['sp_datum']);
+    $data{$i}['schiri_id'] = trim($rs->fields['schiri_id']);
+    $data{$i}['schiri'] = ($rs->fields['schiri']);
+    $data{$i}['name'] = ($rs->fields['name']);
+    $data{$i}['liga_id'] = trim($rs->fields['liga_id']);
+    $data{$i}['ort_id'] = trim($rs->fields['ort_id']);
+    $data{$i}['ort'] = ($rs->fields['ort']);
+    $data{$i}['sp_bericht'] = ($rs->fields['sp_bericht']);
+    $data{$i}['bes_vork'] = ($rs->fields['bes_vork']);
+    $data{$i}['land'] = ($rs->fields['land']);
+    $data{$i}['code'] = ($rs->fields['code']);
+    $data{$i}['verein_a'] = ($rs->fields['verein_a']);
+    $data{$i}['verein_h'] = ($rs->fields['verein_h']);
+    $data{$i}['erg'] = trim($rs->fields['ergebnis']);
+    $data{$i}['erg_elfer'] = trim($rs->fields['erg_elfer']);
+    $data{$i}['erg_halb'] = trim($rs->fields['erg_halb']);
+    $data{$i}['erg_zusatz'] = trim($rs->fields['erg_zusatz']);
+    $data{$i}['sprit'] = number_format($rs->fields['sprit'], 2, ',', '.');
+    $data{$i}['bahn'] = number_format($rs->fields['bahn'], 2, ',', '.');
+    $data{$i}['flieger'] = number_format($rs->fields['flieger'], 2, ',', '.');
+    $data{$i}['verpflegung'] = number_format($rs->fields['verpflegung'], 2, ',', '.');
+    $data{$i}['uebernachtung'] = number_format($rs->fields['uebernachtung'], 2, ',', '.');
+    $data{$i}['sonstige'] = number_format($rs->fields['sonstige'], 2, ',', '.');
+    $data{$i}['ges_kosten'] = number_format($rs->fields['ges_kosten'], 2, ',', '.');
+    $data{$i}['eintrittskarte'] = number_format($rs->fields['eintrittskarte'], 2, ',', '.');
+    $data{$i}['sprit_anteilig'] = number_format($rs->fields['sprit_anteilig'], 2, ',', '.');
+    $data{$i}['schiff'] = number_format($rs->fields['schiff'], 2, ',', '.');
+    $data{$i}['souvenir'] = number_format($rs->fields['souvenir'], 2, ',', '.');
+    $data{$i}['taxi'] = number_format($rs->fields['taxi'], 2, ',', '.');
+    $data{$i}['handy'] = number_format($rs->fields['handy'], 2, ',', '.');
+    $data{$i}['ausverkauft'] = trim($rs->fields['ausverkauft']);
+    if (strlen(trim($rs->fields['zusatz'])) > 0) {
+        $data{$i}['wettbewerb'] = ($rs->fields['wettbewerb']) . " (" . ($rs->fields['zusatz']) . ")";
     } else {
-        $data{$i}{"wettbewerb"} = ($rs->fields{'wettbewerb'});
+        $data{$i}['wettbewerb'] = ($rs->fields['wettbewerb']);
     }
-    if (strlen(trim($rs->fields{'stadionname_alt'})) == 0 || trim($rs->fields{'stadionname_alt'}) == '' || trim($rs->fields{'stadionname_alt'}) == 'NULL' || trim($rs->fields{'stadionname_alt'}) == null) {
-        $data{$i}{"stadionname"} = ($rs->fields{'stadionname'});
+    if (strlen(trim($rs->fields['stadionname_alt'])) == 0 || trim($rs->fields['stadionname_alt']) == '' || trim($rs->fields['stadionname_alt']) == 'NULL' || trim($rs->fields['stadionname_alt']) == null) {
+        $data{$i}['stadionname'] = ($rs->fields['stadionname']);
     } else {
-        $data{$i}{"stadionname"} = ($rs->fields{'stadionname'}) . ' </br>(' . ($rs->fields{'stadionname_alt'}) . ")";
+        $data{$i}['stadionname'] = ($rs->fields['stadionname']) . ' </br>(' . ($rs->fields['stadionname_alt']) . ")";
     }
-    if (strlen(trim($rs->fields{'erg_zusatz'})) > 0) {
-        if (trim($rs->fields{'erg_zusatz'}) == "n. V.") {
-            $data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ") " . trim($rs->fields{'erg_zusatz'});
+    if (strlen(trim($rs->fields['erg_zusatz'])) > 0) {
+        if (trim($rs->fields['erg_zusatz']) == "n. V.") {
+            $data{$i}['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ") " . trim($rs->fields['erg_zusatz']);
         }
-        if (trim($rs->fields{'erg_zusatz'}) == "i. E.") {
-            $data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ") </br>" . trim($rs->fields{'erg_elfer'}) . " " . trim($rs->fields{'erg_zusatz'});
+        if (trim($rs->fields['erg_zusatz']) == "i. E.") {
+            $data{$i}['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ") </br>" . trim($rs->fields['erg_elfer']) . " " . trim($rs->fields['erg_zusatz']);
         }
-        if (trim($rs->fields{'erg_zusatz'}) == "nvUiE") {
-            $data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ") n.V. </br>" . trim($rs->fields{'erg_elfer'}) . " i. E.";
+        if (trim($rs->fields['erg_zusatz']) == "nvUiE") {
+            $data{$i}['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ") n.V. </br>" . trim($rs->fields['erg_elfer']) . " i. E.";
         }
     } else {
-        $data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ")";
+        $data{$i}['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ")";
     }
-    $data{$i}{"nummer"} = $rs->fields{'anzahl'};
-    $data{$i}{"id"} = trim($rs->fields{'spiel_id'});
-    $ergebnis = $rs->fields{'verein_h'} . "  " . $rs->fields{'ergebnis'} . "  " . $rs->fields{'verein_a'};
-    $wettbewerb = $rs->fields{"wettbewerb"} . " (" . $rs->fields{"wettbewerb_zusatz"} . ")";
-    $ort = $rs->fields{'ort'} . " / " . $rs->fields{'land'};
-    $data{$i}{"title"} = $ergebnis;
-    $data{$i}{"start"} = ($rs->fields{'start'});
-    $data{$i}{"end"} = ($rs->fields{'end'});
-    $data{$i}{"description"} = "<b>$ergebnis</b></br>$wettbewerb</br>$ort";
-//    if (date('Y-m-d') == substr($rs->fields{'start'}, 0, 10)) {
-        $data{$i}{"color"} = '#89bb81';
-        $data{$i}{"textColor"} = 'white';
+    $data{$i}['nummer'] = $rs->fields['anzahl'];
+    $data{$i}['id'] = trim($rs->fields['spiel_id']);
+    $ergebnis = $rs->fields['verein_h'] . "  " . $rs->fields['ergebnis'] . "  " . $rs->fields['verein_a'];
+    $wettbewerb = $rs->fields['wettbewerb'] . " (" . $rs->fields['wettbewerb_zusatz'] . ")";
+    $ort = $rs->fields['ort'] . " / " . $rs->fields['land'];
+    $data{$i}['title'] = $ergebnis;
+    $data{$i}['start'] = ($rs->fields['start']);
+    $data{$i}['end'] = ($rs->fields['end']);
+    $data{$i}['description'] = "<b>$ergebnis</b></br>$wettbewerb</br>$ort";
+//    if (date('Y-m-d') == substr($rs->fields['start'], 0, 10)) {
+        $data{$i}['color'] = '#89bb81';
+        $data{$i}['textColor'] = 'white';
 //    } else {
-//        if (str_replace("-", "", substr($rs->fields{'start'}, 0, 10)) > date('Ymd')) {
-//            $data{$i}{"color"} = 'orange';
-//            $data{$i}{"textColor"} = 'black';
+//        if (str_replace("-", "", substr($rs->fields['start'], 0, 10)) > date('Ymd')) {
+//            $data{$i}['color'] = 'orange';
+//            $data{$i}['textColor'] = 'black';
 //        } else {
-//            $data{$i}{"color"} = 'grey';
-//            $data{$i}{"textColor"} = 'white';
+//            $data{$i}['color'] = 'grey';
+//            $data{$i}['textColor'] = 'white';
 //        }
 //    }
-//    file_put_contents("datum.txt", str_replace("-", "", substr($rs->fields{'start'}, 0, 10))."\n", FILE_APPEND);
-//       $data{$i}{"canEdit"} = "false";
-    // $data{$i}{"eventWindowStyle"} = "testStyle";
+//    file_put_contents("datum.txt", str_replace("-", "", substr($rs->fields['start'], 0, 10))."\n", FILE_APPEND);
+//       $data{$i}['canEdit'] = "false";
+    // $data{$i}['eventWindowStyle'] = "testStyle";
 
     $i++;
 
@@ -349,8 +349,8 @@ $rs->Close();
 
 // zentrale Anwortfunktion f�r REST-Datenquellen
 // im Kern nicht anderes als print json_encode($data)
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $data;
 
 print json_encode($data);

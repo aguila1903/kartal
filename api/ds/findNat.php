@@ -50,23 +50,23 @@ if (isset($_REQUEST["nat"])) {
     if ($nat != "null" && $nat != "") {
         if ((preg_match("/^[A-Z]{1,3}?$/", trim($nat))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte das Land-Code prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte das Land-Code prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Land-Code fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Land-Code fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Land-Code fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Land-Code fehlt!");
 
     print json_encode($out);
 
@@ -92,8 +92,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -101,15 +101,15 @@ if (!$rs) {
 
 else {
  
-		$data{"land_id"} = trim($rs->fields{'land_id'});
+		$data['land_id'] = trim($rs->fields['land_id']);
       
 
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

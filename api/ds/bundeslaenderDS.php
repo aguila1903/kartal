@@ -69,8 +69,8 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"bundesland"} = ($rs->fields{'bundesland'});
-   $value{$i}{"bundesland_id"} = ($rs->fields{'bundesland_id'});
+    $value{$i}['bundesland'] = ($rs->fields['bundesland']);
+   $value{$i}['bundesland_id'] = ($rs->fields['bundesland_id']);
    
     $i++;
 

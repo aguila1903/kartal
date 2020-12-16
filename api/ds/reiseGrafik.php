@@ -128,9 +128,9 @@ case when month(sp_datum) = 1 Then 'Januar'
     while (!$rs->EOF) {
 
 
-        $value{$i}{"gesamtstrecke"} = $rs->fields{'gesamtstrecke'};
-        $value{$i}{"monat"} = $rs->fields{'monat'} . " " . $rs->fields{'jahr_'};
-        $value{$i}{"jahr"} = $rs->fields{'jahr'};
+        $value{$i}['gesamtstrecke'] = $rs->fields['gesamtstrecke'];
+        $value{$i}['monat'] = $rs->fields['monat'] . " " . $rs->fields['jahr_'];
+        $value{$i}['jahr'] = $rs->fields['jahr'];
 
         $i++;
 
@@ -144,9 +144,9 @@ case when month(sp_datum) = 1 Then 'Januar'
 
     // zentrale Anwortfunktion f�r REST-Datenquellen
     // im Kern nicht anderes als print json_encode($value)
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 } else {

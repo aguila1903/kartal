@@ -137,9 +137,9 @@ $data = array();
 if (!$rs) {
     $out = array();
 
-    $out{'response'}{'data'} = $data;
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('land' => ($dbSyb->ErrorMsg()));
+    $out['response']['data'] = $data;
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('land' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -149,16 +149,16 @@ $i = 0;
 
 while (!$rs->EOF) {
    
-    // if(isset($rs->fields{'land'})){        
-    // $data{$i}{"land"} = ($rs->fields{'land'});}
+    // if(isset($rs->fields['land'])){        
+    // $data{$i}['land'] = ($rs->fields['land']);}
     
-    // if(isset($rs->fields{'code'})){        
-    // $data{$i}{"code"} = ($rs->fields{'code'});}  
+    // if(isset($rs->fields['code'])){        
+    // $data{$i}['code'] = ($rs->fields['code']);}  
 	  
-    if(isset($rs->fields{'name'})){
-    $data{$i}{"name"} = ($rs->fields{'name'});}
-	if(isset($rs->fields{'spitzname'})){
-    $data{$i}{"spitzname"} = ($rs->fields{'spitzname'});}
+    if(isset($rs->fields['name'])){
+    $data{$i}['name'] = ($rs->fields['name']);}
+	if(isset($rs->fields['spitzname'])){
+    $data{$i}['spitzname'] = ($rs->fields['spitzname']);}
 		
 			
     
@@ -170,9 +170,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'data'} = $data;
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
+$out['response']['data'] = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
 
 print json_encode($out);
 

@@ -69,8 +69,8 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"land"} = ($rs->fields{'land'});
-   $value{$i}{"code"} = ($rs->fields{'code'});
+    $value{$i}['land'] = ($rs->fields['land']);
+   $value{$i}['code'] = ($rs->fields['code']);
    
     $i++;
 

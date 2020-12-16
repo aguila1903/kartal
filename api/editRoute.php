@@ -28,8 +28,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('routenpunkt1' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('routenpunkt1' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -44,23 +44,23 @@ if (isset($_REQUEST["lfd_nr"])) {
     if ($lfd_nr != "null" && $lfd_nr != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($lfd_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('lfd_nr' => "Bitte die lfd_nr prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('lfd_nr' => "Bitte die lfd_nr prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('lfd_nr' => "lfd_nr fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('lfd_nr' => "lfd_nr fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('lfd_nr' => "lfd_nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('lfd_nr' => "lfd_nr fehlt!");
 
     print json_encode($out);
 
@@ -72,23 +72,23 @@ if (isset($_REQUEST["spiel_id"])) {
     if ($spiel_id != "null" && $spiel_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('spiel_id' => "Bitte die Spiel-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('spiel_id' => "Bitte die Spiel-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('spiel_id' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('spiel_id' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('spiel_id' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('spiel_id' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -99,24 +99,24 @@ if (isset($_REQUEST["routenpunkt1"])) {
     $routenpunkt1 = $_REQUEST["routenpunkt1"];
     if ($routenpunkt1 != "null" && $routenpunkt1 != "") {
         if (strlen($routenpunkt1) > 250 || strlen($routenpunkt1) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('routenpunkt1' => "Bitte eine Start-Position mit max. 250 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('routenpunkt1' => "Bitte eine Start-Position mit max. 250 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('routenpunkt1' => "Start-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('routenpunkt1' => "Start-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('routenpunkt1' => "Start-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('routenpunkt1' => "Start-Position fehlt!");
 
     print json_encode($out);
 
@@ -127,24 +127,24 @@ if (isset($_REQUEST["routenpunkt2"])) {
     $routenpunkt2 = $_REQUEST["routenpunkt2"];
     if ($routenpunkt2 != "null" && $routenpunkt2 != "") {
         if (strlen($routenpunkt2) > 250 || strlen($routenpunkt2) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('routenpunkt2' => "Bitte eine Ziel-Position mit max. 250 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('routenpunkt2' => "Bitte eine Ziel-Position mit max. 250 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('routenpunkt2' => "Ziel-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('routenpunkt2' => "Ziel-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('routenpunkt2' => "Ziel-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('routenpunkt2' => "Ziel-Position fehlt!");
 
     print json_encode($out);
 
@@ -157,24 +157,24 @@ if (isset($_REQUEST["ort_id1"])) {
     $ort_id1 = $_REQUEST["ort_id1"];
     if ($ort_id1 != "null" && $ort_id1 != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($ort_id1))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ort_id1' => "Sie haben einen ungültigen Ort für die Start-Position eingeben. Bitte prüfen.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ort_id1' => "Sie haben einen ungültigen Ort für die Start-Position eingeben. Bitte prüfen.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ort_id1' => "Ort der Start-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ort_id1' => "Ort der Start-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort_id1' => "Ort der Start-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort_id1' => "Ort der Start-Position fehlt!");
 
     print json_encode($out);
 
@@ -185,24 +185,24 @@ if (isset($_REQUEST["ort_id2"])) {
     $ort_id2 = $_REQUEST["ort_id2"];
     if ($ort_id2 != "null" && $ort_id2 != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($ort_id2))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ort_id2' => "Sie haben einen ungültigen Ort für die Ziel-Position eingeben. Bitte prüfen.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ort_id2' => "Sie haben einen ungültigen Ort für die Ziel-Position eingeben. Bitte prüfen.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ort_id2' => "Ort der Ziel-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ort_id2' => "Ort der Ziel-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort_id2' => "Ort der Ziel-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort_id2' => "Ort der Ziel-Position fehlt!");
 
     print json_encode($out);
 
@@ -213,24 +213,24 @@ if (isset($_REQUEST["land1"])) {
     $land1 = $_REQUEST["land1"];
     if ($land1 != "null" && $land1 != "") {
         if (strlen($land1) > 2 || strlen($land1) < 2) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('land1' => "Sie haben ein ungültiges Land für die Start-Position eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('land1' => "Sie haben ein ungültiges Land für die Start-Position eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('land1' => "Land für die Start-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('land1' => "Land für die Start-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land1' => "Land für die Start-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land1' => "Land für die Start-Position fehlt!");
 
     print json_encode($out);
 
@@ -242,24 +242,24 @@ if (isset($_REQUEST["land2"])) {
     $land2 = $_REQUEST["land2"];
     if ($land2 != "null" && $land2 != "") {
         if (strlen($land2) > 2 || strlen($land2) < 2) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('land2' => "Sie haben ein ungültiges Land für die Ziel-Position eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('land2' => "Sie haben ein ungültiges Land für die Ziel-Position eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('land2' => "Land für die Ziel-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('land2' => "Land für die Ziel-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land2' => "Land für die Ziel-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land2' => "Land für die Ziel-Position fehlt!");
 
     print json_encode($out);
 
@@ -271,24 +271,24 @@ if (isset($_REQUEST["land2"])) {
     $land2 = $_REQUEST["land2"];
     if ($land2 != "null" && $land2 != "") {
         if (strlen($land2) > 2 || strlen($land2) < 2) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('land2' => "Sie haben ein ungültiges Land für die Ziel-Position eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('land2' => "Sie haben ein ungültiges Land für die Ziel-Position eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('land2' => "Land für die Ziel-Position fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('land2' => "Land für die Ziel-Position fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land2' => "Land für die Ziel-Position fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land2' => "Land für die Ziel-Position fehlt!");
 
     print json_encode($out);
 
@@ -300,8 +300,8 @@ if (isset($_REQUEST["entfernung_km"])) {
     if ($entfernung_km != "null" && $entfernung_km != "") {
         if ((preg_match("/^[0-9,]{1,13}?$/", trim($entfernung_km))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('entfernung_km' => "Bitte die Entfernung prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('entfernung_km' => "Bitte die Entfernung prüfen.");
 
             print json_encode($out);
             return;
@@ -317,8 +317,8 @@ if (isset($_REQUEST["verkehrsmittel"])) {
     $verkehrsmittel = $_REQUEST["verkehrsmittel"];
     if ($verkehrsmittel != "null" && $verkehrsmittel != "") {
         if (strlen($verkehrsmittel) > 200 ) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('verkehrsmittel' => "Bitte ein Verkehrsmittel mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('verkehrsmittel' => "Bitte ein Verkehrsmittel mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
@@ -335,8 +335,8 @@ if (isset($_REQUEST["verkehrsmittel_zus"])) {
     $verkehrsmittel_zus = $_REQUEST["verkehrsmittel_zus"];
     if ($verkehrsmittel_zus != "null" && $verkehrsmittel_zus != "") {
         if (strlen($verkehrsmittel_zus) > 200 ) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('verkehrsmittel_zus' => "Bitte ein Verkehrsmittel-Zusatz mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('verkehrsmittel_zus' => "Bitte ein Verkehrsmittel-Zusatz mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
@@ -394,21 +394,21 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('routenpunkt1' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('routenpunkt1' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} == 1) {
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] == 1) {
        $i = 0;
 
 while (!$rs->EOF) {
 
     
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -418,24 +418,24 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
  }
-	else if($rs->fields{'ergebnis'} != 1){
+	else if($rs->fields['ergebnis'] != 1){
 		
-	 $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('routenpunkt1' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . ($dbSyb->ErrorMsg()));
+	 $out['response']['status'] = -4;
+        $out['response']['errors'] = array('routenpunkt1' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
 	return;
 }
 
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('routenpunkt1' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('routenpunkt1' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;

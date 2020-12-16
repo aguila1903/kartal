@@ -50,23 +50,23 @@ if (isset($_REQUEST["spiel_id"])) {
     if ($spiel_id != "null" && $spiel_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Spiel-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Spiel-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -80,16 +80,16 @@ if (isset($_REQUEST["status"])) {
 	
 	if ((preg_match("/^[a-z]{2}$/", trim($status))) == 0) {
          
-		 $out{'response'}{'status'} = -1;
-		$out{'response'}{'errors'} = array('errors' => "Status fehlt!");
+		 $out['response']['status'] = -1;
+		$out['response']['errors'] = array('errors' => "Status fehlt!");
 
     print json_encode($out);
 
     return;
     }
 }else{
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Status fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Status fehlt!");
 
     print json_encode($out);
 
@@ -102,16 +102,16 @@ if (isset($_REQUEST["status2"])) {
 	
 	if ((preg_match("/^[ah]{1}$/", trim($status2))) == 0) {
          
-		 $out{'response'}{'status'} = -1;
-		$out{'response'}{'errors'} = array('errors' => "Status2 fehlt!");
+		 $out['response']['status'] = -1;
+		$out['response']['errors'] = array('errors' => "Status2 fehlt!");
 
     print json_encode($out);
 
     return;
     }
 }else{
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Status2 fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Status2 fehlt!");
 
     print json_encode($out);
 
@@ -145,8 +145,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -157,17 +157,17 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-		$data{$i}{"trikot_nr"} = trim($rs->fields{'trikot_nr'});
-		$data{$i}{"lfd_nr"} = trim($rs->fields{'lfd_nr'});
-        $data{$i}{"aw"} = trim($rs->fields{'aw'});
-		$data{$i}{"spiel_id"} = trim($rs->fields{'spiel_id'});
-		$data{$i}{"aw_minute"} = trim($rs->fields{'aw_minute'});
-		$data{$i}{"spieler_id"} = trim($rs->fields{'spieler_id'});	
+		$data{$i}['trikot_nr'] = trim($rs->fields['trikot_nr']);
+		$data{$i}['lfd_nr'] = trim($rs->fields['lfd_nr']);
+        $data{$i}['aw'] = trim($rs->fields['aw']);
+		$data{$i}['spiel_id'] = trim($rs->fields['spiel_id']);
+		$data{$i}['aw_minute'] = trim($rs->fields['aw_minute']);
+		$data{$i}['spieler_id'] = trim($rs->fields['spieler_id']);	
 		
-		if(trim($rs->fields{'aw_minute'}) > 0){
-			$data{$i}{"name"} = ($rs->fields{'name'}). " (".trim($rs->fields{'aw_minute'}).".)";
+		if(trim($rs->fields['aw_minute']) > 0){
+			$data{$i}['name'] = ($rs->fields['name']). " (".trim($rs->fields['aw_minute']).".)";
 		}else{
-			$data{$i}{"name"} = ($rs->fields{'name'});
+			$data{$i}['name'] = ($rs->fields['name']);
 		}
 		        
         $i++;
@@ -178,9 +178,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

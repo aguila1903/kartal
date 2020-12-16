@@ -82,8 +82,8 @@ if (isset($_REQUEST["bundesland"])) {
 	$Where .= " and o.bundesland_id = ". $dbSyb->Quote(($bundesland)). " or bl.name =" .$dbSyb->Quote(($bundesland));
     // if ($bundesland != "null" && $bundesland != "") {
         // if (strlen($bundesland) > 2 || strlen($bundesland) < 1) {
-            // $out{'response'}{'status'} = -1;
-            // $out{'response'}{'errors'} = array('bundesland' => "Sie haben ein ungültiges Bundesland eingegeben. Bitte prüfen!");
+            // $out['response']['status'] = -1;
+            // $out['response']['errors'] = array('bundesland' => "Sie haben ein ungültiges Bundesland eingegeben. Bitte prüfen!");
 
             // print json_encode($out);
 
@@ -136,12 +136,12 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"ort"} = ($rs->fields{'ort'});
-	$value{$i}{"code"} = ($rs->fields{'code'});
-	$value{$i}{"land"} = ($rs->fields{'de'});
-	if(isset($rs->fields{'name'})){$value{$i}{"bundesland"} = ($rs->fields{'name'});}
-	if(isset($rs->fields{'bundesland_id'})){$value{$i}{"bundesland_id"} = ($rs->fields{'bundesland_id'});}
-	$value{$i}{"ort_id"} = $rs->fields{'ort_id'};
+    $value{$i}['ort'] = ($rs->fields['ort']);
+	$value{$i}['code'] = ($rs->fields['code']);
+	$value{$i}['land'] = ($rs->fields['de']);
+	if(isset($rs->fields['name'])){$value{$i}['bundesland'] = ($rs->fields['name']);}
+	if(isset($rs->fields['bundesland_id'])){$value{$i}['bundesland_id'] = ($rs->fields['bundesland_id']);}
+	$value{$i}['ort_id'] = $rs->fields['ort_id'];
    
     $i++;
 

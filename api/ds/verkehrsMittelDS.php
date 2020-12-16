@@ -93,8 +93,8 @@ $data = array();
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.\n" . $dbSyb->ErrorMsg());
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.\n" . $dbSyb->ErrorMsg());
 
     print json_encode($out);
     return;
@@ -103,22 +103,22 @@ if (!$rs) {
     $i = 0;
 
     while (!$rs->EOF) {
-        $data{$i}{"lfd_nr"} = trim($rs->fields{'lfd_nr'});
-        $data{$i}{"spiel_id"} = trim($rs->fields{'spiel_id'});
-        $data{$i}{"ort_id1"} = trim($rs->fields{'ort_id1'});
-        $data{$i}{"ort_id2"} = trim($rs->fields{'ort_id2'});
-        $data{$i}{"land1"} = trim($rs->fields{'land1'});
-        $data{$i}{"land2"} = trim($rs->fields{'land2'});
-        $data{$i}{"routenpunkt1"} = ($rs->fields{'routenpunkt1'});
-        $data{$i}{"routenpunkt2"} = ($rs->fields{'routenpunkt2'});
-        $data{$i}{"Ort1"} = ($rs->fields{'Ort1'});
-        $data{$i}{"Ort2"} = ($rs->fields{'Ort2'});
-        $data{$i}{"Land1"} = ($rs->fields{'Land1'});
-        $data{$i}{"Land2"} = ($rs->fields{'Land2'});
-        $data{$i}{"entfernung_km"} = trim($rs->fields{'entfernung_km'});
-        $data{$i}{"verkehrsmittel_zus"} = ($rs->fields{'verkehrsmittel_zus'});
-        $data{$i}{"verkehrsmittel"} = ($rs->fields{'verkehrsmittel'});
-        $data{$i}{"map_lnk"} = ($rs->fields{'map_lnk'});
+        $data{$i}['lfd_nr'] = trim($rs->fields['lfd_nr']);
+        $data{$i}['spiel_id'] = trim($rs->fields['spiel_id']);
+        $data{$i}['ort_id1'] = trim($rs->fields['ort_id1']);
+        $data{$i}['ort_id2'] = trim($rs->fields['ort_id2']);
+        $data{$i}['land1'] = trim($rs->fields['land1']);
+        $data{$i}['land2'] = trim($rs->fields['land2']);
+        $data{$i}['routenpunkt1'] = ($rs->fields['routenpunkt1']);
+        $data{$i}['routenpunkt2'] = ($rs->fields['routenpunkt2']);
+        $data{$i}['Ort1'] = ($rs->fields['Ort1']);
+        $data{$i}['Ort2'] = ($rs->fields['Ort2']);
+        $data{$i}['Land1'] = ($rs->fields['Land1']);
+        $data{$i}['Land2'] = ($rs->fields['Land2']);
+        $data{$i}['entfernung_km'] = trim($rs->fields['entfernung_km']);
+        $data{$i}['verkehrsmittel_zus'] = ($rs->fields['verkehrsmittel_zus']);
+        $data{$i}['verkehrsmittel'] = ($rs->fields['verkehrsmittel']);
+        $data{$i}['map_lnk'] = ($rs->fields['map_lnk']);
 
         $i++;
 
@@ -128,9 +128,9 @@ if (!$rs) {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

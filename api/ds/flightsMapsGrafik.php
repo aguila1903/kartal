@@ -74,9 +74,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
     while (!$rs->EOF) {
 
 
-        $value{$i}{"name"} = ($rs->fields{'land'});
-        $value{$i}{"latitude"} = $rs->fields{'latitude'};
-        $value{$i}{"longitude"} = $rs->fields{'longitude'};
+        $value{$i}['name'] = ($rs->fields['land']);
+        $value{$i}['latitude'] = $rs->fields['latitude'];
+        $value{$i}['longitude'] = $rs->fields['longitude'];
 
         $i++;
 
@@ -86,9 +86,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     $output = json_encode($out);
 

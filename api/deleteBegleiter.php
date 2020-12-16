@@ -28,8 +28,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -44,23 +44,23 @@ if (isset($_REQUEST["begleiter_id"])) {
     if ($begleiter_id != "null" && $begleiter_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($begleiter_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Begleiter-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Begleiter-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Begleiter-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Begleiter-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Begleiter-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Begleiter-ID fehlt!");
 
     print json_encode($out);
 
@@ -81,20 +81,20 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} == 1 ) {
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] == 1 ) {
         $i = 0;
 
 while (!$rs->EOF) {
 
-	$value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+	$value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -104,35 +104,35 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
-    }else if($rs->fields{'ergebnis'} == -1) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Dem gewählten Begleiter wurden bereits Bilder zugewiesen.</br> Bitte löschen Sie diese zuerst alle.</br>" . ($dbSyb->ErrorMsg()));
-		$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+    }else if($rs->fields['ergebnis'] == -1) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Dem gewählten Begleiter wurden bereits Bilder zugewiesen.</br> Bitte löschen Sie diese zuerst alle.</br>" . ($dbSyb->ErrorMsg()));
+		$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
         print json_encode($out);
         return;
-} else if($rs->fields{'ergebnis'} == -2 ) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Der gewählte Begleiter ist bereits einem oder mehreren Spielen zugewiesen worden.</br> Bitte löschen sie den Begleiter erst aus dem oder den Spielen.</br>" . ($dbSyb->ErrorMsg()));
-		$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+} else if($rs->fields['ergebnis'] == -2 ) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Der gewählte Begleiter ist bereits einem oder mehreren Spielen zugewiesen worden.</br> Bitte löschen sie den Begleiter erst aus dem oder den Spielen.</br>" . ($dbSyb->ErrorMsg()));
+		$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
         print json_encode($out);
         return;
 }else{
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Der gewählte Begleiter konnte nicht gelöscht werden! </br>" . ($dbSyb->ErrorMsg()));
-		$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Der gewählte Begleiter konnte nicht gelöscht werden! </br>" . ($dbSyb->ErrorMsg()));
+		$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
         print json_encode($out);
         return;
     }
 }
 else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten. Löschvorgang evtl. nicht erfolgreich. </br>" . ($dbSyb->ErrorMsg()));
-	$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten. Löschvorgang evtl. nicht erfolgreich. </br>" . ($dbSyb->ErrorMsg()));
+	$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
     print json_encode($out);
     return;
 }

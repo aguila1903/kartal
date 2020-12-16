@@ -191,9 +191,9 @@ if (!$rs) {
     //>> [1] Fehlermeldung: INSERT-Fehler
     $out = array();
 
-    $out{'response'}{'data'} = $data;
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('land' => ($dbSyb->ErrorMsg()));
+    $out['response']['data'] = $data;
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('land' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -203,32 +203,32 @@ $i = 0;
 
 while (!$rs->EOF) {
    
-    if(isset($rs->fields{'land'})){        
-    $data{$i}{"land"} = ($rs->fields{'land'});}
+    if(isset($rs->fields['land'])){        
+    $data{$i}['land'] = ($rs->fields['land']);}
     
-    if(isset($rs->fields{'code'})){        
-    $data{$i}{"code"} = ($rs->fields{'code'});}  
+    if(isset($rs->fields['code'])){        
+    $data{$i}['code'] = ($rs->fields['code']);}  
 	  
-    if(isset($rs->fields{'spielername'})){
-    $data{$i}{"spielername"} = trim(($rs->fields{'spielername'}));}
+    if(isset($rs->fields['spielername'])){
+    $data{$i}['spielername'] = trim(($rs->fields['spielername']));}
 	
-	if(isset($rs->fields{'vorname'})){
-    $data{$i}{"vorname"} = trim(($rs->fields{'vorname'}));}
+	if(isset($rs->fields['vorname'])){
+    $data{$i}['vorname'] = trim(($rs->fields['vorname']));}
     
-    if(isset($rs->fields{'position'})){
-    $data{$i}{"pos_id"} = ($rs->fields{'position'});}
+    if(isset($rs->fields['position'])){
+    $data{$i}['pos_id'] = ($rs->fields['position']);}
 	
-	if(isset($rs->fields{'pos_bez'})){
-    $data{$i}{"pos_bez"} = ($rs->fields{'pos_bez'});}
+	if(isset($rs->fields['pos_bez'])){
+    $data{$i}['pos_bez'] = ($rs->fields['pos_bez']);}
     
-    // if(isset($rs->fields{'verein_id'})){
-    // $data{$i}{"verein_id"} = ($rs->fields{'verein_id'});}
+    // if(isset($rs->fields['verein_id'])){
+    // $data{$i}['verein_id'] = ($rs->fields['verein_id']);}
 	
-	// if(isset($rs->fields{'vereinsname'})){
-    // $data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});}
+	// if(isset($rs->fields['vereinsname'])){
+    // $data{$i}['vereinsname'] = ($rs->fields['vereinsname']);}
 	
-	if(isset($rs->fields{'nati_spieler'})){
-    $data{$i}{"nati_spieler"} = $rs->fields{'nati_spieler'};}
+	if(isset($rs->fields['nati_spieler'])){
+    $data{$i}['nati_spieler'] = $rs->fields['nati_spieler'];}
      
     $i++;
     $rs->MoveNext();
@@ -236,9 +236,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'data'} = $data;
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
+$out['response']['data'] = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
 
 print json_encode($out);
 

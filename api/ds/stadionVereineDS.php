@@ -82,10 +82,10 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-        $data{$i}{"stadion_id"} = $rs->fields{'stadion_id'};
-        $data{$i}{"verein_id"} = $rs->fields{'verein_id'};
-		$data{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $data{$i}{"vereinsname"} = ($rs->fields{'gaengiger_name'});
+        $data{$i}['stadion_id'] = $rs->fields['stadion_id'];
+        $data{$i}['verein_id'] = $rs->fields['verein_id'];
+		$data{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $data{$i}['vereinsname'] = ($rs->fields['gaengiger_name']);
 
         $i++;
 
@@ -94,9 +94,9 @@ else {
 
     $rs->Close();
   
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }} else {

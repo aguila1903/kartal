@@ -50,23 +50,23 @@ if (isset($_REQUEST["spiel_id"])) {
     if ($spiel_id != "null" && $spiel_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Spiel-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Spiel-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -98,8 +98,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => $dbSyb->ErrorMsg(). "</br>Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => $dbSyb->ErrorMsg(). "</br>Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -110,13 +110,13 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-		$data{$i}{"begleiter_id"} = trim($rs->fields{'begleiter_id'});
-		$data{$i}{"lfd_nr"} = trim($rs->fields{'lfd_nr'});
-		$data{$i}{"bild"} = ($rs->fields{'bild'});
-		if(strlen(trim($rs->fields{'spitzname'})) > 0){
-			$data{$i}{"name"} = ($rs->fields{'name'}). " (".($rs->fields{'spitzname'}).")";
+		$data{$i}['begleiter_id'] = trim($rs->fields['begleiter_id']);
+		$data{$i}['lfd_nr'] = trim($rs->fields['lfd_nr']);
+		$data{$i}['bild'] = ($rs->fields['bild']);
+		if(strlen(trim($rs->fields['spitzname'])) > 0){
+			$data{$i}['name'] = ($rs->fields['name']). " (".($rs->fields['spitzname']).")";
 		}else{
-			$data{$i}{"name"} = ($rs->fields{'name'});
+			$data{$i}['name'] = ($rs->fields['name']);
 		}
 		        
         $i++;
@@ -127,9 +127,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

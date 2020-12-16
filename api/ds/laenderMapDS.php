@@ -32,8 +32,8 @@ $dbSyb->Connect(link, user, psw, db); //=>>> Verbindungsaufbau mit der DB
 $out = array();
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -69,8 +69,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 
 
 if (!$rs) {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -84,9 +84,9 @@ $value = array();
 
 while (!$rs->EOF) {
     if ($code == '') {
-        $code .= ($rs->fields{'code'});
+        $code .= ($rs->fields['code']);
     } else {
-        $code .= '|' . ($rs->fields{'code'});
+        $code .= '|' . ($rs->fields['code']);
     }
 
     $i++;
@@ -99,13 +99,13 @@ $rs->Close();
 
 $neune = str_repeat('9', $nine);
 
-$value{"nine"} = $neune;
-$value{"code"} = $code;
+$value['nine'] = $neune;
+$value['code'] = $code;
 
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

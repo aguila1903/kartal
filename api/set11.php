@@ -27,8 +27,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('stadionname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('stadionname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -43,23 +43,23 @@ if (isset($_REQUEST["spiel_id_akt"])) {
     if ($spiel_id_akt != "null" && $spiel_id_akt != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id_akt))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Spiel-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Spiel-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -71,23 +71,23 @@ if (isset($_REQUEST["spiel_id_11"])) {
     if ($spiel_id_11 != "null" && $spiel_id_11 != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id_11))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Spiel-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Spiel-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -100,16 +100,16 @@ if (isset($_REQUEST["status"])) {
 	
 	if ((preg_match("/^[a-z]{2}$/", trim($status))) == 0) {
          
-		 $out{'response'}{'status'} = -1;
-		$out{'response'}{'errors'} = array('errors' => "Status fehlt!");
+		 $out['response']['status'] = -1;
+		$out['response']['errors'] = array('errors' => "Status fehlt!");
 
     print json_encode($out);
 
     return;
     }
 }else{
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Status fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Status fehlt!");
 
     print json_encode($out);
 
@@ -121,16 +121,16 @@ if (isset($_REQUEST["status2"])) {
 	
 	if ((preg_match("/^[ah]{1}$/", trim($status2))) == 0) {
          
-		 $out{'response'}{'status'} = -1;
-		$out{'response'}{'errors'} = array('errors' => "Status2 fehlt!");
+		 $out['response']['status'] = -1;
+		$out['response']['errors'] = array('errors' => "Status2 fehlt!");
 
     print json_encode($out);
 
     return;
     }
 }else{
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Status2 fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Status2 fehlt!");
 
     print json_encode($out);
 
@@ -142,16 +142,16 @@ if (isset($_REQUEST["team"])) {
 	
 	if ((preg_match("/^[ah]{1}$/", trim($team))) == 0) {
          
-		 $out{'response'}{'team'} = -1;
-		$out{'response'}{'errors'} = array('errors' => "Team fehlt!");
+		 $out['response']['team'] = -1;
+		$out['response']['errors'] = array('errors' => "Team fehlt!");
 
     print json_encode($out);
 
     return;
     }
 }else{
-    $out{'response'}{'team'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Team fehlt!");
+    $out['response']['team'] = -1;
+    $out['response']['errors'] = array('errors' => "Team fehlt!");
 
     print json_encode($out);
 
@@ -175,24 +175,24 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} != 11 && $rs->fields{'ergebnis'} != 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . ($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] != 11 && $rs->fields['ergebnis'] != 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -204,7 +204,7 @@ $i = 0;
 while (!$rs->EOF) {
 
    
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -214,9 +214,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

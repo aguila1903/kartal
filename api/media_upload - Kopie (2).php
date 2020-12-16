@@ -196,7 +196,7 @@ for ($i = 0; $i < count($tmp_name_array); $i++) {
             echo rueckgabeText($result, $status, $bild);
             exit;
         }
-        if ($rs->fields{'anzahl'} >= 1) {
+        if ($rs->fields['anzahl'] >= 1) {
             $result = json_encode('Es gibt bereits ein Front-Bild!');
             $bild = json_encode($imageName);
             echo rueckgabeText($result, $status, $bild);

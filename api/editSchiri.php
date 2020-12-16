@@ -27,8 +27,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('stadionname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('stadionname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -43,23 +43,23 @@ if (isset($_REQUEST["schiri_id"])) {
     if ($schiri_id != "null" && $schiri_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($schiri_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('schiri_id' => "Bitte die Schiri-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('schiri_id' => "Bitte die Schiri-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('schiri_id' => "Schiri-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('schiri_id' => "Schiri-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('schiri_id' => "Schiri-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('schiri_id' => "Schiri-ID fehlt!");
 
     print json_encode($out);
 
@@ -71,24 +71,24 @@ if (isset($_REQUEST["name"])) {
     $name = $_REQUEST["name"];
     if ($name != "null" && $name != "") {
         if (strlen($name) > 264 || strlen($name) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('name' => "Bitte einen Schiedsrichter-Namen mit max. 264 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('name' => "Bitte einen Schiedsrichter-Namen mit max. 264 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('name' => "Schiedsrichter-Name fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('name' => "Schiedsrichter-Name fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => "Schiedsrichter-Name fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => "Schiedsrichter-Name fehlt!");
 
     print json_encode($out);
 
@@ -99,24 +99,24 @@ if (isset($_REQUEST["land"])) {
     $land = $_REQUEST["land"];
     if ($land != "null" && $land != "") {
         if (strlen($land) > 2 || strlen($land) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('land' => "Bitte ein Land bestehend aus 2 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('land' => "Bitte ein Land bestehend aus 2 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land' => "Land fehlt!");
+        $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land' => "Land fehlt!");
 
     print json_encode($out);
 
     return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land' => "Land fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land' => "Land fehlt!");
 
     print json_encode($out);
 
@@ -127,8 +127,8 @@ if (isset($_REQUEST["ort"])) {
     $ort = $_REQUEST["ort"];
     if ($ort != "null" && $ort != "") {
         if (strlen($ort) > 64 || strlen($ort) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ort_id' => "Bitte einen Ort mit max. 64 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ort_id' => "Bitte einen Ort mit max. 64 Zeichen eingeben.");
 
             print json_encode($out);
 
@@ -147,8 +147,8 @@ if (isset($_REQUEST["verein"])) {
     if ($verein != "null" && $verein != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($verein))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('verein' => "Bitte die Verein-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('verein' => "Bitte die Verein-ID prüfen!");
 
             print json_encode($out);
             return;
@@ -165,8 +165,8 @@ if (isset($_REQUEST["geb_datum"])) {
     if ($geb_datum != "null" && $geb_datum != "") {
         if ((preg_match("/^[0-9-]{10}?$/", trim($geb_datum))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('geb_datum' => "Bitte den Geburtstag prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('geb_datum' => "Bitte den Geburtstag prüfen");
 
             print json_encode($out);
             return;
@@ -211,20 +211,20 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('schiri_id' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('schiri_id' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} == 1 ) {
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] == 1 ) {
         $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -234,37 +234,37 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 
     }
-	else if($rs->fields{'ergebnis'} == 0){
-		$out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('schiri_id' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
+	else if($rs->fields['ergebnis'] == 0){
+		$out['response']['status'] = -4;
+        $out['response']['errors'] = array('schiri_id' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
-	else if($rs->fields{'ergebnis'} == 99){$out{'response'}{'errors'} = array('schiri_id' => "Das von Ihnen eingegebene Land ist ungültig. Bitte prüfen Sie es erneut </br>" . ($dbSyb->ErrorMsg()));
+	else if($rs->fields['ergebnis'] == 99){$out['response']['errors'] = array('schiri_id' => "Das von Ihnen eingegebene Land ist ungültig. Bitte prüfen Sie es erneut </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
-		else if($rs->fields{'ergebnis'} == 98){$out{'response'}{'errors'} = array('schiri_id' => "Diese Trikot-Nr ist in der Mannschaft bereits vergeben.</br>" . ($dbSyb->ErrorMsg()));
+		else if($rs->fields['ergebnis'] == 98){$out['response']['errors'] = array('schiri_id' => "Diese Trikot-Nr ist in der Mannschaft bereits vergeben.</br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
 	else{
-	$out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('schiri_id' => "Update konnte nicht durchgeführt werden. </br>" . ($dbSyb->ErrorMsg()));
+	$out['response']['status'] = -4;
+        $out['response']['errors'] = array('schiri_id' => "Update konnte nicht durchgeführt werden. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
 	}
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('schiri_id' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('schiri_id' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;

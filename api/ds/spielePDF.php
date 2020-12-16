@@ -57,23 +57,23 @@ if (isset($_REQUEST["spiel_id"])) {
     if ($spiel_id != "null" && $spiel_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('spiel_id' => "Bitte die Spiel-ID pr�fen! " . $spiel_id);
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('spiel_id' => "Bitte die Spiel-ID pr�fen! " . $spiel_id);
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('spiel_id' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('spiel_id' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('spiel_id' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('spiel_id' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -161,8 +161,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -170,95 +170,95 @@ if (!$rs) {
 //    $i = 0;
     // $ii = 1;
     while (!$rs->EOF) {
-        $data{"spiel_id"} = trim($rs->fields{'spiel_id'});
-        $data{"stadion_id_alt"} = trim($rs->fields{'stadion_id_alt'});
-        $data{"stadionname_alt"} = cs($rs->fields{'stadionname_alt'});
-        $data{"stadion_id"} = trim($rs->fields{'stadion_id'});
-        $data{"zeit"} = trim($rs->fields{'zeit'});
-        $data{"trainer_id_a"} = trim($rs->fields{'trainer_id_a'});
-        $data{"trainer_id_h"} = trim($rs->fields{'trainer_id_h'});
-        $data{"schiri_verein"} = ($rs->fields{'schiri_verein'});
-        $data{"wochentag"} = ($rs->fields{'wochentag'});
-        $data{"wettbewerb_zusatz"} = cs($rs->fields{'wettbewerb_zusatz'});
-        $data{"anschrift"} = cs($rs->fields{'anschrift'});
-        $data{"trainer_a"} = cs($rs->fields{'trainer_a'});
-        $data{"trainer_h"} = cs($rs->fields{'trainer_h'});
-        $data{"zusch_anzahl"} = number_format(trim($rs->fields{'zusch_anzahl'}), 0, ',', '.');
-        $data{"gaestefans"} = number_format(trim($rs->fields{'gaestefans'}), 0, ',', '.');
-        // $data{"erg_a"} = trim($rs->fields{'erg_a'});
-        // $data{"erg_h"} = trim($rs->fields{'erg_h'});
-        $data{"verein_id_a"} = trim($rs->fields{'verein_id_a'});
-        $data{"verein_id_h"} = trim($rs->fields{'verein_id_h'});
-        $data{"paarung"} = cs($rs->fields{'verein_h'}) . ' - ' . cs($rs->fields{'verein_a'});
-        $data{"sp_datum"} = trim($rs->fields{'sp_datum'});
-        $data{"schiri_id"} = trim($rs->fields{'schiri_id'});
-        $data{"schiri"} = cs($rs->fields{'schiri'});
-        $data{"name"} = cs($rs->fields{'name'});
-        $data{"liga_id"} = trim($rs->fields{'liga_id'});
-        $data{"ort_id"} = trim($rs->fields{'ort_id'});
-        $data{"ort"} = cs($rs->fields{'ort'});
-        $data{"sp_bericht"} = cs($rs->fields{'sp_bericht'});
-        $data{"bes_vork"} = cs($rs->fields{'bes_vork'});
-        $data{"land"} = cs($rs->fields{'land'});
-        $data{"code"} = cs($rs->fields{'code'});
-        $data{"verein_a"} = cs($rs->fields{'verein_a'});
-        $data{"verein_h"} = cs($rs->fields{'verein_h'});
-        $data{"erg"} = trim($rs->fields{'ergebnis'});
-        $data{"erg_elfer"} = trim($rs->fields{'erg_elfer'});
-        $data{"erg_halb"} = trim($rs->fields{'erg_halb'});
-        $data{"erg_zusatz"} = trim($rs->fields{'erg_zusatz'});
-        $data{"sprit"} = number_format($rs->fields{'sprit'}, 2, ',', '.');
-        $data{"bahn"} = number_format($rs->fields{'bahn'}, 2, ',', '.');
-        $data{"flieger"} = number_format($rs->fields{'flieger'}, 2, ',', '.');
-        $data{"verpflegung"} = number_format($rs->fields{'verpflegung'}, 2, ',', '.');
-        $data{"uebernachtung"} = number_format($rs->fields{'uebernachtung'}, 2, ',', '.');
-        $data{"sonstige"} = number_format($rs->fields{'sonstige'}, 2, ',', '.');
-        $data{"ges_kosten"} = number_format($rs->fields{'ges_kosten'}, 2, ',', '.');
-        $data{"eintrittskarte"} = number_format($rs->fields{'eintrittskarte'}, 2, ',', '.');
-        $data{"sprit_anteilig"} = number_format($rs->fields{'sprit_anteilig'}, 2, ',', '.');
-        $data{"souvenir"} = number_format($rs->fields{'souvenir'}, 2, ',', '.');
-        $data{"taxi"} = number_format($rs->fields{'taxi'}, 2, ',', '.');
-        $data{"handy"} = number_format($rs->fields{'handy'}, 2, ',', '.');
-        $data{"schiff"} = number_format($rs->fields{'schiff'}, 2, ',', '.');
-        $data{"ausverkauft"} = trim($rs->fields{'ausverkauft'});
+        $data['spiel_id'] = trim($rs->fields['spiel_id']);
+        $data['stadion_id_alt'] = trim($rs->fields['stadion_id_alt']);
+        $data['stadionname_alt'] = cs($rs->fields['stadionname_alt']);
+        $data['stadion_id'] = trim($rs->fields['stadion_id']);
+        $data['zeit'] = trim($rs->fields['zeit']);
+        $data['trainer_id_a'] = trim($rs->fields['trainer_id_a']);
+        $data['trainer_id_h'] = trim($rs->fields['trainer_id_h']);
+        $data['schiri_verein'] = ($rs->fields['schiri_verein']);
+        $data['wochentag'] = ($rs->fields['wochentag']);
+        $data['wettbewerb_zusatz'] = cs($rs->fields['wettbewerb_zusatz']);
+        $data['anschrift'] = cs($rs->fields['anschrift']);
+        $data['trainer_a'] = cs($rs->fields['trainer_a']);
+        $data['trainer_h'] = cs($rs->fields['trainer_h']);
+        $data['zusch_anzahl'] = number_format(trim($rs->fields['zusch_anzahl']), 0, ',', '.');
+        $data['gaestefans'] = number_format(trim($rs->fields['gaestefans']), 0, ',', '.');
+        // $data['erg_a'] = trim($rs->fields['erg_a']);
+        // $data['erg_h'] = trim($rs->fields['erg_h']);
+        $data['verein_id_a'] = trim($rs->fields['verein_id_a']);
+        $data['verein_id_h'] = trim($rs->fields['verein_id_h']);
+        $data['paarung'] = cs($rs->fields['verein_h']) . ' - ' . cs($rs->fields['verein_a']);
+        $data['sp_datum'] = trim($rs->fields['sp_datum']);
+        $data['schiri_id'] = trim($rs->fields['schiri_id']);
+        $data['schiri'] = cs($rs->fields['schiri']);
+        $data['name'] = cs($rs->fields['name']);
+        $data['liga_id'] = trim($rs->fields['liga_id']);
+        $data['ort_id'] = trim($rs->fields['ort_id']);
+        $data['ort'] = cs($rs->fields['ort']);
+        $data['sp_bericht'] = cs($rs->fields['sp_bericht']);
+        $data['bes_vork'] = cs($rs->fields['bes_vork']);
+        $data['land'] = cs($rs->fields['land']);
+        $data['code'] = cs($rs->fields['code']);
+        $data['verein_a'] = cs($rs->fields['verein_a']);
+        $data['verein_h'] = cs($rs->fields['verein_h']);
+        $data['erg'] = trim($rs->fields['ergebnis']);
+        $data['erg_elfer'] = trim($rs->fields['erg_elfer']);
+        $data['erg_halb'] = trim($rs->fields['erg_halb']);
+        $data['erg_zusatz'] = trim($rs->fields['erg_zusatz']);
+        $data['sprit'] = number_format($rs->fields['sprit'], 2, ',', '.');
+        $data['bahn'] = number_format($rs->fields['bahn'], 2, ',', '.');
+        $data['flieger'] = number_format($rs->fields['flieger'], 2, ',', '.');
+        $data['verpflegung'] = number_format($rs->fields['verpflegung'], 2, ',', '.');
+        $data['uebernachtung'] = number_format($rs->fields['uebernachtung'], 2, ',', '.');
+        $data['sonstige'] = number_format($rs->fields['sonstige'], 2, ',', '.');
+        $data['ges_kosten'] = number_format($rs->fields['ges_kosten'], 2, ',', '.');
+        $data['eintrittskarte'] = number_format($rs->fields['eintrittskarte'], 2, ',', '.');
+        $data['sprit_anteilig'] = number_format($rs->fields['sprit_anteilig'], 2, ',', '.');
+        $data['souvenir'] = number_format($rs->fields['souvenir'], 2, ',', '.');
+        $data['taxi'] = number_format($rs->fields['taxi'], 2, ',', '.');
+        $data['handy'] = number_format($rs->fields['handy'], 2, ',', '.');
+        $data['schiff'] = number_format($rs->fields['schiff'], 2, ',', '.');
+        $data['ausverkauft'] = trim($rs->fields['ausverkauft']);
 
 
-        if (strlen(trim($rs->fields{'zusatz'})) > 0) {
-            $data{"wettbewerb"} = cs($rs->fields{'wettbewerb'}) . " (" . cs($rs->fields{'zusatz'}) . ")";
+        if (strlen(trim($rs->fields['zusatz'])) > 0) {
+            $data['wettbewerb'] = cs($rs->fields['wettbewerb']) . " (" . cs($rs->fields['zusatz']) . ")";
         } else {
-            $data{"wettbewerb"} = cs($rs->fields{'wettbewerb'});
+            $data['wettbewerb'] = cs($rs->fields['wettbewerb']);
         }
 
 
-        if (strlen(trim($rs->fields{'kapazitaet'})) == 0 || trim($rs->fields{'kapazitaet'}) == '' || trim($rs->fields{'kapazitaet'}) == 'NULL' || trim($rs->fields{'kapazitaet'}) == null) {
+        if (strlen(trim($rs->fields['kapazitaet'])) == 0 || trim($rs->fields['kapazitaet']) == '' || trim($rs->fields['kapazitaet']) == 'NULL' || trim($rs->fields['kapazitaet']) == null) {
 
-            if (strlen(trim($rs->fields{'stadionname_alt'})) == 0 || trim($rs->fields{'stadionname_alt'}) == '' || trim($rs->fields{'stadionname_alt'}) == 'NULL' || trim($rs->fields{'stadionname_alt'}) == null) {
-                $data{"stadionname"} = cs($rs->fields{'stadionname'});
+            if (strlen(trim($rs->fields['stadionname_alt'])) == 0 || trim($rs->fields['stadionname_alt']) == '' || trim($rs->fields['stadionname_alt']) == 'NULL' || trim($rs->fields['stadionname_alt']) == null) {
+                $data['stadionname'] = cs($rs->fields['stadionname']);
             } else {
-                $data{"stadionname"} = cs($rs->fields{'stadionname'}) . ' (' . cs($rs->fields{'stadionname_alt'}) . ")";
+                $data['stadionname'] = cs($rs->fields['stadionname']) . ' (' . cs($rs->fields['stadionname_alt']) . ")";
             }
         } else {
-            if (strlen(trim($rs->fields{'stadionname_alt'})) == 0 || trim($rs->fields{'stadionname_alt'}) == '' || trim($rs->fields{'stadionname_alt'}) == 'NULL' || trim($rs->fields{'stadionname_alt'}) == null) {
-                $data{"stadionname"} = cs($rs->fields{'stadionname'}) . ' (' . number_format(trim($rs->fields{'kapazitaet'}), 0, ',', '.') . ')';
+            if (strlen(trim($rs->fields['stadionname_alt'])) == 0 || trim($rs->fields['stadionname_alt']) == '' || trim($rs->fields['stadionname_alt']) == 'NULL' || trim($rs->fields['stadionname_alt']) == null) {
+                $data['stadionname'] = cs($rs->fields['stadionname']) . ' (' . number_format(trim($rs->fields['kapazitaet']), 0, ',', '.') . ')';
             } else {
-                $data{"stadionname"} = cs($rs->fields{'stadionname'}) . ' (' . number_format(trim($rs->fields{'kapazitaet'}), 0, ',', '.') . ') (' . cs($rs->fields{'stadionname_alt'}) . ")";
+                $data['stadionname'] = cs($rs->fields['stadionname']) . ' (' . number_format(trim($rs->fields['kapazitaet']), 0, ',', '.') . ') (' . cs($rs->fields['stadionname_alt']) . ")";
             }
         }
 
-        if (strlen(trim($rs->fields{'erg_zusatz'})) > 0) {
-            if (trim($rs->fields{'erg_zusatz'}) == "n. V.") {
-                $data{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ") " . trim($rs->fields{'erg_zusatz'});
+        if (strlen(trim($rs->fields['erg_zusatz'])) > 0) {
+            if (trim($rs->fields['erg_zusatz']) == "n. V.") {
+                $data['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ") " . trim($rs->fields['erg_zusatz']);
             }
-            if (trim($rs->fields{'erg_zusatz'}) == "i. E.") {
-                $data{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ") " . trim($rs->fields{'erg_elfer'}) . " " . trim($rs->fields{'erg_zusatz'});
+            if (trim($rs->fields['erg_zusatz']) == "i. E.") {
+                $data['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ") " . trim($rs->fields['erg_elfer']) . " " . trim($rs->fields['erg_zusatz']);
             }
-            if (trim($rs->fields{'erg_zusatz'}) == "nvUiE") {
-                $data{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ") n.V. " . trim($rs->fields{'erg_elfer'}) . " i. E.";
+            if (trim($rs->fields['erg_zusatz']) == "nvUiE") {
+                $data['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ") n.V. " . trim($rs->fields['erg_elfer']) . " i. E.";
             }
         } else {
-            $data{"ergebnis"} = trim($rs->fields{'ergebnis'}) . ' (' . trim($rs->fields{'erg_halb'}) . ")";
+            $data['ergebnis'] = trim($rs->fields['ergebnis']) . ' (' . trim($rs->fields['erg_halb']) . ")";
         }
-        $data{"nummer"} = "Spielbesuch: ".$rs->fields{'anzahl'};
+        $data['nummer'] = "Spielbesuch: ".$rs->fields['anzahl'];
 
 
 //        $i++;
@@ -281,15 +281,15 @@ if (!$rs) {
  * ********************************************************************************************************************************************************** */
 
 
-$querySQL_wappen = "select ifnull(dateiname,'no_image.jpg') as dateiname from media where id = " . $data{"verein_id_h"} . " and ref = 'vn' and art = 'fr'";
+$querySQL_wappen = "select ifnull(dateiname,'no_image.jpg') as dateiname from media where id = " . $data['verein_id_h'] . " and ref = 'vn' and art = 'fr'";
 
 $rs_wp = $dbSyb->Execute($querySQL_wappen);
 $data_wp = array();
-$data_wp_h{"dateiname"} = 'no_image.jpg';
+$data_wp_h['dateiname'] = 'no_image.jpg';
 
 if (!$rs_wp) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('verein_id' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('verein_id' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -297,7 +297,7 @@ if (!$rs_wp) {
 
 
     while (!$rs_wp->EOF) {
-        $data_wp_h{"dateiname"} = ($rs_wp->fields{'dateiname'});
+        $data_wp_h['dateiname'] = ($rs_wp->fields['dateiname']);
         $rs_wp->MoveNext();
     }
 
@@ -308,21 +308,21 @@ if (!$rs_wp) {
  * ********************************************************************************************************************************************************** */
 
 
-$querySQL_wappen = "select ifnull(dateiname,'no_image.jpg') as dateiname from media where id = " . $data{"verein_id_a"} . " and ref = 'vn' and art = 'fr';";
+$querySQL_wappen = "select ifnull(dateiname,'no_image.jpg') as dateiname from media where id = " . $data['verein_id_a'] . " and ref = 'vn' and art = 'fr';";
 
 $rs_wp = $dbSyb->Execute($querySQL_wappen);
 $data_wp_a = array();
-$data_wp_a{"dateiname"} = 'no_image.jpg';
+$data_wp_a['dateiname'] = 'no_image.jpg';
 
 if (!$rs_wp) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('verein_id' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('verein_id' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 } else {
     while (!$rs_wp->EOF) {
-        $data_wp_a{"dateiname"} = ($rs_wp->fields{'dateiname'});
+        $data_wp_a['dateiname'] = ($rs_wp->fields['dateiname']);
         $rs_wp->MoveNext();
     }
     $rs_wp->Close();
@@ -353,32 +353,32 @@ $querySQL = "select dateiname, art, "
 $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 $i = 0;
-$anzahl = $rs->fields{'anzahl'};
+$anzahl = $rs->fields['anzahl'];
 if ($anzahl > 0) {
     $h = 2;
     $seitenHoehe = $pdf->GetPageHeight();
     $seitenBreite = $pdf->GetPageWidth();
 
     while (!$rs->EOF) {
-        if ($rs->fields{'art'} == "ga") {
+        if ($rs->fields['art'] == "ga") {
             $images = $mediaDir . "pdf\\";
         } else {
             $images = $mediaDir . "thumbnails\\";
         }
 
-        if (isset($rs->fields{'dateiname'})) {
-            $data{$i}{"dateiname"} = ($rs->fields{'dateiname'});
+        if (isset($rs->fields['dateiname'])) {
+            $data{$i}['dateiname'] = ($rs->fields['dateiname']);
         } else {
-            $data{$i}{"dateiname"} = "no_image.jpg";
+            $data{$i}['dateiname'] = "no_image.jpg";
         }
-        list($width, $height, $type, $attr) = getimagesize($images . $data{$i}{"dateiname"});
+        list($width, $height, $type, $attr) = getimagesize($images . $data{$i}['dateiname']);
 
         if ($width < $height) {
             $wr = ($width / $height) * 203;
@@ -388,8 +388,8 @@ if ($anzahl > 0) {
             $hr = ($height / $width) * 400;
         }
         $picHeight = $hr / 3.779528; // Umrechnung von pixel in mm
-        $target = $images . $data{$i}{"dateiname"};
-        $new = $images . "_" . $data{$i}{"dateiname"};
+        $target = $images . $data{$i}['dateiname'];
+        $new = $images . "_" . $data{$i}['dateiname'];
         resize($target, $new, $wr, $hr, 'jpg'); // Funktion in der reseizer.php wird ausgef�hrt  
 
         $pdf->Image($new, 50, $h, 'jpg');
@@ -413,22 +413,22 @@ $w_mitte = 76;
 /*
  * **************************** WAPPEN **********************************************
  */
-if ($data_wp_h{"dateiname"} != "no_image.jpg") {
-    $pdf->Image($mediaDir . "thumbnails\\" . $data_wp_h{"dateiname"}, 5, $ih); // Wappen Heim-Mannschaft
+if ($data_wp_h['dateiname'] != "no_image.jpg") {
+    $pdf->Image($mediaDir . "thumbnails\\" . $data_wp_h['dateiname'], 5, $ih); // Wappen Heim-Mannschaft
 }
-if ($data_wp_a{"dateiname"} != "no_image.jpg") {
-    $pdf->Image($mediaDir . "thumbnails\\" . $data_wp_a{"dateiname"}, 175, $ih); // Wappen Ausw�rts-Mannschaft
+if ($data_wp_a['dateiname'] != "no_image.jpg") {
+    $pdf->Image($mediaDir . "thumbnails\\" . $data_wp_a['dateiname'], 175, $ih); // Wappen Ausw�rts-Mannschaft
 }
 
 /*
  * **************************** HEADER INFOS ********************************************
  */
 
-$datum = $data{"sp_datum"};
-$uhrzeit = $data{"zeit"} . " Uhr";
-$wochentag = $data{"wochentag"};
-$wettbewerb = ($data{"wettbewerb"}) . " (" . ($data{"wettbewerb_zusatz"}) . ")";
-$spielNr = $data{"nummer"};
+$datum = $data['sp_datum'];
+$uhrzeit = $data['zeit'] . " Uhr";
+$wochentag = $data['wochentag'];
+$wettbewerb = ($data['wettbewerb']) . " (" . ($data['wettbewerb_zusatz']) . ")";
+$spielNr = $data['nummer'];
 $spielZeit = $wochentag . ", " . $datum . " " . $uhrzeit;
 
 $pdf->SetFont('Arial', 'B', 12);
@@ -454,7 +454,7 @@ $pdf->Cell($w, 0, $wettbewerb, 0, 0, 'C', false);
  * **************************** ERGEBNIS ********************************************
  */
 $ih += 20;
-$ergebnis = $data{"verein_h"} . "  " . $data{"ergebnis"} . "  " . $data{"verein_a"};
+$ergebnis = $data['verein_h'] . "  " . $data['ergebnis'] . "  " . $data['verein_a'];
 //Anpassung der Schriftgrößen
 if (strlen($ergebnis) >= 40) {
     $pdf->SetFont('Arial', 'B', 15);
@@ -477,16 +477,16 @@ $pdf->Cell($w, 0, $ergebnis, 0, 0, 'C', false);
  * **************************** SPIEL-INFOS **********************************************
  */
 
-$zuschauer = $data{"zusch_anzahl"} . " (" . $data{"gaestefans"} . ")";
-$stadion = utf8_decode("Spielstätte: ") . $data{"stadionname"};
-$schiri = "Schiedsrichter: " . $data{"schiri"};
+$zuschauer = $data['zusch_anzahl'] . " (" . $data['gaestefans'] . ")";
+$stadion = utf8_decode("Spielstätte: ") . $data['stadionname'];
+$schiri = "Schiedsrichter: " . $data['schiri'];
 
 // Zuschauer
 $pdf->SetFont('Arial', 'B', 12);
 $w1 = 21;
-$pdf->Text($w1, $ih + 20, "Zuschauer: " . $data{"zusch_anzahl"});
+$pdf->Text($w1, $ih + 20, "Zuschauer: " . $data['zusch_anzahl']);
 //Gästee
-$pdf->Text($w1, $ih + 25, utf8_decode("Gäste: ") . $data{"gaestefans"});
+$pdf->Text($w1, $ih + 25, utf8_decode("Gäste: ") . $data['gaestefans']);
 //Stadion
 $pdf->Text($w1, $ih + 34, ($stadion));
 //Schiri
@@ -507,7 +507,7 @@ $querySQL = "SELECT Distinct "
         . ", v.aw "
         . ", v.aw_minute "
         . "  From sp_spieler_spiel_tabelle v join spieler s on v.spieler_id = s.spieler_id	"
-        . " and spiel_id = " . $data{"spiel_id"} . " and v.status = 'sa' and v.status2 = 'h' "
+        . " and spiel_id = " . $data['spiel_id'] . " and v.status = 'sa' and v.status2 = 'h' "
         . "     order by v.lfd_nr";
 
 
@@ -520,8 +520,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -530,18 +530,18 @@ $fontSize = 11;
 $pdf->SetFont('Arial', 'BU', $fontSize);
 $i = 0;
 $ii = $h_start;
-$pdf->Text($w1, $ih + 55, ($data{"verein_h"}));
+$pdf->Text($w1, $ih + 55, ($data['verein_h']));
 $pdf->SetFont('Arial', '', $fontSize - 2);
 while (!$rs->EOF) {
 
-    if (trim($rs->fields{'aw_minute'}) > 0) {
-        $data{$i}{"name"} = cs($rs->fields{'name'}) . " (" . trim($rs->fields{'aw_minute'}) . ".)";
-        $pdf->Text($w1, $ih + $ii, ($data{$i}{"name"}));
+    if (trim($rs->fields['aw_minute']) > 0) {
+        $data{$i}['name'] = cs($rs->fields['name']) . " (" . trim($rs->fields['aw_minute']) . ".)";
+        $pdf->Text($w1, $ih + $ii, ($data{$i}['name']));
         $pdf->Image($imagesDir . "ic_wechsel_rot.png", $w1 - 5, $ih + $ii - 2.5);
     } else {
 
-        $data{$i}{"name"} = cs($rs->fields{'name'});
-        $pdf->Text($w1, $ih + $ii, ($data{$i}{"name"}));
+        $data{$i}['name'] = cs($rs->fields['name']);
+        $pdf->Text($w1, $ih + $ii, ($data{$i}['name']));
     }
 
     $i++;
@@ -561,7 +561,7 @@ $querySQL = "SELECT Distinct "
         . ", v.aw "
         . ", v.aw_minute "
         . "  From sp_spieler_spiel_tabelle v join spieler s on v.spieler_id = s.spieler_id	"
-        . " and spiel_id = " . $data{"spiel_id"} . " and v.status = 'sa' and v.status2 = 'a' "
+        . " and spiel_id = " . $data['spiel_id'] . " and v.status = 'sa' and v.status2 = 'a' "
         . "     order by v.lfd_nr";
 
 
@@ -574,8 +574,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -584,16 +584,16 @@ $pdf->SetFont('Arial', 'BU', $fontSize);
 $i = 0;
 $ii = $h_start;
 $w = $w_rechts;
-$pdf->Text($w, $ih + 55, ($data{"verein_a"}));
+$pdf->Text($w, $ih + 55, ($data['verein_a']));
 $pdf->SetFont('Arial', '', $fontSize - 2);
 while (!$rs->EOF) {
-    if (trim($rs->fields{'aw_minute'}) > 0) {
-        $data{$i}{"name"} = cs($rs->fields{'name'}) . " (" . trim($rs->fields{'aw_minute'}) . ".)";
-        $pdf->Text($w, $ih + $ii, ($data{$i}{"name"}));
+    if (trim($rs->fields['aw_minute']) > 0) {
+        $data{$i}['name'] = cs($rs->fields['name']) . " (" . trim($rs->fields['aw_minute']) . ".)";
+        $pdf->Text($w, $ih + $ii, ($data{$i}['name']));
         $pdf->Image($imagesDir . "ic_wechsel_rot.png", $w - 5, $ih + $ii - 2.5);
     } else {
-        $data{$i}{"name"} = cs($rs->fields{'name'});
-        $pdf->Text($w, $ih + $ii, ($data{$i}{"name"}));
+        $data{$i}['name'] = cs($rs->fields['name']);
+        $pdf->Text($w, $ih + $ii, ($data{$i}['name']));
     }
 
     $i++;
@@ -613,7 +613,7 @@ $querySQL = "SELECT Distinct "
         . ", v.aw "
         . ", v.aw_minute "
         . "  From sp_spieler_spiel_tabelle v join spieler s on v.spieler_id = s.spieler_id	"
-        . " and spiel_id = " . $data{"spiel_id"} . " and v.status = 'ew' and v.status2 = 'h' "
+        . " and spiel_id = " . $data['spiel_id'] . " and v.status = 'ew' and v.status2 = 'h' "
         . "     order by v.lfd_nr";
 
 
@@ -626,8 +626,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -638,13 +638,13 @@ $ii = 123;
 $pdf->Text($w1, $ih + 118, 'Spielerwechsel');
 $pdf->SetFont('Arial', '', $fontSize - 2);
 while (!$rs->EOF) {
-    if (trim($rs->fields{'aw_minute'}) > 0) {
-        $data{$i}{"name"} = cs($rs->fields{'name'}) . " (" . trim($rs->fields{'aw_minute'}) . ".)";
-        $pdf->Text($w1, $ih + $ii, ($data{$i}{"name"}));
+    if (trim($rs->fields['aw_minute']) > 0) {
+        $data{$i}['name'] = cs($rs->fields['name']) . " (" . trim($rs->fields['aw_minute']) . ".)";
+        $pdf->Text($w1, $ih + $ii, ($data{$i}['name']));
         $pdf->Image($imagesDir . "ic_wechsel_gruen.png", $w1 - 5, $ih + $ii - 2.5);
     } else {
-        $data{$i}{"name"} = cs($rs->fields{'name'});
-        $pdf->Text($w1, $ih + $ii, ($data{$i}{"name"}));
+        $data{$i}['name'] = cs($rs->fields['name']);
+        $pdf->Text($w1, $ih + $ii, ($data{$i}['name']));
     }
 
     $i++;
@@ -664,7 +664,7 @@ $querySQL = "SELECT Distinct "
         . ", v.aw "
         . ", v.aw_minute "
         . "  From sp_spieler_spiel_tabelle v join spieler s on v.spieler_id = s.spieler_id	"
-        . " and spiel_id = " . $data{"spiel_id"} . " and v.status = 'ew' and v.status2 = 'a' "
+        . " and spiel_id = " . $data['spiel_id'] . " and v.status = 'ew' and v.status2 = 'a' "
         . "     order by v.lfd_nr";
 
 
@@ -677,8 +677,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -690,13 +690,13 @@ $w = $w_rechts;
 $pdf->Text($w, $ih + 118, 'Spielerwechsel');
 $pdf->SetFont('Arial', '', $fontSize - 2);
 while (!$rs->EOF) {
-    if (trim($rs->fields{'aw_minute'}) > 0) {
-        $data{$i}{"name"} = cs($rs->fields{'name'}) . " (" . trim($rs->fields{'aw_minute'}) . ".)";
-        $pdf->Text($w, $ih + $ii, ($data{$i}{"name"}));
+    if (trim($rs->fields['aw_minute']) > 0) {
+        $data{$i}['name'] = cs($rs->fields['name']) . " (" . trim($rs->fields['aw_minute']) . ".)";
+        $pdf->Text($w, $ih + $ii, ($data{$i}['name']));
         $pdf->Image($imagesDir . "ic_wechsel_gruen.png", $w - 5, $ih + $ii - 2.5);
     } else {
-        $data{$i}{"name"} = cs($rs->fields{'name'});
-        $pdf->Text($w, $ih + $ii, cs($data{$i}{"name"}));
+        $data{$i}['name'] = cs($rs->fields['name']);
+        $pdf->Text($w, $ih + $ii, cs($data{$i}['name']));
     }
 
     $i++;
@@ -716,7 +716,7 @@ $i = 0;
 $ii = $trH_h+8;
 $pdf->Text($w1, $ih + $ii - 5, ('Trainer'));
 $pdf->SetFont('Arial', '', $fontSize - 2);
-$pdf->Text($w1, $ih + $ii, ($data{"trainer_h"}));
+$pdf->Text($w1, $ih + $ii, ($data['trainer_h']));
 
 $reise_h = $ii;
 
@@ -729,7 +729,7 @@ $i = 0;
 $ii = $trH_a+8;
 $pdf->Text($w, $ih + $ii - 5, ('Trainer'));
 $pdf->SetFont('Arial', '', $fontSize - 2);
-$pdf->Text($w, $ih + $ii, ($data{"trainer_a"}));
+$pdf->Text($w, $ih + $ii, ($data['trainer_a']));
 $anr_h = $ii;
 
 /*
@@ -757,8 +757,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -772,23 +772,23 @@ $pdf->SetFont('Arial', '', $fontSize - 2);
 
 while (!$rs->EOF) {
 
-    if (trim($rs->fields{'team'}) == 'h') {
-        if (strlen(trim($rs->fields{'besonderheit'})) > 0) {
-            $data{$i}{"spielstand"} = trim($rs->fields{'spielstand'}) . "  " . cs($rs->fields{'spieler_h'}) . "  " . trim($rs->fields{'sp_minute'}) . ".  " . trim($rs->fields{'besonderheit'});
-            $pdf->Text($w, $ih + $ii, ($data{$i}{"spielstand"}));
+    if (trim($rs->fields['team']) == 'h') {
+        if (strlen(trim($rs->fields['besonderheit'])) > 0) {
+            $data{$i}['spielstand'] = trim($rs->fields['spielstand']) . "  " . cs($rs->fields['spieler_h']) . "  " . trim($rs->fields['sp_minute']) . ".  " . trim($rs->fields['besonderheit']);
+            $pdf->Text($w, $ih + $ii, ($data{$i}['spielstand']));
         } else {
-            $data{$i}{"spielstand"} = trim($rs->fields{'spielstand'}) . "  " . cs($rs->fields{'spieler_h'}) . "  " . trim($rs->fields{'sp_minute'}) . ".";
-            $pdf->Text($w, $ih + $ii, ($data{$i}{"spielstand"}));
+            $data{$i}['spielstand'] = trim($rs->fields['spielstand']) . "  " . cs($rs->fields['spieler_h']) . "  " . trim($rs->fields['sp_minute']) . ".";
+            $pdf->Text($w, $ih + $ii, ($data{$i}['spielstand']));
         }
     }
-    if (trim($rs->fields{'team'}) == 'a') {
+    if (trim($rs->fields['team']) == 'a') {
 
-        if (strlen(trim($rs->fields{'besonderheit'})) > 0) {
-            $data{$i}{"spielstand_a"} = trim($rs->fields{'spielstand'}) . "  " . cs($rs->fields{'spieler_a'}) . "  " . trim($rs->fields{'sp_minute'}) . ".  " . trim($rs->fields{'besonderheit'});
-            $pdf->Text($w, $ih + $ii, ($data{$i}{"spielstand_a"}));
+        if (strlen(trim($rs->fields['besonderheit'])) > 0) {
+            $data{$i}['spielstand_a'] = trim($rs->fields['spielstand']) . "  " . cs($rs->fields['spieler_a']) . "  " . trim($rs->fields['sp_minute']) . ".  " . trim($rs->fields['besonderheit']);
+            $pdf->Text($w, $ih + $ii, ($data{$i}['spielstand_a']));
         } else {
-            $data{$i}{"spielstand_a"} = trim($rs->fields{'spielstand'}) . "  " . cs($rs->fields{'spieler_a'}) . "  " . trim($rs->fields{'sp_minute'}) . ".";
-            $pdf->Text($w, $ih + $ii, ($data{$i}{"spielstand_a"}));
+            $data{$i}['spielstand_a'] = trim($rs->fields['spielstand']) . "  " . cs($rs->fields['spieler_a']) . "  " . trim($rs->fields['sp_minute']) . ".";
+            $pdf->Text($w, $ih + $ii, ($data{$i}['spielstand_a']));
         }
     }
 
@@ -831,14 +831,14 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
 }
 
-if (trim($data{"erg_zusatz"}) == "i. E." || trim($data{"erg_zusatz"}) == "nvUiE") {
+if (trim($data['erg_zusatz']) == "i. E." || trim($data['erg_zusatz']) == "nvUiE") {
     $pdf->SetFont('Arial', 'B', $fontSize);
     $i = 0;
     $ii += 10;
@@ -847,22 +847,22 @@ if (trim($data{"erg_zusatz"}) == "i. E." || trim($data{"erg_zusatz"}) == "nvUiE"
 
     while (!$rs->EOF) {
 
-        if (trim($rs->fields{'team'}) == 'h') {
+        if (trim($rs->fields['team']) == 'h') {
 
-            $data{$i}{"spielstand"} = trim($rs->fields{'spielstand'}) . "  " . cs($rs->fields{'spieler_h'});
-            $pdf->Text($w, $ih + $ii, ($data{$i}{"spielstand"}));
-            if (trim($rs->fields{'elfer'} == 2)) {
+            $data{$i}['spielstand'] = trim($rs->fields['spielstand']) . "  " . cs($rs->fields['spieler_h']);
+            $pdf->Text($w, $ih + $ii, ($data{$i}['spielstand']));
+            if (trim($rs->fields['elfer'] == 2)) {
                 $pdf->Image($imagesDir . "missed.png", $w - 5, $ih + $ii - 2.5);
             } else {
                 $pdf->Image($imagesDir . "scored.png", $w - 5, $ih + $ii - 2.5);
             }
         }
 
-        if (trim($rs->fields{'team'}) == 'a') {
+        if (trim($rs->fields['team']) == 'a') {
 
-            $data{$i}{"spielstand_a"} = trim($rs->fields{'spielstand'}) . "  " . cs($rs->fields{'spieler_a'});
-            $pdf->Text($w, $ih + $ii, ($data{$i}{"spielstand_a"}));
-            if (trim($rs->fields{'elfer'} == 2)) {
+            $data{$i}['spielstand_a'] = trim($rs->fields['spielstand']) . "  " . cs($rs->fields['spieler_a']);
+            $pdf->Text($w, $ih + $ii, ($data{$i}['spielstand_a']));
+            if (trim($rs->fields['elfer'] == 2)) {
                 $pdf->Image($imagesDir . "missed.png", $w - 5, $ih + $ii - 2.5);
             } else {
                 $pdf->Image($imagesDir . "scored.png", $w - 5, $ih + $ii - 2.5);
@@ -882,7 +882,7 @@ if (trim($data{"erg_zusatz"}) == "i. E." || trim($data{"erg_zusatz"}) == "nvUiE"
 /*
  * **************************** Reisekosten **********************************************
  */
-if ($data{"ges_kosten"} !== '0,00') {
+if ($data['ges_kosten'] !== '0,00') {
     $pdf->SetFont('Arial', 'B', $fontSize);
     $i = 0;
     $ii = $reise_h + 8;
@@ -890,97 +890,97 @@ if ($data{"ges_kosten"} !== '0,00') {
     $pdf->SetFont('Arial', '', $fontSize - 2);
     $plus = 35;
 
-    if ($data{"sprit"} !== '0,00') {
+    if ($data['sprit'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Sprit (Eigenanteil):'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"sprit"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['sprit']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"sprit"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['sprit']), 0, 0, 'R', false);
     }
-    if ($data{"sprit_anteilig"} !== '0,00') {
+    if ($data['sprit_anteilig'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Sprit (anteilig):'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"sprit_anteilig"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['sprit_anteilig']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"sprit_anteilig"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['sprit_anteilig']), 0, 0, 'R', false);
     }
-    if ($data{"bahn"} !== '0,00') {
+    if ($data['bahn'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Bahnticket:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"bahn"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['bahn']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"bahn"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['bahn']), 0, 0, 'R', false);
     }
-    if ($data{"flieger"} !== '0,00') {
+    if ($data['flieger'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Flugticket:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"flieger"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['flieger']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"flieger"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['flieger']), 0, 0, 'R', false);
     }
-    if ($data{"schiff"} !== '0,00') {
+    if ($data['schiff'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Schiffsfahrkarte:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"schiff"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['schiff']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"schiff"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['schiff']), 0, 0, 'R', false);
     }
-    if ($data{"uebernachtung"} !== '0,00') {
+    if ($data['uebernachtung'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, utf8_decode('Übernachtung:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"uebernachtung"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['uebernachtung']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"uebernachtung"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['uebernachtung']), 0, 0, 'R', false);
     }
-    if ($data{"verpflegung"} !== '0,00') {
+    if ($data['verpflegung'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Speis und Trank:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"verpflegung"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['verpflegung']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"verpflegung"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['verpflegung']), 0, 0, 'R', false);
     }
-    if ($data{"eintrittskarte"} !== '0,00') {
+    if ($data['eintrittskarte'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Eintrittskarte:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"eintrittskarte"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['eintrittskarte']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"eintrittskarte"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['eintrittskarte']), 0, 0, 'R', false);
     }
-    if ($data{"taxi"} !== '0,00') {
+    if ($data['taxi'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Taxi:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"taxi"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['taxi']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"taxi"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['taxi']), 0, 0, 'R', false);
     }
-    if ($data{"handy"} !== '0,00') {
+    if ($data['handy'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Handy:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"handy"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['handy']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"handy"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['handy']), 0, 0, 'R', false);
     }
-    if ($data{"souvenir"} !== '0,00') {
+    if ($data['souvenir'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Souvenir/Devotionalien:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"souvenir"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['souvenir']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"souvenir"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['souvenir']), 0, 0, 'R', false);
     }
-    if ($data{"sonstige"} !== '0,00') {
+    if ($data['sonstige'] !== '0,00') {
         $ii += 5;
         $pdf->Text($w1, $ih + $ii, ('Sonstige:'));
-//        $pdf->Text($w1 + $plus, $ih + $ii, ($data{"sonstige"}));
+//        $pdf->Text($w1 + $plus, $ih + $ii, ($data['sonstige']));
         $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-        $pdf->Cell(13, 0, ($data{"sonstige"}), 0, 0, 'R', false);
+        $pdf->Cell(13, 0, ($data['sonstige']), 0, 0, 'R', false);
     }
     $ii += 5;
     $pdf->SetFont('Arial', 'B', $fontSize - 1);
     $pdf->Text($w1, $ih + $ii, ('Gesamtkosten:'));
-//    $pdf->Text($w1 + $plus, $ih + $ii , ($data{"ges_kosten"}));
+//    $pdf->Text($w1 + $plus, $ih + $ii , ($data['ges_kosten']));
 
     $pdf->SetXY($w1 + $plus, $ih + $ii - 1);
-    $pdf->Cell(13, 0, ($data{"ges_kosten"}), 0, 0, 'R', false);
+    $pdf->Cell(13, 0, ($data['ges_kosten']), 0, 0, 'R', false);
 }
 
 
@@ -1002,14 +1002,14 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.\n" . $dbSyb->ErrorMsg());
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.\n" . $dbSyb->ErrorMsg());
 
     print json_encode($out);
     return;
 }
 
-if ($rs->fields{'anzahl'} > 0) {
+if ($rs->fields['anzahl'] > 0) {
 
     $pdf->SetFont('Arial', 'B', $fontSize);
     $w = $w_rechts;
@@ -1019,13 +1019,13 @@ if ($rs->fields{'anzahl'} > 0) {
     $pdf->SetFont('Arial', '', $fontSize - 2);
 
     while (!$rs->EOF) {
-        $data{"verkehrsmittel_zus"} = cs($rs->fields{'verkehrsmittel_zus'});
-        $data{"verkehrsmittel"} = cs($rs->fields{'verkehrsmittel'});
-        $data{"entfernung_km"} = $rs->fields{'entfernung_km'};
-        $data{"nr"} = $iii;
-        $data{"gesamt"} = number_format($rs->fields{'gesamt'}, 2, ",", ".");
+        $data['verkehrsmittel_zus'] = cs($rs->fields['verkehrsmittel_zus']);
+        $data['verkehrsmittel'] = cs($rs->fields['verkehrsmittel']);
+        $data['entfernung_km'] = $rs->fields['entfernung_km'];
+        $data['nr'] = $iii;
+        $data['gesamt'] = number_format($rs->fields['gesamt'], 2, ",", ".");
 
-        $pdf->Text($w, $ih + $ii, ($data{"nr"} . ". " . $data{"verkehrsmittel"} . " " . $data{"verkehrsmittel_zus"} . "  " . number_format($data{"entfernung_km"}, 2, ",", ".") . " km"));
+        $pdf->Text($w, $ih + $ii, ($data['nr'] . ". " . $data['verkehrsmittel'] . " " . $data['verkehrsmittel_zus'] . "  " . number_format($data['entfernung_km'], 2, ",", ".") . " km"));
 
         $ii += 5;
         $iii++;
@@ -1034,7 +1034,7 @@ if ($rs->fields{'anzahl'} > 0) {
     }
 
     $pdf->SetFont('Arial', 'B', $fontSize - 1);
-    $pdf->Text($w, $ih + $ii, "Gesamt " . $data{"gesamt"} . " km");
+    $pdf->Text($w, $ih + $ii, "Gesamt " . $data['gesamt'] . " km");
     $anr_h = $ii;
     $rs->Close();
 }
@@ -1058,8 +1058,8 @@ $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => $dbSyb->ErrorMsg() . "</br>Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => $dbSyb->ErrorMsg() . "</br>Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -1073,12 +1073,12 @@ $pdf->SetFont('Arial', '', $fontSize - 2);
 
 while (!$rs->EOF) {
 
-    if (strlen(trim($rs->fields{'spitzname'})) > 0) {
-        $data{$i}{"name"} = cs($rs->fields{'name'}) . " (" . cs($rs->fields{'spitzname'}) . ")";
-        $pdf->Text($w, $ih + $ii, ($data{$i}{"name"}));
+    if (strlen(trim($rs->fields['spitzname'])) > 0) {
+        $data{$i}['name'] = cs($rs->fields['name']) . " (" . cs($rs->fields['spitzname']) . ")";
+        $pdf->Text($w, $ih + $ii, ($data{$i}['name']));
     } else {
-        $data{$i}{"name"} = cs($rs->fields{'name'});
-        $pdf->Text($w, $ih + $ii, ($data{$i}{"name"}));
+        $data{$i}['name'] = cs($rs->fields['name']);
+        $pdf->Text($w, $ih + $ii, ($data{$i}['name']));
     }
 
     $i++;
@@ -1108,8 +1108,8 @@ $querySQL = "select dateiname, art, "
 $rs = $dbSyb->Execute($querySQL);
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -1117,7 +1117,7 @@ if (!$rs) {
 
 
 
-if ($rs->fields{'anzahl'} > 0) {
+if ($rs->fields['anzahl'] > 0) {
 
 
 
@@ -1127,30 +1127,30 @@ if ($rs->fields{'anzahl'} > 0) {
     $seitenBreite = $pdf->GetPageWidth();
 
     while (!$rs->EOF) {
-        if ($rs->fields{'art'} == "ga") {
+        if ($rs->fields['art'] == "ga") {
             $images = $mediaDir . "pdf\\";
         } else {
             $images = $mediaDir . "thumbnails\\";
         }
 
-        if (isset($rs->fields{'dateiname'})) {
-            $data{$i}{"dateiname"} = ($rs->fields{'dateiname'});
+        if (isset($rs->fields['dateiname'])) {
+            $data{$i}['dateiname'] = ($rs->fields['dateiname']);
         } else {
-            $data{$i}{"dateiname"} = "no_image.jpg";
+            $data{$i}['dateiname'] = "no_image.jpg";
         }
-        list($width, $height, $type, $attr) = getimagesize($images . $data{$i}{"dateiname"});
+        list($width, $height, $type, $attr) = getimagesize($images . $data{$i}['dateiname']);
         $picHeight = $height / 3.779528; // Umrechnung von pixel in mm
         $picWidth = $width / 3.779528; // Umrechnung von pixel in mm
         $w = ($seitenBreite - $picWidth) / 2;
 
         if ($seitenHoehe > $picHeight) {
-            $pdf->Image($images . $data{$i}{"dateiname"}, $w, $h, 'jpg');
+            $pdf->Image($images . $data{$i}['dateiname'], $w, $h, 'jpg');
             $h += $picHeight + 3;
         } else {
             $pdf->AddPage();
             $h = 5;
             $seitenHoehe = $pdf->GetPageHeight();
-            $pdf->Image($images . $data{$i}{"dateiname"}, $w, $h, 'jpg');
+            $pdf->Image($images . $data{$i}['dateiname'], $w, $h, 'jpg');
             $h += $picHeight + 3;
         }
         $seitenHoehe -= $picHeight;

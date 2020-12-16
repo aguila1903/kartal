@@ -53,23 +53,23 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         if ($spiel_id != "null" && $spiel_id != "") {
             if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id))) == 0) {
 
-                $out{'response'}{'status'} = -4;
-                $out{'response'}{'errors'} = array('errors' => "Bitte die Spiel-ID prüfen!");
+                $out['response']['status'] = -4;
+                $out['response']['errors'] = array('errors' => "Bitte die Spiel-ID prüfen!");
 
                 print json_encode($out);
                 return;
             }
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
@@ -81,16 +81,16 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
         if ((preg_match("/^[ah]{1}$/", trim($status2))) == 0) {
 
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Status2 fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Status2 fehlt!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Status2 fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Status2 fehlt!");
 
         print json_encode($out);
 
@@ -130,8 +130,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     if (!$rs) {
 
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
         print json_encode($out);
         return;
@@ -140,8 +140,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         $i = 0;
 
         while (!$rs->EOF) {
-            $data{$i}{"spieler_id"} = trim($rs->fields{'spieler_id'});
-            $data{$i}{"name"} = ($rs->fields{'name'});
+            $data{$i}['spieler_id'] = trim($rs->fields['spieler_id']);
+            $data{$i}['name'] = ($rs->fields['name']);
 
             $i++;
 
@@ -151,9 +151,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         $rs->Close();
 
 
-        $out{'response'}{'status'} = 0;
-        $out{'response'}{'errors'} = array();
-        $out{'response'}{'data'} = $data;
+        $out['response']['status'] = 0;
+        $out['response']['errors'] = array();
+        $out['response']['data'] = $data;
 
         print json_encode($out);
     }

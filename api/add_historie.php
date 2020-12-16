@@ -27,8 +27,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -43,23 +43,23 @@ if (isset($_REQUEST["id"])) {
     if ($id != "null" && $id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "ID fehlt!");
 
     print json_encode($out);
 
@@ -69,8 +69,8 @@ if (isset($_REQUEST["id"])) {
 if (isset($_REQUEST["historie"])) {
     $historie = $_REQUEST["historie"];
 	if ($historie == "null" || $historie == "") {
-		$out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Historie ist leer");
+		$out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Historie ist leer");
 
     print json_encode($out);
 
@@ -78,8 +78,8 @@ if (isset($_REQUEST["historie"])) {
 	} 
     
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Historie ist leer");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Historie ist leer");
 
     print json_encode($out);
 
@@ -112,17 +112,17 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
 else {
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 }

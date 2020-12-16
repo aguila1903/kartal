@@ -38,8 +38,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -54,23 +54,23 @@ if (isset($_REQUEST["ort_id"])) {
     if ($ort_id != "null" && $ort_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($ort_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('ort_id' => "Bitte die Ort-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('ort_id' => "Bitte die Ort-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ort_id' => "Ort-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ort_id' => "Ort-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort_id' => "Ort-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort_id' => "Ort-ID fehlt!");
 
     print json_encode($out);
 
@@ -81,24 +81,24 @@ if (isset($_REQUEST["ort"])) {
     $ort = $_REQUEST["ort"];
     if ($ort != "null" && $ort != "") {
         if (strlen($ort) > 200 || strlen($ort) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ort' => "Bitte einen Ort mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ort' => "Bitte einen Ort mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ort' => "Ort fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ort' => "Ort fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort' => "Orte fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort' => "Orte fehlt!");
 
     print json_encode($out);
 
@@ -110,24 +110,24 @@ if (isset($_REQUEST["land"])) {
     $land = $_REQUEST["land"];
     if ($land != "null" && $land != "") {
         if (strlen($land) > 2 || strlen($land) < 2) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('land' => "Sie haben ein ungültiges Land eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('land' => "Sie haben ein ungültiges Land eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('land' => "Land fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('land' => "Land fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land' => "Land fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land' => "Land fehlt!");
 
     print json_encode($out);
 
@@ -138,8 +138,8 @@ if (isset($_REQUEST["bundesland"])) {
     $bundesland = $_REQUEST["bundesland"];
     if ($bundesland != "null" && $bundesland != "") {
         if (strlen($bundesland) > 2 || strlen($bundesland) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('bundesland' => "Sie haben ein ungültiges Bundesland eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('bundesland' => "Sie haben ein ungültiges Bundesland eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
@@ -172,20 +172,20 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ort' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ort' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} == 1 ) {
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] == 1 ) {
         $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -195,31 +195,31 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 
-    }else if($rs->fields{'ergebnis'} == 0){$out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('ort' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
+    }else if($rs->fields['ergebnis'] == 0){$out['response']['status'] = -4;
+        $out['response']['errors'] = array('ort' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
-	else if($rs->fields{'ergebnis'} == 99){$out{'response'}{'errors'} = array('ort' => "Das von Ihnen eingegebene Land ist ungültig. Bitte prüfen Sie es erneut </br>" . ($dbSyb->ErrorMsg()));
+	else if($rs->fields['ergebnis'] == 99){$out['response']['errors'] = array('ort' => "Das von Ihnen eingegebene Land ist ungültig. Bitte prüfen Sie es erneut </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
 	else{
-	$out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('ort' => "Update konnte nicht durchgeführt werden. </br>" . ($dbSyb->ErrorMsg()));
+	$out['response']['status'] = -4;
+        $out['response']['errors'] = array('ort' => "Update konnte nicht durchgeführt werden. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
 	}
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ort' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ort' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;

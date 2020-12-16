@@ -53,23 +53,23 @@ if (isset($_REQUEST["spieler_id"])) {
     if ($spieler_id != "null" && $spieler_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spieler_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Spieler-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Spieler-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spieler-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spieler-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spieler-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spieler-ID fehlt!");
 
     print json_encode($out);
 
@@ -102,8 +102,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -114,10 +114,10 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-         $data{$i}{"verein_id"} = trim($rs->fields{'verein_id'});
-		$data{$i}{"lfd_nr"} = trim($rs->fields{'lfd_nr'});
-		$data{$i}{"spieler_id"} = trim($rs->fields{'spieler_id'});
-		$data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});
+         $data{$i}['verein_id'] = trim($rs->fields['verein_id']);
+		$data{$i}['lfd_nr'] = trim($rs->fields['lfd_nr']);
+		$data{$i}['spieler_id'] = trim($rs->fields['spieler_id']);
+		$data{$i}['vereinsname'] = ($rs->fields['vereinsname']);
 		        
         $i++;
 
@@ -127,9 +127,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

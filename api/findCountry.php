@@ -28,8 +28,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('stadionname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('stadionname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -45,24 +45,24 @@ if (isset($_REQUEST["ort"])) {
     $ort = $_REQUEST["ort"];
     if ($ort != "null" && $ort != "") {
         if (strlen($ort) > 64 || strlen($ort) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ort' => "Bitte einen Ort mit max. 64 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ort' => "Bitte einen Ort mit max. 64 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ort' => "Ort fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ort' => "Ort fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort' => "Ort fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort' => "Ort fehlt!");
 
     print json_encode($out);
 
@@ -80,8 +80,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ort' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ort' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -92,8 +92,8 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"land"} = $rs->fields{'land'};
-	$value{$i}{"bundesland"} = $rs->fields{'bundesland'};
+    $value{$i}['land'] = $rs->fields['land'];
+	$value{$i}['bundesland'] = $rs->fields['bundesland'];
 
     $i++;
 
@@ -103,9 +103,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

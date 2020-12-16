@@ -27,8 +27,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('stadionname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('stadionname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -43,23 +43,23 @@ if (isset($_REQUEST["stadion_id"])) {
     if ($stadion_id != "null" && $stadion_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($stadion_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('lfd_nr' => "Bitte die Stadion-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('lfd_nr' => "Bitte die Stadion-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('lfd_nr' => "Stadion-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('lfd_nr' => "Stadion-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('lfd_nr' => "Stadion-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('lfd_nr' => "Stadion-ID fehlt!");
 
     print json_encode($out);
 
@@ -71,24 +71,24 @@ if (isset($_REQUEST["stadionname"])) {
     $stadionname = $_REQUEST["stadionname"];
     if ($stadionname != "null" && $stadionname != "") {
         if (strlen($stadionname) > 200 || strlen($stadionname) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('stadionname' => "Bitte einen Stadion-Namen mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('stadionname' => "Bitte einen Stadion-Namen mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('stadionname' => "Stadion-Name fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('stadionname' => "Stadion-Name fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('stadionname' => "Stadion-Name fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('stadionname' => "Stadion-Name fehlt!");
 
     print json_encode($out);
 
@@ -100,24 +100,24 @@ if (isset($_REQUEST["ort"])) {
     $ort = $_REQUEST["ort"];
     if ($ort != "null" && $ort != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($ort))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ort' => "Sie haben einen ungültigen Ort eingeben. Bitte prüfen.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ort' => "Sie haben einen ungültigen Ort eingeben. Bitte prüfen.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ort' => "Ort fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ort' => "Ort fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ort' => "Ort fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ort' => "Ort fehlt!");
 
     print json_encode($out);
 
@@ -128,8 +128,8 @@ if (isset($_REQUEST["stadtteil"])) {
     $stadtteil = $_REQUEST["stadtteil"];
     if ($stadtteil != "null" && $stadtteil != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($stadtteil))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('stadtteil' => "Bitte den Stadtteil prüfen");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('stadtteil' => "Bitte den Stadtteil prüfen");
 
             print json_encode($out);
 
@@ -146,24 +146,24 @@ if (isset($_REQUEST["land"])) {
     $land = $_REQUEST["land"];
     if ($land != "null" && $land != "") {
         if (strlen($land) > 2 || strlen($land) < 2) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('land' => "Sie haben ein ungültiges Land eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('land' => "Sie haben ein ungültiges Land eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('land' => "Land fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('land' => "Land fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('land' => "Land fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('land' => "Land fehlt!");
 
     print json_encode($out);
 
@@ -176,8 +176,8 @@ if (isset($_REQUEST["kapazitaet"])) {
     if ($kapazitaet != "null" && $kapazitaet != "") {
         if ((preg_match("/^[0-9]{1,6}?$/", trim($kapazitaet))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('kapazitaet' => "Bitte die Kapzität prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('kapazitaet' => "Bitte die Kapzität prüfen");
 
             print json_encode($out);
             return;
@@ -194,8 +194,8 @@ if (isset($_REQUEST["gr_nr"])) {
     if ($gr_nr != "null" && $gr_nr != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($gr_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('gr_nr' => "Bitte die Ground-Nr. prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('gr_nr' => "Bitte die Ground-Nr. prüfen");
 
             print json_encode($out);
             return;
@@ -211,8 +211,8 @@ if (isset($_REQUEST["laenderpunkt_nr"])) {
     if ($laenderpunkt_nr != "null" && $laenderpunkt_nr != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($laenderpunkt_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('laenderpunkt_nr' => "Bitte den Länderpunkt prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('laenderpunkt_nr' => "Bitte den Länderpunkt prüfen");
 
             print json_encode($out);
             return;
@@ -229,8 +229,8 @@ if (isset($_REQUEST["zusch_rek"])) {
     if ($zusch_rek != "null" && $zusch_rek != "") {
         if ((preg_match("/^[0-9]{1,6}?$/", trim($zusch_rek))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('zusch_rek' => "Bitte den Zuschauer-Rekord prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('zusch_rek' => "Bitte den Zuschauer-Rekord prüfen");
 
             print json_encode($out);
             return;
@@ -247,8 +247,8 @@ if (isset($_REQUEST["anschrift"])) {
     $anschrift = $_REQUEST["anschrift"];
     if ($anschrift != "null" && $anschrift != "") {
         if (strlen($anschrift) > 200 || strlen($anschrift) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('anschrift' => "Bitte eine Anschrift mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('anschrift' => "Bitte eine Anschrift mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
@@ -276,8 +276,8 @@ if (isset($_REQUEST["er_jahr"])) {
     if ($er_jahr != "null" && $er_jahr != "") {
         if ((preg_match("/^[0-9]{4}?$/", trim($er_jahr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('er_jahr' => "Sie haben kein gültiges Jahr eingegeben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('er_jahr' => "Sie haben kein gültiges Jahr eingegeben");
 
             print json_encode($out);
             return;
@@ -291,8 +291,8 @@ if (isset($_REQUEST["er_jahr"])) {
 
         if (!$isdate) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('er_jahr' => "Sie haben kein gültiges Jahr eingegeben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('er_jahr' => "Sie haben kein gültiges Jahr eingegeben");
 
             print json_encode($out);
             return;
@@ -310,8 +310,8 @@ if (isset($_REQUEST["abriss"])) {
     if ($abriss != "null" && $abriss != "") {
         if ((preg_match("/^[0-1]{1}?$/", trim($abriss))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('abriss' => "Bitte prüfen Sie hier noch einmal Ihre Eingaben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('abriss' => "Bitte prüfen Sie hier noch einmal Ihre Eingaben");
 
             print json_encode($out);
             return;
@@ -328,8 +328,8 @@ if (isset($_REQUEST["bundesland"])) {
     $bundesland = $_REQUEST["bundesland"];
     if ($bundesland != "null" && $bundesland != "") {
         if (strlen($bundesland) > 2 || strlen($bundesland) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('bundesland' => "Sie haben ein ungültiges Bundesland eingegeben. Bitte prüfen!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('bundesland' => "Sie haben ein ungültiges Bundesland eingegeben. Bitte prüfen!");
 
             print json_encode($out);
 
@@ -347,8 +347,8 @@ if (isset($_REQUEST["erstbesuch"])) {
     if ($erstbesuch != "null" && $erstbesuch != "") {
         if ((preg_match("/^[0-9-]{10}?$/", trim($erstbesuch))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('erstbesuch' => "Bitte den Erstbesuchstag prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('erstbesuch' => "Bitte den Erstbesuchstag prüfen");
 
             print json_encode($out);
             return;
@@ -408,20 +408,20 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} == 1 ) {
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] == 1 ) {
         $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -431,31 +431,31 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 
-    }else if($rs->fields{'ergebnis'} == 0){$out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('lfd_nr' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
+    }else if($rs->fields['ergebnis'] == 0){$out['response']['status'] = -4;
+        $out['response']['errors'] = array('lfd_nr' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
-	else if($rs->fields{'ergebnis'} == 99){$out{'response'}{'errors'} = array('stadionname' => "Das von Ihnen eingegebene Land ist ungültig. Bitte prüfen Sie es erneut </br>" . ($dbSyb->ErrorMsg()));
+	else if($rs->fields['ergebnis'] == 99){$out['response']['errors'] = array('stadionname' => "Das von Ihnen eingegebene Land ist ungültig. Bitte prüfen Sie es erneut </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;}
 	else{
-	$out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('stadionname' => "Update konnte nicht durchgeführt werden. </br>" . ($dbSyb->ErrorMsg()));
+	$out['response']['status'] = -4;
+        $out['response']['errors'] = array('stadionname' => "Update konnte nicht durchgeführt werden. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
 	}
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;

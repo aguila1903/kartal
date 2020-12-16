@@ -332,8 +332,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -344,97 +344,97 @@ $export = "Nr.; Datum; Begegnung; Ergebnis; Wettbewerb; Runde / Spieltag; Spiels
     $i = 0;
 	// $ii = 1;
     while (!$rs->EOF) { 
-		$data{$i}{"spiel_id"} = trim($rs->fields{'spiel_id'});
-		$data{$i}{"stadion_id_alt"} = trim($rs->fields{'stadion_id_alt'});
-		$data{$i}{"stadionname_alt"} = ($rs->fields{'stadionname_alt'});
-		$data{$i}{"stadion_id"} = trim($rs->fields{'stadion_id'});
-		$data{$i}{"zeit"} = trim($rs->fields{'zeit'});
-		$data{$i}{"trainer_id_a"} = trim($rs->fields{'trainer_id_a'});
-		$data{$i}{"trainer_id_h"} = trim($rs->fields{'trainer_id_h'});		
-		$data{$i}{"schiri_verein"} = ($rs->fields{'schiri_verein'});
-		$data{$i}{"wochentag"} = ($rs->fields{'wochentag'});
-		$data{$i}{"wettbewerb_zusatz"} = ($rs->fields{'wettbewerb_zusatz'});
-		$data{$i}{"anschrift"} = ($rs->fields{'anschrift'});
-		$data{$i}{"trainer_a"} = ($rs->fields{'trainer_a'});
-		$data{$i}{"trainer_h"} = ($rs->fields{'trainer_h'});
-		$data{$i}{"zusch_anzahl"} = number_format(trim($rs->fields{'zusch_anzahl'}), 0, ',', '.');
-		$data{$i}{"gaestefans"} = number_format(trim($rs->fields{'gaestefans'}), 0, ',', '.');
-		// $data{$i}{"erg_a"} = trim($rs->fields{'erg_a'});
-		// $data{$i}{"erg_h"} = trim($rs->fields{'erg_h'});
-		$data{$i}{"verein_id_a"} = trim($rs->fields{'verein_id_a'});
-		$data{$i}{"verein_id_h"} = trim($rs->fields{'verein_id_h'});		
-		$data{$i}{"paarung"} = ($rs->fields{'verein_h'}).' - '. ($rs->fields{'verein_a'});
-		$data{$i}{"sp_datum"} = trim($rs->fields{'sp_datum'});
-        $data{$i}{"schiri_id"} = trim($rs->fields{'schiri_id'});
-		$data{$i}{"schiri"} = ($rs->fields{'schiri'});
-		$data{$i}{"name"} = ($rs->fields{'name'});
-		$data{$i}{"liga_id"} = trim($rs->fields{'liga_id'});		
-		$data{$i}{"ort_id"} = trim($rs->fields{'ort_id'});
-		$data{$i}{"ort"} = ($rs->fields{'ort'});
-		$data{$i}{"sp_bericht"} = ($rs->fields{'sp_bericht'});
-		$data{$i}{"bes_vork"} = ($rs->fields{'bes_vork'});		
-		$data{$i}{"land"} = ($rs->fields{'land'});
-		$data{$i}{"code"} = ($rs->fields{'code'});
-		$data{$i}{"verein_a"} = ($rs->fields{'verein_a'});
-		$data{$i}{"verein_h"} = ($rs->fields{'verein_h'});
-		$data{$i}{"erg"} = trim($rs->fields{'ergebnis'});
-		$data{$i}{"erg_elfer"} = trim($rs->fields{'erg_elfer'});
-		$data{$i}{"erg_halb"} = trim($rs->fields{'erg_halb'});
-		$data{$i}{"erg_zusatz"} = trim($rs->fields{'erg_zusatz'});
-		$data{$i}{"sprit"} =  number_format($rs->fields{'sprit'}, 2, ',', '.');
-		$data{$i}{"bahn"} =  number_format($rs->fields{'bahn'}, 2, ',', '.');
-		$data{$i}{"flieger"} =  number_format($rs->fields{'flieger'}, 2, ',', '.');
-		$data{$i}{"verpflegung"} =  number_format($rs->fields{'verpflegung'}, 2, ',', '.');
-		$data{$i}{"uebernachtung"} =  number_format($rs->fields{'uebernachtung'}, 2, ',', '.');
-		$data{$i}{"sonstige"} = number_format($rs->fields{'sonstige'}, 2, ',', '.');
-		$data{$i}{"ges_kosten"} = number_format($rs->fields{'ges_kosten'}, 2, ',', '.');
-		$data{$i}{"eintrittskarte"} = number_format($rs->fields{'eintrittskarte'}, 2, ',', '.');
-		$data{$i}{"ausverkauft"} = trim($rs->fields{'ausverkauft'});
+		$data{$i}['spiel_id'] = trim($rs->fields['spiel_id']);
+		$data{$i}['stadion_id_alt'] = trim($rs->fields['stadion_id_alt']);
+		$data{$i}['stadionname_alt'] = ($rs->fields['stadionname_alt']);
+		$data{$i}['stadion_id'] = trim($rs->fields['stadion_id']);
+		$data{$i}['zeit'] = trim($rs->fields['zeit']);
+		$data{$i}['trainer_id_a'] = trim($rs->fields['trainer_id_a']);
+		$data{$i}['trainer_id_h'] = trim($rs->fields['trainer_id_h']);		
+		$data{$i}['schiri_verein'] = ($rs->fields['schiri_verein']);
+		$data{$i}['wochentag'] = ($rs->fields['wochentag']);
+		$data{$i}['wettbewerb_zusatz'] = ($rs->fields['wettbewerb_zusatz']);
+		$data{$i}['anschrift'] = ($rs->fields['anschrift']);
+		$data{$i}['trainer_a'] = ($rs->fields['trainer_a']);
+		$data{$i}['trainer_h'] = ($rs->fields['trainer_h']);
+		$data{$i}['zusch_anzahl'] = number_format(trim($rs->fields['zusch_anzahl']), 0, ',', '.');
+		$data{$i}['gaestefans'] = number_format(trim($rs->fields['gaestefans']), 0, ',', '.');
+		// $data{$i}['erg_a'] = trim($rs->fields['erg_a']);
+		// $data{$i}['erg_h'] = trim($rs->fields['erg_h']);
+		$data{$i}['verein_id_a'] = trim($rs->fields['verein_id_a']);
+		$data{$i}['verein_id_h'] = trim($rs->fields['verein_id_h']);		
+		$data{$i}['paarung'] = ($rs->fields['verein_h']).' - '. ($rs->fields['verein_a']);
+		$data{$i}['sp_datum'] = trim($rs->fields['sp_datum']);
+        $data{$i}['schiri_id'] = trim($rs->fields['schiri_id']);
+		$data{$i}['schiri'] = ($rs->fields['schiri']);
+		$data{$i}['name'] = ($rs->fields['name']);
+		$data{$i}['liga_id'] = trim($rs->fields['liga_id']);		
+		$data{$i}['ort_id'] = trim($rs->fields['ort_id']);
+		$data{$i}['ort'] = ($rs->fields['ort']);
+		$data{$i}['sp_bericht'] = ($rs->fields['sp_bericht']);
+		$data{$i}['bes_vork'] = ($rs->fields['bes_vork']);		
+		$data{$i}['land'] = ($rs->fields['land']);
+		$data{$i}['code'] = ($rs->fields['code']);
+		$data{$i}['verein_a'] = ($rs->fields['verein_a']);
+		$data{$i}['verein_h'] = ($rs->fields['verein_h']);
+		$data{$i}['erg'] = trim($rs->fields['ergebnis']);
+		$data{$i}['erg_elfer'] = trim($rs->fields['erg_elfer']);
+		$data{$i}['erg_halb'] = trim($rs->fields['erg_halb']);
+		$data{$i}['erg_zusatz'] = trim($rs->fields['erg_zusatz']);
+		$data{$i}['sprit'] =  number_format($rs->fields['sprit'], 2, ',', '.');
+		$data{$i}['bahn'] =  number_format($rs->fields['bahn'], 2, ',', '.');
+		$data{$i}['flieger'] =  number_format($rs->fields['flieger'], 2, ',', '.');
+		$data{$i}['verpflegung'] =  number_format($rs->fields['verpflegung'], 2, ',', '.');
+		$data{$i}['uebernachtung'] =  number_format($rs->fields['uebernachtung'], 2, ',', '.');
+		$data{$i}['sonstige'] = number_format($rs->fields['sonstige'], 2, ',', '.');
+		$data{$i}['ges_kosten'] = number_format($rs->fields['ges_kosten'], 2, ',', '.');
+		$data{$i}['eintrittskarte'] = number_format($rs->fields['eintrittskarte'], 2, ',', '.');
+		$data{$i}['ausverkauft'] = trim($rs->fields['ausverkauft']);
 		
 		
-		if(strlen(trim($rs->fields{'zusatz'})) > 0 ){			
-			$data{$i}{"wettbewerb"} = ($rs->fields{'wettbewerb'}). " (".($rs->fields{'zusatz'}).")";
+		if(strlen(trim($rs->fields['zusatz'])) > 0 ){			
+			$data{$i}['wettbewerb'] = ($rs->fields['wettbewerb']). " (".($rs->fields['zusatz']).")";
 		}else{			
-			$data{$i}{"wettbewerb"} = ($rs->fields{'wettbewerb'});
+			$data{$i}['wettbewerb'] = ($rs->fields['wettbewerb']);
         }
 		
 		
-		if(strlen(trim($rs->fields{'kapazitaet'})) == 0 || trim($rs->fields{'kapazitaet'}) == '' || trim($rs->fields{'kapazitaet'}) == 'NULL' || trim($rs->fields{'kapazitaet'}) == null ){		
+		if(strlen(trim($rs->fields['kapazitaet'])) == 0 || trim($rs->fields['kapazitaet']) == '' || trim($rs->fields['kapazitaet']) == 'NULL' || trim($rs->fields['kapazitaet']) == null ){		
 			
-			if(strlen(trim($rs->fields{'stadionname_alt'})) == 0 || trim($rs->fields{'stadionname_alt'}) == '' || trim($rs->fields{'stadionname_alt'}) == 'NULL' || trim($rs->fields{'stadionname_alt'}) == null ){
-				$data{$i}{"stadionname"} = ($rs->fields{'stadionname'});
+			if(strlen(trim($rs->fields['stadionname_alt'])) == 0 || trim($rs->fields['stadionname_alt']) == '' || trim($rs->fields['stadionname_alt']) == 'NULL' || trim($rs->fields['stadionname_alt']) == null ){
+				$data{$i}['stadionname'] = ($rs->fields['stadionname']);
 			}else{
-				$data{$i}{"stadionname"} = ($rs->fields{'stadionname'}). ' ('.($rs->fields{'stadionname_alt'}).")";
+				$data{$i}['stadionname'] = ($rs->fields['stadionname']). ' ('.($rs->fields['stadionname_alt']).")";
 			}
 		}
 		
 		else{	
-			if(strlen(trim($rs->fields{'stadionname_alt'})) == 0 || trim($rs->fields{'stadionname_alt'}) == '' || trim($rs->fields{'stadionname_alt'}) == 'NULL' || trim($rs->fields{'stadionname_alt'}) == null ){
-				$data{$i}{"stadionname"} = ($rs->fields{'stadionname'}). ' ('.number_format(trim($rs->fields{'kapazitaet'}), 0, ',', '.').')';
+			if(strlen(trim($rs->fields['stadionname_alt'])) == 0 || trim($rs->fields['stadionname_alt']) == '' || trim($rs->fields['stadionname_alt']) == 'NULL' || trim($rs->fields['stadionname_alt']) == null ){
+				$data{$i}['stadionname'] = ($rs->fields['stadionname']). ' ('.number_format(trim($rs->fields['kapazitaet']), 0, ',', '.').')';
 			}else{
-				$data{$i}{"stadionname"} = ($rs->fields{'stadionname'}). ' ('.number_format(trim($rs->fields{'kapazitaet'}), 0, ',', '.').') ('.($rs->fields{'stadionname_alt'}).")";
+				$data{$i}['stadionname'] = ($rs->fields['stadionname']). ' ('.number_format(trim($rs->fields['kapazitaet']), 0, ',', '.').') ('.($rs->fields['stadionname_alt']).")";
 			}	
 			
         }
 		
-		if(strlen(trim($rs->fields{'erg_zusatz'})) > 0 ){
-			if(trim($rs->fields{'erg_zusatz'}) == "n. V."){
-			$data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}).' ('.trim($rs->fields{'erg_halb'}).") ".trim($rs->fields{'erg_zusatz'});
+		if(strlen(trim($rs->fields['erg_zusatz'])) > 0 ){
+			if(trim($rs->fields['erg_zusatz']) == "n. V."){
+			$data{$i}['ergebnis'] = trim($rs->fields['ergebnis']).' ('.trim($rs->fields['erg_halb']).") ".trim($rs->fields['erg_zusatz']);
 			}
-			if(trim($rs->fields{'erg_zusatz'}) == "i. E."){
-			$data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}).' ('.trim($rs->fields{'erg_halb'}).") ".trim($rs->fields{'erg_elfer'})." ".trim($rs->fields{'erg_zusatz'});
+			if(trim($rs->fields['erg_zusatz']) == "i. E."){
+			$data{$i}['ergebnis'] = trim($rs->fields['ergebnis']).' ('.trim($rs->fields['erg_halb']).") ".trim($rs->fields['erg_elfer'])." ".trim($rs->fields['erg_zusatz']);
 			}
-			if(trim($rs->fields{'erg_zusatz'}) == "nvUiE"){
-			$data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}).' ('.trim($rs->fields{'erg_halb'}).") n.V. ".trim($rs->fields{'erg_elfer'})." i. E.";
+			if(trim($rs->fields['erg_zusatz']) == "nvUiE"){
+			$data{$i}['ergebnis'] = trim($rs->fields['ergebnis']).' ('.trim($rs->fields['erg_halb']).") n.V. ".trim($rs->fields['erg_elfer'])." i. E.";
 			}
 		}else{			
-			$data{$i}{"ergebnis"} = trim($rs->fields{'ergebnis'}).' ('.trim($rs->fields{'erg_halb'}).")";
+			$data{$i}['ergebnis'] = trim($rs->fields['ergebnis']).' ('.trim($rs->fields['erg_halb']).")";
         }
-		$data{$i}{"nummer"} = $rs->fields{'anzahl'};
+		$data{$i}['nummer'] = $rs->fields['anzahl'];
 		
-		$export .= $data{$i}{"nummer"} .";". $data{$i}{"sp_datum"} . ";" . $data{$i}{"paarung"} . ";" . $data{$i}{"ergebnis"} . ";" 
-            . $data{$i}{"wettbewerb"} . ";" .$data{$i}{"wettbewerb_zusatz"} . ";" . $data{$i}{"stadionname"} . ";" . $data{$i}{"zusch_anzahl"} . ";" 
-            . $data{$i}{"ort"} . ";" . $data{$i}{"land"}. "\r\n";
+		$export .= $data{$i}['nummer'] .";". $data{$i}['sp_datum'] . ";" . $data{$i}['paarung'] . ";" . $data{$i}['ergebnis'] . ";" 
+            . $data{$i}['wettbewerb'] . ";" .$data{$i}['wettbewerb_zusatz'] . ";" . $data{$i}['stadionname'] . ";" . $data{$i}['zusch_anzahl'] . ";" 
+            . $data{$i}['ort'] . ";" . $data{$i}['land']. "\r\n";
 		
         $i++;
 		// $ii++;

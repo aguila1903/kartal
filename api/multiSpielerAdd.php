@@ -27,8 +27,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('stadionname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('stadionname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -43,8 +43,8 @@ if (isset($_REQUEST["spieler"])) {
     $spieler = $_REQUEST["spieler"];
     
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('spieler' => "Spielername fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('spieler' => "Spielername fehlt!");
 
     print json_encode($out);
 
@@ -77,8 +77,8 @@ $i++;
 
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('spieler' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('spieler' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -86,9 +86,9 @@ if (!$rs) {
 
 
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'errors'} = array('spieler' => "Spieler wurden erfolgreich in die Datenbank geschrieben. ");
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['errors'] = array('spieler' => "Spieler wurden erfolgreich in die Datenbank geschrieben. ");
 
 print json_encode($out);
 

@@ -129,8 +129,8 @@ $value = array();
 
 while (!$rs->EOF) {
    
-    $value{$i}{"Wert"} = $rs->fields{'Wert'};
-    $value{$i}{"Titel"} = $rs->fields{'Titel'};
+    $value{$i}['Wert'] = $rs->fields['Wert'];
+    $value{$i}['Titel'] = $rs->fields['Titel'];
 
    
     $i++;
@@ -145,9 +145,9 @@ $out = array();
 
     // zentrale Anwortfunktion f�r REST-Datenquellen
     // im Kern nicht anderes als print json_encode($value)
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 } else {

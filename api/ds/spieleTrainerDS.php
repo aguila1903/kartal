@@ -76,8 +76,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -88,8 +88,8 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-        $data{$i}{"trainer_id"} = trim($rs->fields{'trainer_id'});
-		$data{$i}{"name"} = ($rs->fields{'name'});
+        $data{$i}['trainer_id'] = trim($rs->fields['trainer_id']);
+		$data{$i}['name'] = ($rs->fields['name']);
 		        
         $i++;
 
@@ -99,9 +99,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

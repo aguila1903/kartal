@@ -80,7 +80,7 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"wettbewerb_zusatz"} = ($rs->fields{'wettbewerb_zusatz'});	
+    $value{$i}['wettbewerb_zusatz'] = ($rs->fields['wettbewerb_zusatz']);	
 	  
     $i++;
 

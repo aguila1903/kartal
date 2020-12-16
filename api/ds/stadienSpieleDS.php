@@ -112,14 +112,14 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"stadion_id"} = $rs->fields{'lfd_nr'};
-	$value{$i}{"ort_id"} = $rs->fields{'ort_id'};
-    $value{$i}{"stadionname"} = ($rs->fields{'stadionname'});
-    $value{$i}{"ort"} = ($rs->fields{'ort'});
-    $value{$i}{"land"} = ($rs->fields{'land'});
-    $value{$i}{"code"} = $rs->fields{'code'};
-	$value{$i}{"kapazitaet"} = $rs->fields{'kapazitaet'};
-	$value{$i}{"anschrift"} = ($rs->fields{'anschrift'});
+    $value{$i}['stadion_id'] = $rs->fields['lfd_nr'];
+	$value{$i}['ort_id'] = $rs->fields['ort_id'];
+    $value{$i}['stadionname'] = ($rs->fields['stadionname']);
+    $value{$i}['ort'] = ($rs->fields['ort']);
+    $value{$i}['land'] = ($rs->fields['land']);
+    $value{$i}['code'] = $rs->fields['code'];
+	$value{$i}['kapazitaet'] = $rs->fields['kapazitaet'];
+	$value{$i}['anschrift'] = ($rs->fields['anschrift']);
 	
 	  
     $i++;

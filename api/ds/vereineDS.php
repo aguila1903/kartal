@@ -171,8 +171,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -183,22 +183,22 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-        $data{$i}{"verein_id"} = trim($rs->fields{'verein_id'});
-		// $data{$i}{"liga_id"} = trim($rs->fields{'liga_id'});
-		$data{$i}{"stadtteil"} = trim($rs->fields{'stadtteil'});
-		$data{$i}{"anzahl"} = $rs->fields{'anzahl'};
-        $data{$i}{"gr_datum"} = trim($rs->fields{'gr_datum'});
-		$data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});
-		$data{$i}{"offizieller_name"} = ($rs->fields{'offizieller_name'});
-		$data{$i}{"stadtteil_bez"} = ($rs->fields{'stadtteil_bez'});
-		$data{$i}{"spitzname"} = ($rs->fields{'spitzname'});
-		// $data{$i}{"liga_bez"} = (trim($rs->fields{'liga_bez'}));
-		// $data{$i}{"dateiname"} = (trim($rs->fields{'dateiname'}));
-		$data{$i}{"land"} = (trim($rs->fields{'land'}));
-		$data{$i}{"code"} = (trim($rs->fields{'code'}));
-		$data{$i}{"ort"} = (trim($rs->fields{'ort'}));
-		$data{$i}{"ort_id"} = $rs->fields{'ort_id'};
-		$data{$i}{"historie"} = htmlspecialchars_decode(($rs->fields{'historie'}));
+        $data{$i}['verein_id'] = trim($rs->fields['verein_id']);
+		// $data{$i}['liga_id'] = trim($rs->fields['liga_id']);
+		$data{$i}['stadtteil'] = trim($rs->fields['stadtteil']);
+		$data{$i}['anzahl'] = $rs->fields['anzahl'];
+        $data{$i}['gr_datum'] = trim($rs->fields['gr_datum']);
+		$data{$i}['vereinsname'] = ($rs->fields['vereinsname']);
+		$data{$i}['offizieller_name'] = ($rs->fields['offizieller_name']);
+		$data{$i}['stadtteil_bez'] = ($rs->fields['stadtteil_bez']);
+		$data{$i}['spitzname'] = ($rs->fields['spitzname']);
+		// $data{$i}['liga_bez'] = (trim($rs->fields['liga_bez']));
+		// $data{$i}['dateiname'] = (trim($rs->fields['dateiname']));
+		$data{$i}['land'] = (trim($rs->fields['land']));
+		$data{$i}['code'] = (trim($rs->fields['code']));
+		$data{$i}['ort'] = (trim($rs->fields['ort']));
+		$data{$i}['ort_id'] = $rs->fields['ort_id'];
+		$data{$i}['historie'] = htmlspecialchars_decode(($rs->fields['historie']));
         
         $i++;
 
@@ -208,9 +208,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

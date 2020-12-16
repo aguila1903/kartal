@@ -67,8 +67,8 @@ function updateCheck() {
 if (domainAvailable('https://github.com/')) {
     $update = updateCheck();
 } else {
-    $out{'response'}{'status'} = 4;
-    $out{'response'}{'errors'} = array('Update konnte nicht durchgeführt werden da keine Internetverbindung besteht.');
+    $out['response']['status'] = 4;
+    $out['response']['errors'] = array('Update konnte nicht durchgeführt werden da keine Internetverbindung besteht.');
 
     print json_encode($out);
 
@@ -76,9 +76,9 @@ if (domainAvailable('https://github.com/')) {
 }
 
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $update;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $update;
 
 print json_encode($out);
 ?>

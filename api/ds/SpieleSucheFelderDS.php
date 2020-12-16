@@ -433,9 +433,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
     //>> [1] Fehlermeldung: INSERT-Fehler
         $out = array();
 
-        $out{'response'}{'data'} = $data;
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('land' => ($dbSyb->ErrorMsg()));
+        $out['response']['data'] = $data;
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('land' => ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
@@ -445,114 +445,114 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     while (!$rs->EOF) {
 
-        if (isset($rs->fields{'land'})) {
-            $data{$i}{"land"} = ($rs->fields{'land'});
+        if (isset($rs->fields['land'])) {
+            $data{$i}['land'] = ($rs->fields['land']);
         }
 
-        if (isset($rs->fields{'code'})) {
-            $data{$i}{"code"} = ($rs->fields{'code'});
+        if (isset($rs->fields['code'])) {
+            $data{$i}['code'] = ($rs->fields['code']);
         }
 
-        if (isset($rs->fields{'stadionname'})) {
-            $data{$i}{"stadionname"} = ($rs->fields{'stadionname'});
+        if (isset($rs->fields['stadionname'])) {
+            $data{$i}['stadionname'] = ($rs->fields['stadionname']);
         }
 
-        if (isset($rs->fields{'stadion_id'})) {
-            $data{$i}{"stadion_id"} = $rs->fields{'stadion_id'};
+        if (isset($rs->fields['stadion_id'])) {
+            $data{$i}['stadion_id'] = $rs->fields['stadion_id'];
         }
 
-        if (isset($rs->fields{'ort'})) {
-            $data{$i}{"ort"} = ($rs->fields{'ort'});
+        if (isset($rs->fields['ort'])) {
+            $data{$i}['ort'] = ($rs->fields['ort']);
         }
 
-        if (isset($rs->fields{'ort_id'})) {
-            $data{$i}{"ort_id"} = ($rs->fields{'ort_id'});
+        if (isset($rs->fields['ort_id'])) {
+            $data{$i}['ort_id'] = ($rs->fields['ort_id']);
         }
 
-        if (isset($rs->fields{'spieler_id'})) {
-            $data{$i}{"spieler_id"} = $rs->fields{'spieler_id'};
+        if (isset($rs->fields['spieler_id'])) {
+            $data{$i}['spieler_id'] = $rs->fields['spieler_id'];
         }
 
-        if (isset($rs->fields{'geb_datum'})) {
-            $data{$i}{"geb_datum"} = $rs->fields{'geb_datum'};
+        if (isset($rs->fields['geb_datum'])) {
+            $data{$i}['geb_datum'] = $rs->fields['geb_datum'];
         }
 
-        if (isset($rs->fields{'name'})) {
-            $data{$i}{"name"} = trim(($rs->fields{'name'}));
+        if (isset($rs->fields['name'])) {
+            $data{$i}['name'] = trim(($rs->fields['name']));
         }
 
-        if (isset($rs->fields{'trainer_id'})) {
-            $data{$i}{"trainer_id"} = $rs->fields{'trainer_id'};
+        if (isset($rs->fields['trainer_id'])) {
+            $data{$i}['trainer_id'] = $rs->fields['trainer_id'];
         }
 
-        if (isset($rs->fields{'trainername'})) {
-            $data{$i}{"trainername"} = ($rs->fields{'trainername'});
+        if (isset($rs->fields['trainername'])) {
+            $data{$i}['trainername'] = ($rs->fields['trainername']);
         }
 
-        if (isset($rs->fields{'verein_id'})) {
-            $data{$i}{"verein_id"} = $rs->fields{'verein_id'};
+        if (isset($rs->fields['verein_id'])) {
+            $data{$i}['verein_id'] = $rs->fields['verein_id'];
         }
 
-        if (isset($rs->fields{'vereinsname'})) {
-            $data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});
+        if (isset($rs->fields['vereinsname'])) {
+            $data{$i}['vereinsname'] = ($rs->fields['vereinsname']);
         }
 
-        if (isset($rs->fields{'begleiter_id'})) {
-            $data{$i}{"begleiter_id"} = $rs->fields{'begleiter_id'};
+        if (isset($rs->fields['begleiter_id'])) {
+            $data{$i}['begleiter_id'] = $rs->fields['begleiter_id'];
         }
 
-        if (isset($rs->fields{'begleitername'})) {
-            $data{$i}{"begleitername"} = ($rs->fields{'begleitername'});
+        if (isset($rs->fields['begleitername'])) {
+            $data{$i}['begleitername'] = ($rs->fields['begleitername']);
         }
 
-        if (isset($rs->fields{'liga_bez'})) {
-            $data{$i}{"liga_bez"} = ($rs->fields{'liga_bez'});
+        if (isset($rs->fields['liga_bez'])) {
+            $data{$i}['liga_bez'] = ($rs->fields['liga_bez']);
         }
 
-        if (isset($rs->fields{'liga_id'})) {
-            $data{$i}{"liga_id"} = $rs->fields{'liga_id'};
+        if (isset($rs->fields['liga_id'])) {
+            $data{$i}['liga_id'] = $rs->fields['liga_id'];
         }
 
-        if (isset($rs->fields{'ergebnis'})) {
-            $data{$i}{"ergebnis"} = ($rs->fields{'ergebnis'});
+        if (isset($rs->fields['ergebnis'])) {
+            $data{$i}['ergebnis'] = ($rs->fields['ergebnis']);
         }
 
-        if (isset($rs->fields{'erg_zusatz'})) {
-            $data{$i}{"erg_zusatz"} = ($rs->fields{'erg_zusatz'});
+        if (isset($rs->fields['erg_zusatz'])) {
+            $data{$i}['erg_zusatz'] = ($rs->fields['erg_zusatz']);
         }
 
-        if (isset($rs->fields{'Erg_zusatz'})) {
-            $data{$i}{"Erg_zusatz"} = $rs->fields{'Erg_zusatz'};
+        if (isset($rs->fields['Erg_zusatz'])) {
+            $data{$i}['Erg_zusatz'] = $rs->fields['Erg_zusatz'];
         }
 
-        if (isset($rs->fields{'sp_datum'})) {
-            $data{$i}{"sp_datum"} = $rs->fields{'sp_datum'};
+        if (isset($rs->fields['sp_datum'])) {
+            $data{$i}['sp_datum'] = $rs->fields['sp_datum'];
         }
 
-        if (isset($rs->fields{'jahr'})) {
-            $data{$i}{"jahr"} = $rs->fields{'jahr'};
+        if (isset($rs->fields['jahr'])) {
+            $data{$i}['jahr'] = $rs->fields['jahr'];
         }
 
-        if (isset($rs->fields{'schiriname'})) {
-            $data{$i}{"schiriname"} = ($rs->fields{'schiriname'});
+        if (isset($rs->fields['schiriname'])) {
+            $data{$i}['schiriname'] = ($rs->fields['schiriname']);
         }
 
-        if (isset($rs->fields{'schiri_id'})) {
-            $data{$i}{"schiri_id"} = $rs->fields{'schiri_id'};
+        if (isset($rs->fields['schiri_id'])) {
+            $data{$i}['schiri_id'] = $rs->fields['schiri_id'];
         }
 
-        if (isset($rs->fields{'Ausverkauft'})) {
-            $data{$i}{"Ausverkauft"} = ($rs->fields{'Ausverkauft'});
+        if (isset($rs->fields['Ausverkauft'])) {
+            $data{$i}['Ausverkauft'] = ($rs->fields['Ausverkauft']);
         }
 
-        if (isset($rs->fields{'ausverkauft'})) {
-            $data{$i}{"ausverkauft"} = $rs->fields{'ausverkauft'};
+        if (isset($rs->fields['ausverkauft'])) {
+            $data{$i}['ausverkauft'] = $rs->fields['ausverkauft'];
         }
-        if (isset($rs->fields{'anzahl'})) {
-            $data{$i}{"anzahl"} = $rs->fields{'anzahl'};
+        if (isset($rs->fields['anzahl'])) {
+            $data{$i}['anzahl'] = $rs->fields['anzahl'];
         }
-        if (isset($rs->fields{'dayname'})) {
-            $data{$i}{"dayname"} = $rs->fields{'dayname'};
+        if (isset($rs->fields['dayname'])) {
+            $data{$i}['dayname'] = $rs->fields['dayname'];
         }
 
         $i++;
@@ -561,9 +561,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     $rs->Close();
 
-    $out{'response'}{'data'} = $data;
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
+    $out['response']['data'] = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
 
     print json_encode($out);
 } else {

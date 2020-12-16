@@ -35,8 +35,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -57,18 +57,18 @@ if (isset($_SESSION['benutzer'])) {
     $value = array();
 
     if (!$rs) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 
 
-    If (isset($rs->fields{'ergebnis'})) {
-        if ($rs->fields{'ergebnis'} != 1) {
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Logout. Möglicherweise wurden Sie nicht korrekt ausgeloggt! </br>" . ($dbSyb->ErrorMsg()));
+    If (isset($rs->fields['ergebnis'])) {
+        if ($rs->fields['ergebnis'] != 1) {
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Logout. Möglicherweise wurden Sie nicht korrekt ausgeloggt! </br>" . ($dbSyb->ErrorMsg()));
 
             print json_encode($out);
             return;
@@ -93,7 +93,7 @@ if (isset($_SESSION['benutzer'])) {
 
             while (!$rs->EOF) {
 
-                $value{"ergebnis"} = $rs->fields{'ergebnis'};
+                $value['ergebnis'] = $rs->fields['ergebnis'];
 
                 $i++;
 
@@ -102,15 +102,15 @@ if (isset($_SESSION['benutzer'])) {
 
             $rs->Close();
 
-            $out{'response'}{'status'} = 0;
-            $out{'response'}{'errors'} = array();
-            $out{'response'}{'data'} = $value;
+            $out['response']['status'] = 0;
+            $out['response']['errors'] = array();
+            $out['response']['data'] = $value;
 
             print json_encode($out);
         }
     } else {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es konnnte keine Logout-Rückmeldung ermittelt werden. Möglicherweise wurden Sie nicht korrekt ausgeloggt! </br>" . ($dbSyb->ErrorMsg()));
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es konnnte keine Logout-Rückmeldung ermittelt werden. Möglicherweise wurden Sie nicht korrekt ausgeloggt! </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;

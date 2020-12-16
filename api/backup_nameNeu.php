@@ -11,8 +11,8 @@ if (isset($_REQUEST["dateiname"])) {
 } else {
     $out = array();
 
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ID' => "Wo isn der neue Dateiname?");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ID' => "Wo isn der neue Dateiname?");
 
     return;
 }
@@ -29,9 +29,9 @@ if (is_dir($path) != 1) {
 if (is_file($path . $dateiname . ".sql") == 1) {
     $out = array();
 
-    $out{'response'}{'data'} = array();
-    $out{'response'}{'status'} = -66;
-    $out{'response'}{'errors'} = "Dateiname existiert bereits!";
+    $out['response']['data'] = array();
+    $out['response']['status'] = -66;
+    $out['response']['errors'] = "Dateiname existiert bereits!";
 
     print json_encode($out);
 
@@ -65,7 +65,7 @@ $output = exec("C:\\windows\\system32\\cmd.exe /c $bathFileRun");
 $data = array();
 
 if ($output == 0) {
-    $data{"rueckmeldung"} = ($path) . $dateiname . ".sql";
+    $data['rueckmeldung'] = ($path) . $dateiname . ".sql";
     /*
      * ************** BACKUP IMAGES *************************
      */
@@ -87,9 +87,9 @@ $sevenZip_path\\7z.exe a -tzip $backup_path\\images.zip * -mx9 -aoa ";
     unlink("$path$dateiname.sql");
     $out = array();
 
-    $out{'response'}{'data'} = array();
-    $out{'response'}{'status'} = -99;
-    $out{'response'}{'errors'} = "Fehler in der Matrix!";
+    $out['response']['data'] = array();
+    $out['response']['status'] = -99;
+    $out['response']['errors'] = "Fehler in der Matrix!";
 
     print json_encode($out);
 
@@ -102,9 +102,9 @@ unlink("$path$dateiname.bat");
 
 $out = array();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $data;
 
 print json_encode($out);
 ?>

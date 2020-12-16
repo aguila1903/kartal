@@ -223,7 +223,7 @@ if (isset($_FILES['datei']) && (($_FILES["datei"]["type"] != "image/gif"
             $ergebnis = "";
 
             while (!$rs->EOF) {
-                $ergebnis = $rs->fields{'ergebnis'};
+                $ergebnis = $rs->fields['ergebnis'];
 
                 $i++;
 
@@ -232,7 +232,7 @@ if (isset($_FILES['datei']) && (($_FILES["datei"]["type"] != "image/gif"
 
             $rs->Close();
             
-//            if(isset($rs->fields{'ergebnis'}) && isset($rs->fields{'historie'})){
+//            if(isset($rs->fields['ergebnis']) && isset($rs->fields['historie'])){
             if ($ergebnis == 1) {
 
                 $result = json_encode(($bild_name) . ' erfolgreich hochgeladen!');

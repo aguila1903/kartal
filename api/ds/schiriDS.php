@@ -131,8 +131,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -143,16 +143,16 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-		$data{$i}{"geb_datum"} = trim($rs->fields{'geb_datum'});
-        $data{$i}{"schiri_id"} = trim($rs->fields{'schiri_id'});
-		$data{$i}{"verein_id"} = trim($rs->fields{'verein_id'});
-		$data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});
-		$data{$i}{"ort_id"} = trim($rs->fields{'ort_id'});
-		$data{$i}{"ort"} = ($rs->fields{'ort'});
-		$data{$i}{"name"} = ($rs->fields{'name'});		
-		$data{$i}{"land"} = (trim($rs->fields{'land'}));
-		$data{$i}{"code"} = (trim($rs->fields{'code'}));
-		$data{$i}{"anzahl"} = trim($rs->fields{'anzahl'});
+		$data{$i}['geb_datum'] = trim($rs->fields['geb_datum']);
+        $data{$i}['schiri_id'] = trim($rs->fields['schiri_id']);
+		$data{$i}['verein_id'] = trim($rs->fields['verein_id']);
+		$data{$i}['vereinsname'] = ($rs->fields['vereinsname']);
+		$data{$i}['ort_id'] = trim($rs->fields['ort_id']);
+		$data{$i}['ort'] = ($rs->fields['ort']);
+		$data{$i}['name'] = ($rs->fields['name']);		
+		$data{$i}['land'] = (trim($rs->fields['land']));
+		$data{$i}['code'] = (trim($rs->fields['code']));
+		$data{$i}['anzahl'] = trim($rs->fields['anzahl']);
         
         $i++;
 
@@ -162,9 +162,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

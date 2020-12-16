@@ -70,8 +70,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.\n". $dbSyb->ErrorMsg());
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.\n". $dbSyb->ErrorMsg());
 
     print json_encode($out);
     return;
@@ -82,7 +82,7 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 	
-		$data{$i}{"verkehrsmittel"} = ($rs->fields{'verkehrsmittel'});	
+		$data{$i}['verkehrsmittel'] = ($rs->fields['verkehrsmittel']);	
         
         $i++;
 
@@ -92,9 +92,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

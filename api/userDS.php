@@ -22,9 +22,9 @@ function createLog($meldung, $ip, $benutzer, $info, $browser, $os) {
 }
 
 function errorMsg($errorMsg, $ergebnis) {
-    $data{"text"} = $errorMsg;
-    $data{"ergebnis"} = $ergebnis;
-    $data{"status"} = "";
+    $data['text'] = $errorMsg;
+    $data['ergebnis'] = $ergebnis;
+    $data['status'] = "";
     print(json_encode($data));
     die;
 }
@@ -103,9 +103,9 @@ $rs = $dbSyb->Execute($querySQL);
 if (!$rs) {
     errorMsg("Query: " . $dbSyb->ErrorMsg(), 0);
 }
-$ergebnis = $rs->fields{'Ergebnis'};
-$status = $rs->fields{'status'};
-$admin = $rs->fields{'admin'};
+$ergebnis = $rs->fields['Ergebnis'];
+$status = $rs->fields['status'];
+$admin = $rs->fields['admin'];
 
 if ($ergebnis == 1 && $status == 'B') { // Passwort OK und User ist freigeschaltet - Başarıyla giriş yaptınız
     login("Login erfolgreich", $ergebnis, $benutzer, 1, $admin, $status);

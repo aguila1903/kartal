@@ -106,21 +106,21 @@ if (!$rs) {
     return;
 }
 else {
-    if ($rs->fields{'Ergebnis'} == 1 && $rs->fields{'status'} == 'B') { // Passwort OK und User ist freigeschaltet - Anmeldung erfolgreich
+    if ($rs->fields['Ergebnis'] == 1 && $rs->fields['status'] == 'B') { // Passwort OK und User ist freigeschaltet - Anmeldung erfolgreich
         $_SESSION["benutzer"] = $benutzer;
         $_SESSION["login"] = 1;
-        $_SESSION["admin"] = $rs->fields{'admin'};
+        $_SESSION["admin"] = $rs->fields['admin'];
         $extra = "../start.php";
         $status = "[INFO]";
         $info = "Anmeldung erfolgreich";
         $log = $status . "  -- " . "IP: " . $ip . " -- " . date('d-m-Y H:i:s') . " -- " . "Angemeldeter User: " . $_SESSION['benutzer'] . " -- " . $info . " -- Browser: " . $browser . " -- OS: " . os() . "\n\n";
  
 	
-	} elseif ($rs->fields{'Ergebnis'} == 1 && $rs->fields{'status'} == 'O') { // Passwort ist OK aber der User ist nicht freigeschaltet - Anmeldung nicht möglich
-        $data{$i}{"ergebnis"} = "User " . $benutzer . " ist noch nicht freigeschaltet!";
+	} elseif ($rs->fields['Ergebnis'] == 1 && $rs->fields['status'] == 'O') { // Passwort ist OK aber der User ist nicht freigeschaltet - Anmeldung nicht möglich
+        $data{$i}['ergebnis'] = "User " . $benutzer . " ist noch nicht freigeschaltet!";
         $_SESSION["benutzer"] = $benutzer;
         $_SESSION["login"] = "falsch";
-        $_SESSION["admin"] = $rs->fields{'admin'};
+        $_SESSION["admin"] = $rs->fields['admin'];
         $_SESSION["loginReport"] = "User " . $benutzer . " ist noch nicht freigeschaltet!";
         $extra = "../login.php";
         $status = "[ERROR]";
@@ -128,24 +128,24 @@ else {
         $log = $status . " -- " . "IP: " . $ip . " -- " . date('d-m-Y H:i:s') . " -- " . $info . " -- Browser: " . $browser . " -- OS: " . os() . "\n\n";
 		
 	
-    } elseif ($rs->fields{'Ergebnis'} == -99) { // User ist wegen 3 Login-Fehlversuchen 30 Minuten gesperrt
-        $data{$i}{"ergebnis"} = "Das Konto " . $benutzer . " ist aufgrund zu häufiger Login-Fehlversuche </br>bis zu 30 Minuten gesperrt.";
+    } elseif ($rs->fields['Ergebnis'] == -99) { // User ist wegen 3 Login-Fehlversuchen 30 Minuten gesperrt
+        $data{$i}['ergebnis'] = "Das Konto " . $benutzer . " ist aufgrund zu häufiger Login-Fehlversuche </br>bis zu 30 Minuten gesperrt.";
         $_SESSION["benutzer"] = $benutzer;
         $_SESSION["login"] = "falsch";
         $_SESSION["loginReport"] = "Das Konto " . $benutzer . " ist aufgrund zu häufiger Login-Fehlversuche </br>bis zu 30 Minuten gesperrt.";
-        $_SESSION["admin"] = $rs->fields{'admin'};
+        $_SESSION["admin"] = $rs->fields['admin'];
         $extra = "../login.php";
         $status = "[ERROR]";
         $info = "Benutzer '" . $benutzer . "' ist gesperrt.";
         $log = $status . " -- " . "IP: " . $ip . " -- " . date('d-m-Y H:i:s') . " -- " . $info . " -- Browser: " . $browser . " -- OS: " . os() . "\n\n";
 	
 		
-    } elseif ($rs->fields{'Ergebnis'} == -98) { // User hat seinen Passwort 3 mal falsch eingegeben und wird für 30 Min. gesperrt
-        $data{$i}{"ergebnis"} = "Sie haben mehr als 3 Mal ihr Passwort falsch eingegeben. </br> Ihr Konto wird für 30 Minuten gesperrt.";
+    } elseif ($rs->fields['Ergebnis'] == -98) { // User hat seinen Passwort 3 mal falsch eingegeben und wird für 30 Min. gesperrt
+        $data{$i}['ergebnis'] = "Sie haben mehr als 3 Mal ihr Passwort falsch eingegeben. </br> Ihr Konto wird für 30 Minuten gesperrt.";
         $_SESSION["benutzer"] = $benutzer;
         $_SESSION["login"] = "falsch";
         $_SESSION["loginReport"] = "Sie haben mehr als 3 Mal ihr Passwort falsch eingegeben. </br> Ihr Konto wird für 30 Minuten gesperrt.";
-        $_SESSION["admin"] = $rs->fields{'admin'};
+        $_SESSION["admin"] = $rs->fields['admin'];
         $extra = "../login.php";
         $status = "[ERROR]";
         $info = "Benutzer '" . $benutzer . "' wird für 30 Min. gesperrt.";
@@ -153,11 +153,11 @@ else {
 	
 		
     } else { // Anmeldung fehlgeschlagen - evtl. Passwort falsch oder Username falsch
-        $data{$i}{"ergebnis"} = "Anmeldung ist fehlgeschlagen";
+        $data{$i}['ergebnis'] = "Anmeldung ist fehlgeschlagen";
         $_SESSION["benutzer"] = $benutzer;
         $_SESSION["login"] = "falsch";
         $_SESSION["loginReport"] = "Ah Ah Ah...du hast das Zauberwort vergessen....Ah ah ah...";
-        $_SESSION["admin"] = $rs->fields{'admin'};
+        $_SESSION["admin"] = $rs->fields['admin'];
         $extra = "../login.php";
         $status = "[ERROR]";
         $info = "Anmeldung ist fehlgeschlagen";

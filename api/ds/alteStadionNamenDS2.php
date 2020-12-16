@@ -49,8 +49,8 @@ if (isset($_REQUEST["stadion_id"])) {
     if ($stadion_id != "null" && $stadion_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($stadion_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('stadion_id_alt' => "Bitte die Stadion-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('stadion_id_alt' => "Bitte die Stadion-ID prüfen!");
 
             print json_encode($out);
             return;
@@ -77,12 +77,12 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"stadion_id_alt"} = $rs->fields{'stadion_id_alt'};
-    $value{$i}{"name_vor_ae"} = ($rs->fields{'name_vor_ae'});
+    $value{$i}['stadion_id_alt'] = $rs->fields['stadion_id_alt'];
+    $value{$i}['name_vor_ae'] = ($rs->fields['name_vor_ae']);
 	
-    // if ($value{$i}{"aktiv"} == 0) {
+    // if ($value{$i}['aktiv'] == 0) {
         // $id = 0; 
-        // $value{$i}{"_hilite"} = $id;
+        // $value{$i}['_hilite'] = $id;
     // }
    
     $i++;

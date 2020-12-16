@@ -28,8 +28,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('vereinsname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('vereinsname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -44,23 +44,23 @@ if (isset($_REQUEST["verein_id"])) {
     if ($verein_id != "null" && $verein_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($verein_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('lfd_nr' => "Bitte die Verein-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('lfd_nr' => "Bitte die Verein-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('lfd_nr' => "Verein-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('lfd_nr' => "Verein-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('lfd_nr' => "Verein-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('lfd_nr' => "Verein-ID fehlt!");
 
     print json_encode($out);
 
@@ -72,24 +72,24 @@ if (isset($_REQUEST["vereinsname"])) {
     $vereinsname = $_REQUEST["vereinsname"];
     if ($vereinsname != "null" && $vereinsname != "") {
         if (strlen($vereinsname) > 264 || strlen($vereinsname) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('vereinsname' => "Bitte einen Verein-Namen mit max. 264 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('vereinsname' => "Bitte einen Verein-Namen mit max. 264 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('vereinsname' => "Verein-Name fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('vereinsname' => "Verein-Name fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('vereinsname' => "Verein-Name fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('vereinsname' => "Verein-Name fehlt!");
 
     print json_encode($out);
 
@@ -100,24 +100,24 @@ if (isset($_REQUEST["name_vor_ae"])) {
     $name_vor_ae = $_REQUEST["name_vor_ae"];
     if ($name_vor_ae != "null" && $name_vor_ae != "") {
         if (strlen($name_vor_ae) > 200 || strlen($name_vor_ae) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('name_vor_ae' => "Bitte einen Verein-Namen mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('name_vor_ae' => "Bitte einen Verein-Namen mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('name_vor_ae' => "Verein-Name fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('name_vor_ae' => "Verein-Name fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name_vor_ae' => "Verein-Name fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name_vor_ae' => "Verein-Name fehlt!");
 
     print json_encode($out);
 
@@ -129,8 +129,8 @@ if (isset($_REQUEST["von_jahr"])) {
     if ($von_jahr != "null" && $von_jahr != "") {
         if ((preg_match("/^[0-9]{4}?$/", trim($von_jahr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('von_jahr' => "Sie haben kein gültiges Jahr eingegeben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('von_jahr' => "Sie haben kein gültiges Jahr eingegeben");
 
             print json_encode($out);
             return;
@@ -144,8 +144,8 @@ if (isset($_REQUEST["von_jahr"])) {
 
         if (!$isdate) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('von_jahr' => "Sie haben kein gültiges Jahr eingegeben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('von_jahr' => "Sie haben kein gültiges Jahr eingegeben");
 
             print json_encode($out);
             return;
@@ -164,8 +164,8 @@ if (isset($_REQUEST["bis_jahr"])) {
     if ($bis_jahr != "null" && $bis_jahr != "") {
         if ((preg_match("/^[0-9]{4}?$/", trim($bis_jahr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('bis_jahr' => "Sie haben kein gültiges Jahr eingegeben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('bis_jahr' => "Sie haben kein gültiges Jahr eingegeben");
 
             print json_encode($out);
             return;
@@ -179,8 +179,8 @@ if (isset($_REQUEST["bis_jahr"])) {
 
         if (!$isdate) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('bis_jahr' => "Sie haben kein gültiges Jahr eingegeben");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('bis_jahr' => "Sie haben kein gültiges Jahr eingegeben");
 
             print json_encode($out);
             return;
@@ -194,8 +194,8 @@ if (isset($_REQUEST["bis_jahr"])) {
 }
 
 if($bis_jahr < $von_jahr){
-$out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('bis_jahr' => "Das Von-Jahr darf nicht größer als das Bis-Jahr sein. Bitte überprüfen Sie noch einmal Ihre Eingaben.");
+$out['response']['status'] = -4;
+            $out['response']['errors'] = array('bis_jahr' => "Das Von-Jahr darf nicht größer als das Bis-Jahr sein. Bitte überprüfen Sie noch einmal Ihre Eingaben.");
 
             print json_encode($out);
             return;
@@ -225,41 +225,41 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} < 1 ) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('lfd_nr' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] < 1 ) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('lfd_nr' => "Es wurden keine Änderungen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
 
-If (isset($rs->fields{'ergebnis2'})) {
-    if ($rs->fields{'ergebnis2'} < 1 ) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('lfd_nr' => "Es wurden keine Änderungen beim Stadionnamen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis2'])) {
+    if ($rs->fields['ergebnis2'] < 1 ) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('lfd_nr' => "Es wurden keine Änderungen beim Stadionnamen vorgenommen. Entweder gab es keine Änderungen oder es ist ein Fehler aufgetreten. </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('lfd_nr' => "Keine Ergebnis-Rückmeldung für den Stadionnamen-Update erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('lfd_nr' => "Keine Ergebnis-Rückmeldung für den Stadionnamen-Update erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -269,8 +269,8 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ergebnis2"} = $rs->fields{'ergebnis2'};
-	$value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis2'] = $rs->fields['ergebnis2'];
+	$value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -280,9 +280,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

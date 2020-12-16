@@ -202,7 +202,7 @@ if ($bild_art == 'fr') {
         print $result;
         exit;
     }
-    if ($rs->fields{'anzahl'} >= 1) {
+    if ($rs->fields['anzahl'] >= 1) {
         $result = json_encode('Es gibt bereits ein Front-Bild!');
         $bild = json_encode($imageName);
         print $result;

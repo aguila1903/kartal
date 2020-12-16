@@ -80,12 +80,12 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"name"} = ($rs->fields{'name'});
-	$value{$i}{"land"} = ($rs->fields{'land'});
-	$value{$i}{"code"} = ($rs->fields{'code'});
-	$value{$i}{"ort"} = ($rs->fields{'ort'});
-	$value{$i}{"stadtteil_id"} = $rs->fields{'stadtteil_id'};
-	$value{$i}{"ort_id"} = $rs->fields{'ort_id'};
+    $value{$i}['name'] = ($rs->fields['name']);
+	$value{$i}['land'] = ($rs->fields['land']);
+	$value{$i}['code'] = ($rs->fields['code']);
+	$value{$i}['ort'] = ($rs->fields['ort']);
+	$value{$i}['stadtteil_id'] = $rs->fields['stadtteil_id'];
+	$value{$i}['ort_id'] = $rs->fields['ort_id'];
    
     $i++;
 

@@ -50,23 +50,23 @@ if (isset($_REQUEST["spiel_id"])) {
     if ($spiel_id != "null" && $spiel_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($spiel_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Spiel-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Spiel-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spiel-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spiel-ID fehlt!");
 
     print json_encode($out);
 
@@ -79,8 +79,8 @@ if (isset($_REQUEST["jahr"])) {
     if ($jahr != "null" && $jahr != "") {
         if ((preg_match("/^[0-9]{4}?$/", trim($jahr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('jahr' => "Bitte das Jahr prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('jahr' => "Bitte das Jahr prüfen!");
 
             print json_encode($out);
             return;
@@ -134,8 +134,8 @@ $data = array();
 
 if (!$rs) {
   
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten.");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten.");
 
     print json_encode($out);
     return;
@@ -146,26 +146,26 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { 
-		$data{$i}{"spiel_id"} = trim($rs->fields{'spiel_id'});
-		$data{$i}{"stadionname_alt"} = ($rs->fields{'stadionname_alt'});	
-		$data{$i}{"wettbewerb_zusatz"} = ($rs->fields{'wettbewerb_zusatz'});			
-		$data{$i}{"stadionname"} = ($rs->fields{'stadionname'});	
+		$data{$i}['spiel_id'] = trim($rs->fields['spiel_id']);
+		$data{$i}['stadionname_alt'] = ($rs->fields['stadionname_alt']);	
+		$data{$i}['wettbewerb_zusatz'] = ($rs->fields['wettbewerb_zusatz']);			
+		$data{$i}['stadionname'] = ($rs->fields['stadionname']);	
 		
-		if(strlen(trim($rs->fields{'erg_zusatz'})) > 0 ){
+		if(strlen(trim($rs->fields['erg_zusatz'])) > 0 ){
 			
-			if(trim($rs->fields{'erg_zusatz'}) == "n. V."){
-			$data{$i}{"spiel"} = trim($rs->fields{'sp_datum'})." - ".($rs->fields{'wettbewerb'})." - ". ($rs->fields{'verein_h'}).' - '. ($rs->fields{'verein_a'})." ". trim($rs->fields{'ergebnis'})." ".trim($rs->fields{'erg_zusatz'});
+			if(trim($rs->fields['erg_zusatz']) == "n. V."){
+			$data{$i}['spiel'] = trim($rs->fields['sp_datum'])." - ".($rs->fields['wettbewerb'])." - ". ($rs->fields['verein_h']).' - '. ($rs->fields['verein_a'])." ". trim($rs->fields['ergebnis'])." ".trim($rs->fields['erg_zusatz']);
 			}
-			if(trim($rs->fields{'erg_zusatz'}) == "i. E."){
-			$data{$i}{"spiel"} = trim($rs->fields{'sp_datum'})." - ".($rs->fields{'wettbewerb'})." - ". ($rs->fields{'verein_h'}).' - '. ($rs->fields{'verein_a'})." ". trim($rs->fields{'ergebnis'}).' '.trim($rs->fields{'erg_elfer'})." ".trim($rs->fields{'erg_zusatz'});
+			if(trim($rs->fields['erg_zusatz']) == "i. E."){
+			$data{$i}['spiel'] = trim($rs->fields['sp_datum'])." - ".($rs->fields['wettbewerb'])." - ". ($rs->fields['verein_h']).' - '. ($rs->fields['verein_a'])." ". trim($rs->fields['ergebnis']).' '.trim($rs->fields['erg_elfer'])." ".trim($rs->fields['erg_zusatz']);
 			}
-			if(trim($rs->fields{'erg_zusatz'}) == "nvUiE"){
-			$data{$i}{"spiel"} = trim($rs->fields{'sp_datum'})." - ".($rs->fields{'wettbewerb'})." - ". ($rs->fields{'verein_h'}).' - '. ($rs->fields{'verein_a'})." ". trim($rs->fields{'ergebnis'})." n.V. ".trim($rs->fields{'erg_elfer'})." i. E.";
+			if(trim($rs->fields['erg_zusatz']) == "nvUiE"){
+			$data{$i}['spiel'] = trim($rs->fields['sp_datum'])." - ".($rs->fields['wettbewerb'])." - ". ($rs->fields['verein_h']).' - '. ($rs->fields['verein_a'])." ". trim($rs->fields['ergebnis'])." n.V. ".trim($rs->fields['erg_elfer'])." i. E.";
 			}
 			
-			// $data{$i}{"spiel"} = trim($rs->fields{'sp_datum'})." - ".($rs->fields{'wettbewerb'})." - ". ($rs->fields{'verein_h'}).' - '. ($rs->fields{'verein_a'})." ". trim($rs->fields{'ergebnis'})." ".trim($rs->fields{'erg_zusatz'});
+			// $data{$i}['spiel'] = trim($rs->fields['sp_datum'])." - ".($rs->fields['wettbewerb'])." - ". ($rs->fields['verein_h']).' - '. ($rs->fields['verein_a'])." ". trim($rs->fields['ergebnis'])." ".trim($rs->fields['erg_zusatz']);
 		}else{			
-			$data{$i}{"spiel"} = trim($rs->fields{'sp_datum'})." - ".($rs->fields{'wettbewerb'})." - ". ($rs->fields{'verein_h'}).' - '. ($rs->fields{'verein_a'})." ".trim($rs->fields{'ergebnis'});
+			$data{$i}['spiel'] = trim($rs->fields['sp_datum'])." - ".($rs->fields['wettbewerb'])." - ". ($rs->fields['verein_h']).' - '. ($rs->fields['verein_a'])." ".trim($rs->fields['ergebnis']);
         }
 		
         $i++;
@@ -176,9 +176,9 @@ else {
     $rs->Close();
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

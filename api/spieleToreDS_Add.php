@@ -77,16 +77,16 @@ if (isset($_REQUEST["sp_minute"])) {
 
     if ((preg_match("/^[0-9]{0,3}$/", trim($sp_minute))) == 0) {
 
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spielminute prüfen!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spielminute prüfen!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spielminute fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spielminute fehlt!");
 
     print json_encode($out);
 
@@ -98,16 +98,16 @@ if (isset($_REQUEST["spielstand"])) {
 
     if ((preg_match("/^[0-9:]{3,5}$/", trim($spielstand))) == 0) {
 
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Spielstand fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Spielstand fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Spielstand fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Spielstand fehlt!");
 
     print json_encode($out);
 
@@ -119,8 +119,8 @@ if (isset($_REQUEST["team"])) {
 
     if ((preg_match("/^[ah]{1}$/", trim($team))) == 0) {
 
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Angabe über Heim oder Gast-Mannschaft fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Angabe über Heim oder Gast-Mannschaft fehlt!");
 
         print json_encode($out);
 
@@ -134,8 +134,8 @@ if (isset($_REQUEST["team"])) {
         }
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Angabe über Heim oder Gast-Mannschaft fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Angabe über Heim oder Gast-Mannschaft fehlt!");
 
     print json_encode($out);
 
@@ -161,24 +161,24 @@ $rs = $dbSyb->Execute($querySQL);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} != 1 && $rs->fields{'ergebnis'} != 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . ($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] != 1 && $rs->fields['ergebnis'] != 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten </br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -190,7 +190,7 @@ $i = 0;
 while (!$rs->EOF) {
 
 
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -200,9 +200,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 ?>

@@ -38,17 +38,17 @@ $data = array();
 
 
 			
-	$data{"laender_gesamt"} = $num_rows;	
-	$data{"stadien_gesamt"} = $stadien_gesamt['anzahl'];
-	$data{"stadien_ger"} = 	$stadien_ger['anzahl'];
-	$data{"stadien_aus"} = 	$stadien_aus['anzahl'];
-	$data{"spiele"} = 	$spiele['anzahl'];
+	$data['laender_gesamt'] = $num_rows;	
+	$data['stadien_gesamt'] = $stadien_gesamt['anzahl'];
+	$data['stadien_ger'] = 	$stadien_ger['anzahl'];
+	$data['stadien_aus'] = 	$stadien_aus['anzahl'];
+	$data['spiele'] = 	$spiele['anzahl'];
 
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 

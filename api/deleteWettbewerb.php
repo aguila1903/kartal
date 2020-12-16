@@ -28,8 +28,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('vereinsname' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('vereinsname' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -44,23 +44,23 @@ if (isset($_REQUEST["liga_id"])) {
     if ($liga_id != "null" && $liga_id != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($liga_id))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Wettbewerb-ID prüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Wettbewerb-ID prüfen!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Wettbewerb-ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Wettbewerb-ID fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Wettbewerb-ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Wettbewerb-ID fehlt!");
 
     print json_encode($out);
 
@@ -81,20 +81,20 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} == 1 ) {
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] == 1 ) {
         $i = 0;
 
 while (!$rs->EOF) {
 
-	$value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+	$value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -104,29 +104,29 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
-    }else if($rs->fields{'ergebnis'} == -1) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Der gewählte Wettbewerb wurde bereits einem Spiel zugewiesen.</br> Bitte löschen Sie zuerst das Spiel.</br>" . ($dbSyb->ErrorMsg()));
-		$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+    }else if($rs->fields['ergebnis'] == -1) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Der gewählte Wettbewerb wurde bereits einem Spiel zugewiesen.</br> Bitte löschen Sie zuerst das Spiel.</br>" . ($dbSyb->ErrorMsg()));
+		$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
         print json_encode($out);
         return;
 } else{
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Der gewählte Wettbewerb konnte nicht gelöscht werden! </br>" . ($dbSyb->ErrorMsg()));
-		$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Der gewählte Wettbewerb konnte nicht gelöscht werden! </br>" . ($dbSyb->ErrorMsg()));
+		$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
         print json_encode($out);
         return;
     }
 }
 else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten. Löschvorgang evtl. nicht erfolgreich. </br>" . ($dbSyb->ErrorMsg()));
-	$out{'response'}{'data'} = array('ergebnis' =>$rs->fields{'ergebnis'});
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten. Löschvorgang evtl. nicht erfolgreich. </br>" . ($dbSyb->ErrorMsg()));
+	$out['response']['data'] = array('ergebnis' =>$rs->fields['ergebnis']);
     print json_encode($out);
     return;
 }

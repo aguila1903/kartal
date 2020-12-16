@@ -60,7 +60,7 @@ $value = array();
 while (!$rs->EOF) {
 
    
-    $value{$i}{"jahr"} = $rs->fields{'jahr'};
+    $value{$i}['jahr'] = $rs->fields['jahr'];
    
     $i++;
 

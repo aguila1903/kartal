@@ -72,7 +72,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
   
     while (!$rs->EOF) {
 
-        $export .= $rs->fields{'lat'} . ";" . $rs->fields{'lon'} . ";" . ($rs->fields{'name'}) . "\r\n";
+        $export .= $rs->fields['lat'] . ";" . $rs->fields['lon'] . ";" . ($rs->fields['name']) . "\r\n";
    
         $rs->MoveNext();
     }

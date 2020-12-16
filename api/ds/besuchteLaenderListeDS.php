@@ -75,9 +75,9 @@ group by code, de order by anzahl desc ";
     while (!$rs->EOF) {
 
 
-        $value{$i}{"land"} = ($rs->fields{'land'});
-        $value{$i}{"anzahl"} = $rs->fields{'anzahl'};
-        $value{$i}{"code"} = ($rs->fields{'code'});
+        $value{$i}['land'] = ($rs->fields['land']);
+        $value{$i}['anzahl'] = $rs->fields['anzahl'];
+        $value{$i}['code'] = ($rs->fields['code']);
 
         $i++;
 

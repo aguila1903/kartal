@@ -178,8 +178,8 @@ else {
     $i = 0;
 
     while (!$rs->EOF) { // =>>> End OF File
-        $ergebnis = $rs->fields{'ergebnis'};
-        $userID = $rs->fields{'userID'};
+        $ergebnis = $rs->fields['ergebnis'];
+        $userID = $rs->fields['userID'];
 
         $i++;
 

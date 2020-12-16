@@ -186,8 +186,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     if (!$rs) {
 
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es ist ein Fehler aufgetreten." . $dbSyb->ErrorMsg());
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es ist ein Fehler aufgetreten." . $dbSyb->ErrorMsg());
 
         print json_encode($out);
         return;
@@ -196,25 +196,25 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         $i = 0;
 
         while (!$rs->EOF) {
-            $data{$i}{"pos_id"} = trim($rs->fields{'pos_id'});
-            $data{$i}{"geb_datum"} = trim($rs->fields{'geb_datum'});
-            $data{$i}{"trikot_nr"} = trim($rs->fields{'trikot_nr'});
-            $data{$i}{"spieler_id"} = trim($rs->fields{'spieler_id'});
-            // $data{$i}{"verein_id"} = trim($rs->fields{'verein_id'});
-            $data{$i}{"status"} = trim($rs->fields{'status'});
-            $data{$i}{"anzahl"} = $rs->fields{'anzahl'};
-            $data{$i}{"nati_spieler"} = trim($rs->fields{'nati_spieler'});
-            $data{$i}{"name"} = ($rs->fields{'name'});
-            $data{$i}{"vorname"} = ($rs->fields{'vorname'});
-            $data{$i}{"spielername"} = trim(($rs->fields{'spielername'}));
-            // $data{$i}{"vereinsname"} = ($rs->fields{'vereinsname'});
-            $data{$i}{"position"} = (trim($rs->fields{'position'}));
-            $data{$i}{"land"} = (trim($rs->fields{'land'}));
-            $data{$i}{"code"} = (trim($rs->fields{'code'}));
-            if (($rs->fields{'elfer_a'} + $rs->fields{'elfer_h'}) > 0) {
-                $data{$i}{"tore"} = ($rs->fields{'tore_a'} + $rs->fields{'tore_h'}) . " (" . ($rs->fields{'elfer_a'} + $rs->fields{'elfer_h'}) . ")";
+            $data{$i}['pos_id'] = trim($rs->fields['pos_id']);
+            $data{$i}['geb_datum'] = trim($rs->fields['geb_datum']);
+            $data{$i}['trikot_nr'] = trim($rs->fields['trikot_nr']);
+            $data{$i}['spieler_id'] = trim($rs->fields['spieler_id']);
+            // $data{$i}['verein_id'] = trim($rs->fields['verein_id']);
+            $data{$i}['status'] = trim($rs->fields['status']);
+            $data{$i}['anzahl'] = $rs->fields['anzahl'];
+            $data{$i}['nati_spieler'] = trim($rs->fields['nati_spieler']);
+            $data{$i}['name'] = ($rs->fields['name']);
+            $data{$i}['vorname'] = ($rs->fields['vorname']);
+            $data{$i}['spielername'] = trim(($rs->fields['spielername']));
+            // $data{$i}['vereinsname'] = ($rs->fields['vereinsname']);
+            $data{$i}['position'] = (trim($rs->fields['position']));
+            $data{$i}['land'] = (trim($rs->fields['land']));
+            $data{$i}['code'] = (trim($rs->fields['code']));
+            if (($rs->fields['elfer_a'] + $rs->fields['elfer_h']) > 0) {
+                $data{$i}['tore'] = ($rs->fields['tore_a'] + $rs->fields['tore_h']) . " (" . ($rs->fields['elfer_a'] + $rs->fields['elfer_h']) . ")";
             } else {
-                $data{$i}{"tore"} = ($rs->fields{'tore_a'}+$rs->fields{'tore_h'});
+                $data{$i}['tore'] = ($rs->fields['tore_a']+$rs->fields['tore_h']);
             }
 
             $i++;
@@ -225,9 +225,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
         $rs->Close();
 
 
-        $out{'response'}{'status'} = 0;
-        $out{'response'}{'errors'} = array();
-        $out{'response'}{'data'} = $data;
+        $out['response']['status'] = 0;
+        $out['response']['errors'] = array();
+        $out['response']['data'] = $data;
 
         print json_encode($out);
     }

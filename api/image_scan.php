@@ -16,8 +16,8 @@ if (isset($_REQUEST["name"])) {
     $name = trim($_REQUEST["name"]);
     $name = sonderzeichen($name);
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Name fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Name fehlt!");
     print json_encode($out);
 
     return;
@@ -26,8 +26,8 @@ if (isset($_REQUEST["name"])) {
 if (isset($_REQUEST["ref"])) {
     $ref = trim($_REQUEST["ref"]);
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Die Bezugsreferenz fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Die Bezugsreferenz fehlt!");
     print json_encode($out);
 
     return;
@@ -37,13 +37,13 @@ if (isset($_REQUEST["id"])) {
     if ($_REQUEST["id"] != "null" && $_REQUEST["id"] != "") {
         $id = $_REQUEST["id"];
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "ID fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "ID fehlt!");
         print json_encode($out);
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "ID fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "ID fehlt!");
     print json_encode($out);
 
     return;
@@ -87,8 +87,8 @@ function get_image($url, $name, $ref, $bild_art, $id) {
 
 
     if (!$dbSyb->IsConnected()) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('Datenbank-Verbindung konnte nicht hergestellt werden!');
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('Datenbank-Verbindung konnte nicht hergestellt werden!');
         print json_encode($out);
         return;
     }
@@ -103,14 +103,14 @@ function get_image($url, $name, $ref, $bild_art, $id) {
         $rs = $dbSyb->Execute($querySQL);
 
         if (!$rs) {
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('Datenbank-Verbindung konnte nicht hergestellt werden!');
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('Datenbank-Verbindung konnte nicht hergestellt werden!');
             print json_encode($out);
             return;
         }
-        if ($rs->fields{'anzahl'} >= 1) {
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('Es gibt bereits ein Front-Bild!');
+        if ($rs->fields['anzahl'] >= 1) {
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('Es gibt bereits ein Front-Bild!');
             print json_encode($out);
             return;
         }
@@ -163,10 +163,10 @@ function get_image($url, $name, $ref, $bild_art, $id) {
     }
 
     if ($webImg[0] == "") {
-        $data{"pictureName"} = "";
-        $out{'response'}{'status'} = 0;
-        $out{'response'}{'errors'} = array();
-        $out{'response'}{'data'} = $data;
+        $data['pictureName'] = "";
+        $out['response']['status'] = 0;
+        $out['response']['errors'] = array();
+        $out['response']['data'] = $data;
 
         print json_encode($out);
 
@@ -266,8 +266,8 @@ function get_image($url, $name, $ref, $bild_art, $id) {
             $rs = $dbSyb->Execute($querySQL);
 
             if (!$rs) {
-                $out{'response'}{'status'} = -1;
-                $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+                $out['response']['status'] = -1;
+                $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
                 print json_encode($out);
 
@@ -275,32 +275,32 @@ function get_image($url, $name, $ref, $bild_art, $id) {
             }
         } else { // Datei wurde nicht beschrieben und muss wieder gelöscht werden.
             unlink($target);
-            $data{"pictureName"} = "";
-            $out{'response'}{'status'} = 0;
-            $out{'response'}{'errors'} = array();
-            $out{'response'}{'data'} = $data;
+            $data['pictureName'] = "";
+            $out['response']['status'] = 0;
+            $out['response']['errors'] = array();
+            $out['response']['data'] = $data;
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $data{"pictureName"} = "";
-        $out{'response'}{'status'} = 0;
-        $out{'response'}{'errors'} = array();
-        $out{'response'}{'data'} = $data;
+        $data['pictureName'] = "";
+        $out['response']['status'] = 0;
+        $out['response']['errors'] = array();
+        $out['response']['data'] = $data;
 
         print json_encode($out);
 
         return;
     }
 
-    $data{"pictureName"} = ($savename);
+    $data['pictureName'] = ($savename);
 
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $data;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $data;
 
     print json_encode($out);
 }

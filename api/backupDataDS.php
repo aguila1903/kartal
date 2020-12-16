@@ -11,9 +11,9 @@ $out = array();
 while ($i < count($backups)) {
     $pathinfo = pathinfo($path.$backups[$i]);
     if ($pathinfo['extension'] == "sql") {
-        $data{$ii}{"dateiname"} = $backups[$i];
-        $data{$ii}{"dateigroesse"} = filesize($path.$backups[$i]);
-        $data{$ii}{"dateizeit"} = date("d.m.Y H:i:s", fileatime($path.$backups[$i]));
+        $data{$ii}['dateiname'] = $backups[$i];
+        $data{$ii}['dateigroesse'] = filesize($path.$backups[$i]);
+        $data{$ii}['dateizeit'] = date("d.m.Y H:i:s", fileatime($path.$backups[$i]));
 		$ii++;
     }
     $i++;

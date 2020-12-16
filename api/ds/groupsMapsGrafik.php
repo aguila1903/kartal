@@ -95,14 +95,14 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
     while (!$rs->EOF) {
 
 
-        $value{$i}{"title"} = ($rs->fields{'land'});
-        if ($rs->fields{'anzahl'} > 1) {
-            $value{$i}{"customData"} = $rs->fields{'anzahl'} . " Spiele besucht";
+        $value{$i}['title'] = ($rs->fields['land']);
+        if ($rs->fields['anzahl'] > 1) {
+            $value{$i}['customData'] = $rs->fields['anzahl'] . " Spiele besucht";
         } else {
-            $value{$i}{"customData"} = $rs->fields{'anzahl'} . " Spiel besucht";
+            $value{$i}['customData'] = $rs->fields['anzahl'] . " Spiel besucht";
         }
-        $value{$i}{"groupId"} = $jahr;
-        $value{$i}{"id"} = $rs->fields{'code'};
+        $value{$i}['groupId'] = $jahr;
+        $value{$i}['id'] = $rs->fields['code'];
 
         $i++;
 
@@ -112,9 +112,9 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     $output = json_encode($out);
 
